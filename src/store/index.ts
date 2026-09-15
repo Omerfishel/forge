@@ -100,7 +100,8 @@ export interface ForgeState {
   setPercent: (itemId: string, itemType: ProgressItemType, percent: number) => void;
   logHours: (itemId: string, itemType: ProgressItemType, hours: number) => void;
   setLinks: (itemId: string, itemType: ProgressItemType, links: { label: string; url: string }[]) => void;
-  toggleCriterion: (assessmentId: string, index: number, total: number) => void;
+  /** Tick/untick one checklist item (assessment rubric criterion or project step); percent = done/total. */
+  toggleCriterion: (itemId: string, index: number, total: number, itemType?: ProgressItemType) => void;
   logDrill: (drillId: string, dateKey?: string) => void;
   unlogDrill: (drillId: string, dateKey?: string) => void;
   addNote: (note: Omit<Note, "id" | "createdAt" | "updatedAt">) => string;
@@ -251,7 +252,7 @@ export const useForge = create<ForgeState>()(
           return { progress: { ...s.progress, [itemId]: { ...(prev ?? { itemId, itemType, status: "todo" as ProgressStatus }), itemId, itemType, links, updatedAt: nowIso() } } };
         }),
 
-      toggleCriterion: (assessmentId, index, total) =>
+      toggleCriterion: (assessmentId, index, total, itemType = "assessment") =>
         set((s) => {
           const prev = s.progress[assessmentId];
           const cur = new Set(prev?.criteriaDone ?? []);
@@ -264,7 +265,7 @@ export const useForge = create<ForgeState>()(
           if (status === "done" && !wasDone) completions = bumpCompletion(completions, +1);
           if (status !== "done" && wasDone) completions = bumpCompletion(completions, -1);
           return {
-            progress: { ...s.progress, [assessmentId]: { ...(prev ?? { itemId: assessmentId, itemType: "assessment" as const }), itemId: assessmentId, itemType: "assessment", status, percentComplete: p, criteriaDone: done, updatedAt: nowIso() } },
+            progress: { ...s.progress, [assessmentId]: { ...(prev ?? { itemId: assessmentId, itemType }), itemId: assessmentId, itemType, status, percentComplete: p, criteriaDone: done, updatedAt: nowIso() } },
             completions,
           };
         }),

@@ -1,4 +1,333 @@
 import type { Resource } from "@/types";
 
-// Seeded from the curriculum spec (Track 5). Replace with real records.
-export const t5Resources: Resource[] = [];
+// Seeded from docs/curriculum-spec.md — TRACK 5 (Sales, GTM & Founder-Led Sales,
+// priorityRank 6), plus the T5 items referenced in the paths, drills, workouts and
+// assessments sections. Bundled mentions in the spec (MEDDIC/SPIN/Challenger,
+// Voss + Fisher & Ury, Dunford's free workbook) are split into individual records.
+// URL verification: spec URLs → 2026-09-01; URLs added from memory were fetched
+// on 2026-09-16 and are flagged in `notes`.
+export const t5Resources: Resource[] = [
+  {
+    id: "t5-founding-sales",
+    title: "Founding Sales: The Early Stage Go-to-Market Handbook",
+    creator: "Pete Kazanjy",
+    url: "https://www.foundingsales.com",
+    urlVerified: true,
+    urlVerifiedDate: "2026-09-01",
+    resourceType: "book",
+    format: "book",
+    cost: {
+      model: "free",
+      note: "Free to read online (the site asks for a free registration); Kindle, print and audiobook editions are paid.",
+    },
+    estHours: 10,
+    timeBucket: "2_10h",
+    difficulty: "intermediate",
+    prerequisites: [],
+    buildsSkill:
+      "Run founder-led sales end-to-end: build a target list, do outbound, run discovery and pitch calls, handle objections, close and manage an early pipeline — before there is a sales team.",
+    whyForHim:
+      "He already has technical pre/post-sales and solutions-architecture experience, but CEO-style outbound/GTM is the gap that sank his last founding attempt, and 'founder-led sales (enough to sell without being CEO)' is on his skills-to-close list. Founding Sales is the Phase 1 read, the closer of Variant A and the opener of Variant C, and it feeds the daily cold-outreach drill.",
+    priority: "must_do",
+    producesArtifact: false,
+    trackIds: ["T5_SALES_GTM", "T6_FOUNDER", "T4_FDE_SE"],
+    skillIds: ["founder-led-sales", "technical-discovery", "objection-handling"],
+    roleRelevance: ["CEO", "FDE", "SE", "CTO"],
+    tags: ["founder_led_sales", "gtm", "prospecting", "pipeline", "phase1", "variant_a", "variant_c"],
+    freshness: "current",
+    qualitySignal:
+      "The canonical founder-led sales handbook (research doc: must-do). Kazanjy also runs a founder-led-sales podcast + newsletter and has a widely shared 'founder led selling' talk/deck via First Round Review.",
+    notes:
+      "The research doc lists it as FREE online; as of 2026-09-16 the site gates online reading behind a free registration — re-verify. The doc says it pairs with Kazanjy's First Round Review podcast + 'founder led selling' deck (no URLs captured); the site links a 'Founder-Led Sales Factory GTM Accelerator' Google Slides deck (see links) — confirm it is the deck meant.",
+    links: [
+      {
+        label: "Founder-Led Sales Factory GTM Accelerator deck (Google Slides, linked from the site)",
+        url: "https://docs.google.com/presentation/d/1ynMBpU1iAeSucdEWPvmlw6QOl4_n30IgAKMgLchLjNk/edit",
+      },
+    ],
+  },
+  {
+    id: "t5-obviously-awesome",
+    title: "Obviously Awesome: How to Nail Product Positioning so Customers Get It, Buy It, Love It",
+    creator: "April Dunford",
+    url: "https://www.aprildunford.com/books",
+    urlVerified: true,
+    urlVerifiedDate: "2026-09-01",
+    resourceType: "book",
+    format: "book",
+    cost: {
+      model: "one_time",
+      amount: 20,
+      currency: "USD",
+      note: "~$20 USD, approximate as of Sept 2026; a newer edition is noted — re-verify edition and price at purchase.",
+    },
+    estHours: 5,
+    timeBucket: "2_10h",
+    difficulty: "foundational",
+    prerequisites: [],
+    buildsSkill:
+      "Position a B2B tech product with the Dunford method: competitive alternatives → unique attributes → value → best-fit customers → market category ('find your product's secret sauce').",
+    whyForHim:
+      "His five-year plan's first action is a one-line positioning statement (including reframing the failed attempt), and the T5 ready-when literally requires 'position a product (Dunford canvas)'. His wedge is an intersection — agent/NHI security, AI-for-SOC — that only lands if it is positioned sharply for a CISO buyer. Phase 3 and Variant C.",
+    priority: "must_do",
+    producesArtifact: false,
+    trackIds: ["T5_SALES_GTM", "T3_PRODUCT", "T6_FOUNDER"],
+    skillIds: ["positioning", "b2b-pm"],
+    roleRelevance: ["CEO", "PM", "FDE", "SE", "CTO"],
+    tags: ["positioning", "b2b", "dunford", "phase3", "variant_c"],
+    freshness: "current",
+    qualitySignal:
+      "Research doc: must-do — the standard B2B positioning text; companion to Sales Pitch (t5-sales-pitch) and the free workbook (t5-dunford-workbook).",
+    notes:
+      "Newer edition noted in the research — check which edition you buy. Do the free workbook (t5-dunford-workbook) right after reading to turn it into an artifact.",
+  },
+  {
+    id: "t5-sales-pitch",
+    title: "Sales Pitch: How to Craft a Story to Stand Out and Win",
+    creator: "April Dunford",
+    url: "https://www.aprildunford.com/books",
+    urlVerified: true,
+    urlVerifiedDate: "2026-09-01",
+    resourceType: "book",
+    format: "book",
+    cost: {
+      model: "one_time",
+      note: "Price not captured in the research doc — re-verify at purchase.",
+    },
+    estHours: 5,
+    timeBucket: "2_10h",
+    difficulty: "intermediate",
+    prerequisites: ["t5-obviously-awesome"],
+    buildsSkill:
+      "Turn positioning into an eight-step sales pitch narrative — the setup (market insight, alternatives, 'perfect world') and the follow-through (product, differentiated value, proof, objections, the ask) — that a technical founder can deliver on a first call.",
+    whyForHim:
+      "It is the bridge from a positioning canvas to the founder-led sales call the T5 ready-when demands ('deliver a pitch and run a founder-led sales call end-to-end'), and it complements the Raskin strategic narrative (T6) with a call-level structure. Phase 3, read straight after Obviously Awesome.",
+    priority: "high",
+    producesArtifact: false,
+    trackIds: ["T5_SALES_GTM", "T4_FDE_SE", "T6_FOUNDER"],
+    skillIds: ["positioning", "strategic-narrative", "demo-craft"],
+    roleRelevance: ["CEO", "FDE", "SE", "PM"],
+    tags: ["positioning", "pitch", "storytelling", "dunford", "phase3", "variant_c"],
+    freshness: "current",
+    qualitySignal:
+      "Research doc: high; 2023 follow-up that builds on Obviously Awesome. Dunford's pitch structure is widely used in B2B SaaS sales enablement.",
+    notes:
+      "CAVEAT from the research: Dunford offers facilitated workshops plus a free 14-page workbook (Positioning Canvas + Sales Pitch Storyboard) at aprildunford.gumroad.com — there is NO standalone self-serve course; re-verify if a course later appears. The workbook is split out as t5-dunford-workbook.",
+    links: [
+      { label: "Free workbook: Positioning Canvas + Sales Pitch Storyboard (Gumroad)", url: "https://aprildunford.gumroad.com" },
+    ],
+  },
+  {
+    id: "t5-dunford-workbook",
+    title: "Positioning Canvas + Sales Pitch Storyboard (free workbook)",
+    creator: "April Dunford",
+    url: "https://aprildunford.gumroad.com",
+    urlVerified: true,
+    urlVerifiedDate: "2026-09-01",
+    resourceType: "worksheet",
+    format: "hands_on_lab",
+    cost: { model: "free", note: "Free 14-page workbook (Gumroad may ask for an email / $0 checkout)." },
+    estHours: 3,
+    timeBucket: "2_10h",
+    difficulty: "intermediate",
+    prerequisites: ["t5-obviously-awesome"],
+    buildsSkill:
+      "Produce a filled-in positioning canvas and a storyboarded sales pitch for one specific product and buyer.",
+    whyForHim:
+      "The cheapest way to turn the two Dunford books into a portfolio artifact: fill the canvas for his own wedge (agent/NHI security or AI-SOC) and later for the startup he joins. A completed canvas + storyboard is exactly the evidence the T5 ready-when asks for, and it doubles as the seed of the Phase 3 positioning + pitch deck milestone.",
+    priority: "high",
+    producesArtifact: true,
+    trackIds: ["T5_SALES_GTM", "T6_FOUNDER"],
+    skillIds: ["positioning", "strategic-narrative"],
+    roleRelevance: ["CEO", "PM", "FDE", "SE"],
+    tags: ["positioning", "worksheet", "template", "dunford", "phase3", "variant_c"],
+    freshness: "current",
+    qualitySignal:
+      "Official companion workbook from the author; the research doc confirms it as the free self-serve material (the paid option is facilitated workshops only).",
+    notes:
+      "Split out of t5-sales-pitch. Re-verify availability — the research flagged Dunford's 'course' as workshops + free workbook only.",
+  },
+  {
+    id: "t5-meddic",
+    title: "MEDDIC / MEDDPICC — enterprise deal qualification",
+    creator: "MEDDICC (MEDDPICC methodology site); MEDDIC originated at PTC",
+    url: "https://meddicc.com",
+    urlVerified: true,
+    urlVerifiedDate: "2026-09-16",
+    resourceType: "framework",
+    format: "reading",
+    cost: {
+      model: "freemium",
+      note: "The framework is free to learn from explainer pages; the site sells training/certification — skip paid certification unless an employer runs on it.",
+    },
+    estHours: 4,
+    timeBucket: "2_10h",
+    difficulty: "intermediate",
+    prerequisites: ["t5-founding-sales"],
+    buildsSkill:
+      "Qualify and run enterprise deals with MEDDPICC — Metrics, Economic Buyer, Decision Criteria, Decision Process, Paper Process, Implicate the Pain, Champion, Competition — and know when a deal is not real.",
+    whyForHim:
+      "Enterprise security deals are long and multi-stakeholder (CISO, security review, procurement, legal); the research doc singles out MEDDPICC as the most relevant sales framework for them. As an FDE/founding SE he will be asked to find the champion, quantify the pain and shape the decision/paper process during POCs, and this is the vocabulary account executives will use with him.",
+    priority: "high",
+    producesArtifact: false,
+    trackIds: ["T5_SALES_GTM", "T4_FDE_SE"],
+    skillIds: ["meddic", "ciso-selling", "poc-scoping"],
+    roleRelevance: ["FDE", "SE", "CEO"],
+    tags: ["meddic", "meddpicc", "enterprise_sales", "qualification", "selective_reading"],
+    freshness: "current",
+    qualitySignal:
+      "The de facto enterprise B2B qualification standard (MEDDIC from PTC in the 1990s; MEDDPICC is the extended variant used by most security vendors). Research doc: 'selective reading; MEDDPICC most relevant to enterprise security deals.'",
+    notes:
+      "The research doc bundles MEDDIC/MEDDPICC with SPIN Selling and The Challenger Sale as selective reading — split into t5-spin-selling and t5-challenger-sale. URL added from memory (not in the research doc); fetched OK 2026-09-16.",
+  },
+  {
+    id: "t5-spin-selling",
+    title: "SPIN Selling",
+    creator: "Neil Rackham (Huthwaite)",
+    url: "https://www.goodreads.com/book/show/833015.SPIN_Selling",
+    urlVerified: true,
+    urlVerifiedDate: "2026-09-16",
+    resourceType: "book",
+    format: "book",
+    cost: { model: "one_time", note: "Price not captured in the research doc; widely available used/Kindle." },
+    estHours: 6,
+    timeBucket: "2_10h",
+    difficulty: "foundational",
+    prerequisites: [],
+    buildsSkill:
+      "Consultative discovery with Situation → Problem → Implication → Need-payoff questioning, so buyers articulate the cost of the problem before any feature pitch.",
+    whyForHim:
+      "AI FDEs spend 30–40% of the week in conversational customer discovery (T4 FDE explainers); SPIN is the commercial questioning discipline that pairs with The Mom Test's honesty rules and his existing solutions-architect instincts. Selective reading — skim for the questioning model if time is short.",
+    priority: "optional",
+    producesArtifact: false,
+    trackIds: ["T5_SALES_GTM", "T4_FDE_SE"],
+    skillIds: ["technical-discovery", "founder-led-sales"],
+    roleRelevance: ["FDE", "SE", "CEO", "PM"],
+    tags: ["spin", "discovery", "consultative_selling", "selective_reading"],
+    freshness: "aging",
+    qualitySignal:
+      "Classic research-based sales text (Huthwaite's study of ~35,000 sales calls); Goodreads 4.01/5 on ~12,600 ratings (2026-09-16). Research doc: selective reading.",
+    notes:
+      "Split out of the research doc's t5-meddic bundle. The book is from 1988 — the method is evergreen but examples are dated. URL added from memory (Goodreads); fetched OK 2026-09-16.",
+  },
+  {
+    id: "t5-challenger-sale",
+    title: "The Challenger Sale: Taking Control of the Customer Conversation",
+    creator: "Matthew Dixon & Brent Adamson (CEB, now Gartner)",
+    url: "https://www.challengerinc.com",
+    urlVerified: true,
+    urlVerifiedDate: "2026-09-16",
+    resourceType: "book",
+    format: "book",
+    cost: { model: "one_time", note: "Price not captured in the research doc." },
+    estHours: 6,
+    timeBucket: "2_10h",
+    difficulty: "intermediate",
+    prerequisites: [],
+    buildsSkill:
+      "Teach–tailor–take-control selling: open with a commercial insight that reframes the buyer's problem, tailor it per stakeholder, and steer the deal instead of order-taking.",
+    whyForHim:
+      "Selling agent/NHI security or AI-SOC to a CISO is insight-led — most buyers have no category for the risk yet, so the 'teach' motion (reframing) matters more than relationship selling. It complements Raskin's strategic narrative (T6) with a call-level version. Selective reading.",
+    priority: "optional",
+    producesArtifact: false,
+    trackIds: ["T5_SALES_GTM", "T4_FDE_SE"],
+    skillIds: ["founder-led-sales", "strategic-narrative", "objection-handling"],
+    roleRelevance: ["CEO", "FDE", "SE"],
+    tags: ["challenger", "insight_selling", "enterprise_sales", "selective_reading"],
+    freshness: "aging",
+    qualitySignal:
+      "Widely cited enterprise-sales text from CEB's large-scale study of sales-rep performance (2011). Research doc: selective reading.",
+    notes:
+      "Split out of the research doc's t5-meddic bundle. URL (Challenger Inc. site) added from memory; fetched OK 2026-09-16 — the book page sits at /the-challenger-sales-book/ (see links).",
+    links: [{ label: "The Challenger Sale — book page", url: "https://www.challengerinc.com/the-challenger-sales-book/" }],
+  },
+  {
+    id: "t5-never-split",
+    title: "Never Split the Difference: Negotiating As If Your Life Depended On It",
+    creator: "Chris Voss (with Tahl Raz)",
+    url: "https://www.blackswanltd.com/never-split-the-difference",
+    urlVerified: true,
+    urlVerifiedDate: "2026-09-16",
+    resourceType: "book",
+    format: "book",
+    cost: { model: "one_time", note: "Price not captured in the research doc." },
+    estHours: 8,
+    timeBucket: "2_10h",
+    difficulty: "foundational",
+    prerequisites: [],
+    buildsSkill:
+      "Tactical empathy in negotiation: mirroring, labeling, calibrated questions, the accusation audit and getting to 'that's right' — for offers, contracts and stakeholder conflicts.",
+    whyForHim:
+      "He negotiates twice in this plan: his own FDE/founding-SE offer (35k+ ILS and 0.15–0.25% equity per the five-year plan) and, pre-founding, co-founder equity/vesting and design-partner terms — the co-founder conversation is his documented failure mode. It is also the script source for the biweekly d-negotiation-roleplay drill and the last item of Variant C.",
+    priority: "high",
+    producesArtifact: false,
+    trackIds: ["T5_SALES_GTM", "T6_FOUNDER"],
+    skillIds: ["negotiation", "objection-handling"],
+    roleRelevance: ["CEO", "CTO", "FDE", "SE", "PM"],
+    tags: ["negotiation", "tactical_empathy", "offers", "variant_c"],
+    freshness: "current",
+    qualitySignal:
+      "Research doc: high. The most-recommended practical negotiation book of the last decade, by the FBI's former lead international kidnapping negotiator.",
+    notes:
+      "The research doc bundles it with Getting to Yes (split out as t5-getting-to-yes): Voss gives the tactics, Fisher & Ury the principled/BATNA structure. URL (Black Swan Group's book page) added from memory; fetched OK 2026-09-16.",
+  },
+  {
+    id: "t5-getting-to-yes",
+    title: "Getting to Yes: Negotiating Agreement Without Giving In",
+    creator: "Roger Fisher, William Ury & Bruce Patton (Harvard Negotiation Project)",
+    url: "https://www.pon.harvard.edu/tag/getting-to-yes/",
+    urlVerified: true,
+    urlVerifiedDate: "2026-09-16",
+    resourceType: "book",
+    format: "book",
+    cost: { model: "one_time", note: "Price not captured in the research doc; widely available used." },
+    estHours: 6,
+    timeBucket: "2_10h",
+    difficulty: "foundational",
+    prerequisites: [],
+    buildsSkill:
+      "Principled negotiation: separate the people from the problem, focus on interests not positions, invent options for mutual gain, insist on objective criteria, and know your BATNA.",
+    whyForHim:
+      "Interests-vs-positions and BATNA are exactly the frame a co-founder equity/vesting talk needs (T6 must-do workstream, his past failure mode), and the objective-criteria habit is what keeps POC-scope and procurement negotiations from becoming haggling. Read after Voss if time is short.",
+    priority: "high",
+    producesArtifact: false,
+    trackIds: ["T5_SALES_GTM", "T6_FOUNDER"],
+    skillIds: ["negotiation", "cofounder"],
+    roleRelevance: ["CEO", "CTO", "FDE", "PM"],
+    tags: ["negotiation", "batna", "principled_negotiation", "cofounder"],
+    freshness: "aging",
+    qualitySignal:
+      "Research doc: high. The foundational negotiation text (Harvard Negotiation Project, 3rd edition 2011), taught in most negotiation courses.",
+    notes:
+      "Split out of the research doc's t5-never-split bundle. URL (Harvard PON resource page) added from memory; fetched OK 2026-09-16.",
+  },
+  {
+    id: "t5-ciso-buying",
+    title: "Selling to CISOs: enterprise security buying (curation gap)",
+    creator: "Curated — CISO-focused newsletters, practitioner blogs, his own network",
+    url: "https://ventureinsecurity.net",
+    urlVerified: true,
+    urlVerifiedDate: "2026-09-16",
+    resourceType: "newsletter",
+    format: "reading",
+    cost: { model: "freemium", note: "Practitioner newsletters are mostly free with optional paid tiers; his network is free." },
+    timeBucket: "ongoing",
+    difficulty: "intermediate",
+    prerequisites: ["t5-founding-sales", "t5-meddic"],
+    buildsSkill:
+      "Understand how enterprise security is bought: budget cycles, procurement and security review, champions vs economic buyers, POC/pilot design, and what makes a CISO say yes — then apply it to his own outreach and demos.",
+    whyForHim:
+      "CISOs are his native audience — 8200 + solutions-architect background means he already speaks security — but he lacks the buyer-side view (budgets, procurement, champion-building) needed to sell agent/NHI security or AI-SOC. This also feeds the 'skeptical CISO buyer' discovery workout and the enterprise-security procurement objection-handling roleplay.",
+    priority: "high",
+    producesArtifact: true,
+    trackIds: ["T5_SALES_GTM", "T4_FDE_SE", "T7_DOMAIN"],
+    skillIds: ["ciso-selling", "meddic", "objection-handling"],
+    roleRelevance: ["CEO", "FDE", "SE", "PM"],
+    tags: ["ciso_selling", "enterprise_security", "procurement", "poc", "budget_cycles", "needs_curation", "gap"],
+    freshness: "unknown",
+    qualitySignal:
+      "No single canonical book exists (research doc). Placeholder pointer: Venture in Security (Ross Haleliuk; 22,000+ subscribers per the site) analyses the business of cybersecurity for CISOs, founders and investors.",
+    notes:
+      "NEEDS-CURATION — gap flagged in the research doc ('no single canonical book — curate via CISO-focused newsletters + his own network + practitioner blogs'). The URL is a suggested starting point added from memory, NOT from the research doc; replace/extend with whatever CISO newsletters and blogs prove useful. Artifact: his own curated reading list + a one-page 'how a CISO buys' map (budget cycle, procurement, champion, POC).",
+  },
+];
