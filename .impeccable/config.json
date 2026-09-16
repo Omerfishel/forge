@@ -11,6 +11,15 @@
         ],
         "createdAt": "2026-09-16T07:59:12.351Z",
         "reason": "user instruction: base the UI/UX on the Sapir-Cyber-Learn reference, whose index.html uses 3-4px left colour stripes on .task, .phase-h::before, .deliver and .toast; the stripes carry track colour and are the reference's signature"
+      },
+      {
+        "rule": "layout-transition",
+        "value": "*",
+        "files": [
+          "src/styles/app.css"
+        ],
+        "createdAt": "2026-09-16T09:25:20.499Z",
+        "reason": "user instruction: match the Sapir-Cyber-Learn reference; its index.html animates the same properties with the same durations (.tabs transition:width .18s ease; progress fills transition:width .3s/.35s/.4s) on one 224px nav and thin bar fills inside fixed tracks, negligible layout cost"
       }
     ]
   }
