@@ -1,9 +1,11 @@
 import type { Resource } from "@/types";
 
 // Seeded from docs/curriculum-spec.md — TRACK 1 (Hands-on AI/ML Fluency), plus the
-// T1-relevant items from the Hands-On Work and Staying-current sections.
+// T1-relevant items from the Hands-On Work section (project stacks) and the T3 note on
+// Aman Khan's free DeepLearning.AI course. The "Staying current" feeds (Latent Space,
+// Import AI, Simon Willison, tl;dr sec) live in t7.ts (t7-latent-space is cross-listed to T1).
 // urlVerifiedDate: DOC = the URL appears in the research doc (Sept 2026 research pass);
-// SEED = checked (or attempted) at seed time. urlVerified=false means re-verify.
+// SEED = fetched at seed time (2026-09-16). urlVerified=false means re-verify.
 const DOC = "2026-09-01";
 const SEED = "2026-09-16";
 
@@ -28,7 +30,7 @@ export const t1Resources: Resource[] = [
     buildsSkill:
       "Backprop, tokenization and building GPT from scratch (micrograd → makemore → nanoGPT): the intuition to explain attention, tokenizers and training loops without hand-waving.",
     whyForHim:
-      "The single best intuition-builder. It lets him speak credibly about transformers to founders, customers and a future technical co-founder without becoming a researcher — exactly the technical-credibility gap the 5-year plan says a product-oriented CTO must close. His own GPT + tokenizer repos are also the first public artifacts for the learn-in-public stream.",
+      "The single best intuition-builder. It lets him speak credibly about transformers to founders, customers and a future technical co-founder without becoming a researcher — exactly the technical-credibility gap a product-oriented CTO from a cyber background has to close. His own GPT + tokenizer repos are also the first public artifacts for the learn-in-public stream and the first node of the spec's DAG (Karpathy → HF LLM/smol → p-finetune-security).",
     priority: "must_do",
     producesArtifact: true,
     trackIds: ["T1_AI_ML"],
@@ -36,9 +38,10 @@ export const t1Resources: Resource[] = [
     roleRelevance: ["Developer", "CTO", "FDE", "SE"],
     tags: ["transformers", "tokenization", "gpt_from_scratch", "free_canon", "hands_on", "phase_1"],
     freshness: "current",
-    qualitySignal: "Near-universally recommended; the canonical free entry point (community consensus per the research doc).",
+    qualitySignal:
+      "Doc consensus: near-universally recommended; the canonical free entry point. Part of the free canon that covers ~70% of Tracks 1–2.",
     notes:
-      "Code and notebooks at github.com/karpathy/nn-zero-to-hero. Difficulty runs foundational → intermediate across the series; Variant A only needs the skim up to the GPT lecture. Spec DAG: Karpathy ZTH → HF LLM/smol → p-finetune-security.",
+      "Doc: ~25–30h, foundational→intermediate across the series; code at github.com/karpathy/nn-zero-to-hero. Artifact: his own GPT + tokenizer repos. Variant A only needs the skim up to the GPT lecture; the 'next 30 days' recommendation starts it alongside HF Agents. Self-test items it covers: explain attention and tokenization to a peer.",
     links: [
       { label: "Code: nn-zero-to-hero (GitHub)", url: "https://github.com/karpathy/nn-zero-to-hero" },
       { label: "micrograd", url: "https://github.com/karpathy/micrograd" },
@@ -63,7 +66,7 @@ export const t1Resources: Resource[] = [
     buildsSkill:
       "Transformers and tokenizers in practice, fine-tuning with Trainer/TRL, LoRA, SFT and GRPO (the DeepSeek R1 recipe), and shipping Gradio demos.",
     whyForHim:
-      "Maintained by the people who ship the libraries, so what he learns is the real production API, not a toy. It is the bridge from Karpathy's intuition to p-finetune-security (fine-tuning a small model for a security task) — the proof that he can go beyond API calls, which is what separates a product-CTO from a prompt engineer.",
+      "Maintained by the people who ship the libraries, so what he learns is the real production API, not a toy. It is the bridge from Karpathy's intuition to p-finetune-security (fine-tuning a small model on security text) — the proof that he can go beyond API calls, which is what separates a product-CTO from a prompt engineer. Also the T1 ready-when's 'fine-tune an open model with LoRA' in one course.",
     priority: "must_do",
     producesArtifact: true,
     trackIds: ["T1_AI_ML"],
@@ -72,7 +75,8 @@ export const t1Resources: Resource[] = [
     tags: ["transformers", "finetuning", "lora", "grpo", "sft", "gradio", "free_canon", "hands_on"],
     freshness: "current",
     qualitySignal: "Official Hugging Face curriculum, maintained by the library authors; the doc calls it 'directly practical'.",
-    notes: "Artifact: a fine-tuned model published on the Hub. Phase 1 starts it; the 30–90-day recommendation is to finish it.",
+    notes:
+      "Doc: ~30–40h, intermediate. Artifact: a fine-tuned model published on the Hub. Phase 1 starts it; the days 30–90 recommendation is to finish it. Spec DAG: Karpathy ZTH → HF LLM/smol → p-finetune-security.",
   },
   {
     id: "t1-hf-agents",
@@ -91,16 +95,17 @@ export const t1Resources: Resource[] = [
     buildsSkill:
       "Building agents with smolagents, LangGraph and LlamaIndex; function-calling fine-tuning; agent observability; agentic RAG. Ends with a certificate.",
     whyForHim:
-      "The direct on-ramp to p-secure-mcp-agent, the wedge project (build an agent, then secure it). Knowing exactly how agents plan and call tools is the prerequisite for reasoning about agent authorization and non-human identity — his moat. It is also the fastest credibility for FDE interviews in Variant A.",
+      "The direct on-ramp to p-secure-mcp-agent, the wedge project (build an agent, then secure it). Knowing exactly how agents plan and call tools is the prerequisite for reasoning about agent authorization and non-human identity — his moat, where 8200 + solutions-architect experience compounds. It is also the fastest credibility for FDE interviews in Variant A.",
     priority: "must_do",
     producesArtifact: true,
     trackIds: ["T1_AI_ML"],
     skillIds: ["agents", "rag", "observability", "finetuning"],
     roleRelevance: ["Developer", "FDE", "SE", "CTO", "PM"],
-    tags: ["agents", "smolagents", "langgraph", "llamaindex", "agentic_rag", "observability", "free_canon", "certificate"],
+    tags: ["agents", "smolagents", "langgraph", "llamaindex", "agentic_rag", "observability", "free_canon", "certificate", "phase_1"],
     freshness: "current",
-    qualitySignal: "Official Hugging Face course with a certificate; first in the spec's 'next 30 days' recommendation (with Karpathy).",
-    notes: "Spec DAG: HF Agents → p-secure-mcp-agent → p-nhi-prototype.",
+    qualitySignal:
+      "Official Hugging Face course with a certificate; part of the free canon and first in the spec's 'next 30 days' recommendation (with Karpathy).",
+    notes: "Doc: ~20–30h, intermediate; artifact: yes. Spec DAG: HF Agents → p-secure-mcp-agent → p-nhi-prototype.",
   },
   {
     id: "t1-hf-smol",
@@ -119,21 +124,21 @@ export const t1Resources: Resource[] = [
     buildsSkill:
       "Fast-paced fine-tuning practice: SFT, preference alignment (DPO), evaluation and VLMs with TRL/Transformers on small models.",
     whyForHim:
-      "A compact way to get real DPO/alignment reps on hardware he actually has. Pairs with the LLM course so he can answer 'DPO vs RLHF' in the T1 self-test and fine-tune a small model for p-finetune-security.",
+      "A compact way to get real DPO/alignment reps on hardware he actually has. Pairs with the LLM course so he can answer 'DPO vs RLHF' in the T1 self-test and fine-tune a small model for p-finetune-security without a GPU budget.",
     priority: "must_do",
     producesArtifact: true,
     trackIds: ["T1_AI_ML"],
-    skillIds: ["finetuning", "dpo", "evals"],
+    skillIds: ["finetuning", "dpo", "rlhf", "evals"],
     roleRelevance: ["Developer", "CTO"],
     tags: ["finetuning", "dpo", "sft", "vlm", "trl", "free_canon", "fast_paced"],
     freshness: "current",
     qualitySignal: "Official Hugging Face course; the doc flags it as fast-paced.",
     notes:
-      "Hours are not given in the spec; ~10h is an estimate. Overlaps with t1-hf-llm-course — do the LLM course fully and use smol-course for the DPO/evaluation units.",
+      "Hours are not given in the doc; ~10h is an estimate. Overlaps with t1-hf-llm-course — do the LLM course fully and use smol-course for the DPO/evaluation units. Spec DAG: Karpathy ZTH → HF LLM/smol → p-finetune-security.",
   },
 
   // ---------------------------------------------------------------------------
-  // Short courses (free-ish)
+  // Short courses (free-ish) — DeepLearning.AI
   // ---------------------------------------------------------------------------
   {
     id: "t1-dlai-shortcourses",
@@ -144,28 +149,34 @@ export const t1Resources: Resource[] = [
     urlVerifiedDate: DOC,
     resourceType: "course",
     format: "hands_on_lab",
-    cost: { model: "freemium", note: "Content free (platform beta); some courses charge ~$49 USD for a certificate." },
+    cost: {
+      model: "freemium",
+      note: "Content free (platform beta); some courses charge ~$49 USD for a certificate (doc). Re-verify — the beta pricing may change.",
+    },
     timeBucket: "ongoing",
     difficulty: "foundational",
     prerequisites: ["Basic Python"],
     buildsSkill:
-      "A rolling menu of 1–3h notebook-based courses on RAG, agentic RAG, agent memory and AI-coding workflows — quick fluency on one topic at a time.",
+      "A rolling menu of 1–3h notebook-based courses on RAG, agentic RAG, agent memory, agent evals and AI-coding workflows — quick fluency on one topic at a time.",
     whyForHim:
-      "The cheapest way to fill specific gaps fast (RAG for p-ai-soc-triage, agent memory, coding-agent workflows) between the big courses. The doc says free canon covers ~70% of Tracks 1–2; these are the plug-ins.",
+      "The cheapest way to fill specific gaps fast (RAG for p-ai-soc-triage, agent memory, coding-agent workflows) between the big courses, in the 10–15h/week he has next to a day job. The doc says free canon covers ~70% of Tracks 1–2; these are the plug-ins.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T1_AI_ML"],
-    skillIds: ["rag", "agents", "embeddings", "ai-coding-tools"],
+    skillIds: ["rag", "agents", "embeddings", "evals", "ai-coding-tools"],
     roleRelevance: ["PM", "FDE", "SE", "Developer"],
     tags: ["rag", "agents", "short_course", "free_canon", "catalog"],
     freshness: "current",
-    qualitySignal: "Part of the spec's free canon (Karpathy / Hugging Face / DeepLearning.AI); Andrew Ng's platform with partner-built courses.",
+    qualitySignal:
+      "Part of the spec's free canon (Karpathy / Hugging Face / DeepLearning.AI); Andrew Ng's platform with partner-built courses. Doc header: 'Must-do / high (short courses, free-ish)'.",
     notes:
-      "Picks from the doc: Building Agentic RAG with LlamaIndex; Retrieval Augmented Generation (RAG); plus agent-memory and AI-coding-workflow courses (not named in the doc — choose at seed time). Certificate fees (~$49) are optional; content is generally free.",
+      "Doc's named picks: Building Agentic RAG with LlamaIndex; Retrieval Augmented Generation (RAG) — each has its own record. The doc also asks for 'agent-memory and AI-coding-workflow courses' without naming them; the seed-time choices (verified 2026-09-16) are 'LLMs as Operating Systems: Agent Memory' (Letta) and 'Claude Code: A Highly Agentic Coding Assistant' (Anthropic). 'Evaluating AI Agents' comes from the T3 note on Aman Khan. Certificate fees (~$49) are optional; content is generally free.",
     links: [
       { label: "Retrieval Augmented Generation (RAG)", url: "https://www.deeplearning.ai/courses/retrieval-augmented-generation" },
       { label: "Building Agentic RAG with LlamaIndex", url: "https://www.deeplearning.ai/courses/building-agentic-rag-with-llamaindex" },
       { label: "Evaluating AI Agents (Arize / Aman Khan)", url: "https://www.deeplearning.ai/courses/evaluating-ai-agents" },
+      { label: "LLMs as Operating Systems: Agent Memory (Letta)", url: "https://www.deeplearning.ai/short-courses/llms-as-operating-systems-agent-memory/" },
+      { label: "Claude Code: A Highly Agentic Coding Assistant (Anthropic)", url: "https://www.deeplearning.ai/short-courses/claude-code-a-highly-agentic-coding-assistant/" },
     ],
   },
   {
@@ -177,22 +188,22 @@ export const t1Resources: Resource[] = [
     urlVerifiedDate: DOC,
     resourceType: "course",
     format: "hands_on_lab",
-    cost: { model: "freemium", note: "Content free; optional certificate ~$49 USD." },
+    cost: { model: "freemium", note: "Content free (platform beta); optional certificate ~$49 USD (doc)." },
     estHours: 2,
     timeBucket: "2_10h",
     difficulty: "foundational",
     prerequisites: ["Basic Python"],
     buildsSkill: "The RAG pipeline end-to-end: chunking, embeddings, retrieval, grounding — and where RAG fails.",
     whyForHim:
-      "RAG over detection docs is the core of p-ai-soc-triage, and 'why did the model answer that?' is the first question an FDE gets from a customer. A couple of hours here gives him the vocabulary and a working notebook.",
+      "RAG over detection docs is the core of p-ai-soc-triage, and 'why did the model answer that?' is the first question an FDE gets from a customer. A couple of hours here gives him the vocabulary and a working notebook before the bigger build.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T1_AI_ML"],
     skillIds: ["rag", "embeddings"],
     roleRelevance: ["PM", "FDE", "SE", "Developer"],
-    tags: ["rag", "embeddings", "short_course", "phase_1"],
+    tags: ["rag", "embeddings", "short_course", "free_canon", "phase_1"],
     freshness: "current",
-    qualitySignal: "Named pick in the spec; sequenced in Variant A (fast FDE credibility).",
+    qualitySignal: "Named pick in the spec; sequenced in Variant A (fast FDE credibility) right after HF Agents.",
     notes: "Doc estimate for DLAI short courses is 1–3h each.",
   },
   {
@@ -204,7 +215,7 @@ export const t1Resources: Resource[] = [
     urlVerifiedDate: DOC,
     resourceType: "course",
     format: "hands_on_lab",
-    cost: { model: "freemium", note: "Content free; optional certificate ~$49 USD." },
+    cost: { model: "freemium", note: "Content free (platform beta); optional certificate ~$49 USD (doc)." },
     estHours: 2,
     timeBucket: "2_10h",
     difficulty: "intermediate",
@@ -212,13 +223,13 @@ export const t1Resources: Resource[] = [
     buildsSkill:
       "Router and tool-calling agents over documents with LlamaIndex: agentic RAG that plans multi-step retrieval instead of a single lookup.",
     whyForHim:
-      "Bridges plain RAG to agents — the same enrich → look up → summarize pattern p-ai-soc-triage needs, and the LlamaIndex material the HF Agents course also touches. Cheap reps before the bigger build.",
+      "Bridges plain RAG to agents — the same enrich → look up → summarize pattern p-ai-soc-triage needs, and the LlamaIndex material the HF Agents course also touches. Cheap reps before the bigger build, and a topic FDE interviewers at agent startups ask about.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T1_AI_ML"],
     skillIds: ["rag", "agents"],
     roleRelevance: ["FDE", "SE", "Developer", "PM"],
-    tags: ["rag", "agents", "llamaindex", "short_course", "phase_1"],
+    tags: ["rag", "agents", "llamaindex", "short_course", "free_canon", "phase_1"],
     freshness: "current",
     qualitySignal: "Named pick in the spec; sequenced in Variant A after the RAG course.",
     notes: "Doc estimate for DLAI short courses is 1–3h each.",
@@ -226,33 +237,90 @@ export const t1Resources: Resource[] = [
   {
     id: "t1-dlai-evaluating-agents",
     title: "Evaluating AI Agents",
-    creator: "DeepLearning.AI / Arize (Aman Khan)",
+    creator: "DeepLearning.AI / Arize AI (Aman Khan & John Gilhuly)",
     url: "https://www.deeplearning.ai/courses/evaluating-ai-agents",
-    urlVerified: false,
+    urlVerified: true,
     urlVerifiedDate: SEED,
     resourceType: "course",
     format: "hands_on_lab",
-    cost: { model: "freemium", note: "Content free; optional certificate ~$49 USD (DLAI catalog policy)." },
+    cost: { model: "freemium", note: "Free during the DeepLearning.AI platform beta (page, 2026-09-16); optional certificate ~$49 USD (doc catalog policy)." },
     estHours: 2,
     timeBucket: "2_10h",
     difficulty: "intermediate",
     prerequisites: ["Basic Python; an agent you have built or can run"],
     buildsSkill: "Tracing and evaluating agent runs — router, skill and trajectory evals — with Phoenix-style tooling.",
     whyForHim:
-      "The free companion to Aman Khan's paid AI-PM course (t3-aipm-khan) — he led this one. Agent evals are the two-track twofer skill (AI engineering + product) and the quality bar for p-ai-soc-triage and p-secure-mcp-agent.",
+      "The free companion to Aman Khan's paid AI-PM cohort (t3-aipm-khan) — the doc notes he led this one. Agent evals are the two-track twofer skill (AI engineering + product) and the quality bar for p-ai-soc-triage and p-secure-mcp-agent; two hours here is the cheapest AI-PM credibility he can buy.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T1_AI_ML", "T3_PRODUCT"],
     skillIds: ["evals", "agents", "observability"],
     roleRelevance: ["PM", "FDE", "Developer"],
-    tags: ["evals", "agents", "observability", "short_course", "ai_pm"],
+    tags: ["evals", "agents", "observability", "short_course", "free_canon", "ai_pm"],
     freshness: "current",
-    qualitySignal: "Led by Aman Khan (Head of Product, Arize), whose Maven AI-PM course is rated 4.8 per the doc.",
-    notes: "URL added from memory (doc names the course but gives no link) — re-verify; the slug may live under /short-courses/.",
+    qualitySignal:
+      "Led by Aman Khan (Arize), whose Maven AI-PM course is rated 4.8 per the doc; verified at seed time as a live DLAI course with Arize AI as partner.",
+    notes: "Doc names the course (T3 section) but gives no link; URL verified 2026-09-16. Uses Arize Phoenix-style tracing (see t1-arize-phoenix).",
+  },
+  {
+    id: "t1-dlai-agent-memory",
+    title: "LLMs as Operating Systems: Agent Memory",
+    creator: "DeepLearning.AI / Letta (Charles Packer & Sarah Wooders)",
+    url: "https://www.deeplearning.ai/short-courses/llms-as-operating-systems-agent-memory/",
+    urlVerified: true,
+    urlVerifiedDate: SEED,
+    resourceType: "course",
+    format: "hands_on_lab",
+    cost: { model: "freemium", note: "Free during the DeepLearning.AI platform beta (page, 2026-09-16); graded assignment for PRO members only." },
+    estHours: 1.5,
+    timeBucket: "lt_2h",
+    difficulty: "intermediate",
+    prerequisites: ["t1-hf-agents"],
+    buildsSkill: "How agents manage memory (core/archival memory, self-editing context) — the MemGPT/Letta model of an LLM as an OS managing its own context window.",
+    whyForHim:
+      "The doc asks for an 'agent-memory' short course and this is the seed-time pick. Agent memory is where secrets and customer data end up persisting — exactly the surface his NHI/agent-security wedge (p-secure-mcp-agent, p-nhi-prototype) has to reason about, so he should know how it is built before he argues how to secure it.",
+    priority: "optional",
+    producesArtifact: false,
+    trackIds: ["T1_AI_ML"],
+    skillIds: ["agents", "rag", "embeddings"],
+    roleRelevance: ["Developer", "FDE", "PM"],
+    tags: ["agents", "agent_memory", "short_course", "free_canon"],
+    freshness: "current",
+    qualitySignal:
+      "Fills the doc's unnamed 'agent-memory course' slot in the DLAI picks; taught by the Letta (MemGPT) co-founders. Page (2026-09-16): 8 video lessons, 5 code examples, ~1h32m.",
+    notes: "The doc names only the category ('agent-memory ... courses'), not this course — chosen at seed time and verified live. Swap if a better memory course appears.",
+  },
+  {
+    id: "t1-dlai-claude-code-course",
+    title: "Claude Code: A Highly Agentic Coding Assistant",
+    creator: "DeepLearning.AI / Anthropic (Elie Schoppik)",
+    url: "https://www.deeplearning.ai/short-courses/claude-code-a-highly-agentic-coding-assistant/",
+    urlVerified: true,
+    urlVerifiedDate: SEED,
+    resourceType: "course",
+    format: "hands_on_lab",
+    cost: { model: "freemium", note: "Free during the DeepLearning.AI platform beta (page, 2026-09-16); optional certificate ~$49 USD (doc catalog policy)." },
+    estHours: 2,
+    timeBucket: "2_10h",
+    difficulty: "foundational",
+    prerequisites: ["Comfortable in a terminal and with git"],
+    buildsSkill: "A structured on-ramp to agentic coding with Claude Code: exploring a codebase, CLAUDE.md, planning, MCP and hooks in a guided workflow.",
+    whyForHim:
+      "The doc asks for an 'AI-coding-workflow' short course and this is the seed-time pick, matching the tool the doc says he must master (t1-claude-code). Since he will build all nine portfolio projects with AI assistance, a two-hour guided pass on spec-driven workflows pays back on the first project.",
+    priority: "high",
+    producesArtifact: false,
+    trackIds: ["T1_AI_ML"],
+    skillIds: ["ai-coding-tools", "mcp"],
+    roleRelevance: ["Developer", "CTO", "PM", "FDE"],
+    tags: ["ai_coding_tools", "spec_driven_development", "short_course", "free_canon"],
+    freshness: "current",
+    qualitySignal:
+      "Fills the doc's unnamed 'AI-coding-workflow course' slot in the DLAI picks; built with Anthropic (instructor: Anthropic's Head of Technical Education). Verified live 2026-09-16.",
+    notes: "The doc names only the category ('AI-coding-workflow courses'), not this course — chosen at seed time. Course length not captured; the doc's 1–3h estimate for DLAI short courses applies.",
   },
 
   // ---------------------------------------------------------------------------
-  // Evals — paid course + free substitute
+  // Evals — paid cohort + free substitute
   // ---------------------------------------------------------------------------
   {
     id: "t1-evals-course",
@@ -267,7 +335,7 @@ export const t1Resources: Resource[] = [
       model: "one_time",
       amount: 4200,
       currency: "USD",
-      note: "Per the live course page (Sept 2026). Employer-funded or skip; free substitute is Hamel's evals posts.",
+      note: "$4,200 USD per the live course page (Sept 2026; prices drift — re-verify). Employer-funded or skip; the free substitute is Hamel's evals posts.",
       freeAlternativeId: "t1-hamel-evals-blog",
     },
     estHours: 18,
@@ -277,18 +345,18 @@ export const t1Resources: Resource[] = [
     buildsSkill:
       "Error analysis, LLM-as-judge, CI regression testing, red-teaming and observability for LLM apps — the full production-evals workflow, with coding homework.",
     whyForHim:
-      "Evals are BOTH an AI-engineering skill and product work — a two-track twofer that maps straight onto AI-SOC quality (p-ai-soc-triage) and the FDE job of proving an agent works for a customer. But at $4,200 the free material covers most of it; this is the one cohort to ask an employer to fund, not to self-fund.",
+      "Evals are BOTH an AI-engineering skill and product work — a two-track twofer that maps straight onto AI-SOC quality (p-ai-soc-triage) and the FDE job of proving an agent works for a customer. But at $4,200 the free material covers most of it; this is the one cohort to ask an employer to fund in the seed-stage job, not to self-fund while job hunting.",
     priority: "optional",
     producesArtifact: true,
     trackIds: ["T1_AI_ML", "T3_PRODUCT"],
     skillIds: ["evals", "observability", "red-teaming"],
     roleRelevance: ["PM", "FDE", "Developer", "CTO"],
-    tags: ["evals", "llm_as_judge", "observability", "red_teaming", "cohort", "paid", "employer_funded"],
+    tags: ["evals", "llm_as_judge", "observability", "red_teaming", "cohort", "paid", "employer_funded", "phase_2"],
     freshness: "current",
     qualitySignal:
-      "Rating 4.7 (901 reviews). 15 live sessions, 200+ page reader, Discord, certificate. Page claim (vendor): 'the most comprehensive AI evals course available… refined with over 5,000 engineers and PMs from teams like OpenAI, Google, Meta, Amazon, and Microsoft.'",
+      "Rating 4.7 (901 reviews). 15 live sessions, 200+ page reader, Discord, coding homework, certificate. Page claim (vendor): 'the most comprehensive AI evals course available… refined with over 5,000 engineers and PMs from teams like OpenAI, Google, Meta, Amazon, and Microsoft.'",
     notes:
-      "FLAG: expensive — $4,200 USD one-time. Consider ONLY if an employer funds it; the spend-discipline rule allows one cohort (this OR Aman Khan's AI-PM). Next cohort listed Oct 10–Nov 21, 2026 (~4 weeks, ~15–20h). Difficulty intermediate → advanced. Free substitute: t1-hamel-evals-blog (must-read regardless).",
+      "FLAG: expensive — $4,200 USD one-time. Consider ONLY if an employer funds it (doc: 'Consider only if an employer funds it'; Phase 2: 'paid course only if employer funds'). The spend-discipline rule allows one cohort total — this OR Aman Khan's AI-PM (t3-aipm-khan). Next cohort listed Oct 10–Nov 21, 2026 (~4 weeks, ~15–20h). Difficulty intermediate → advanced. Free substitute: t1-hamel-evals-blog (must-read regardless).",
   },
   {
     id: "t1-hamel-evals-blog",
@@ -307,7 +375,7 @@ export const t1Resources: Resource[] = [
     buildsSkill:
       "The evals mindset: look at your data, run error analysis, build an LLM-as-judge you can trust, and the iteration loop that actually improves an AI product.",
     whyForHim:
-      "The free substitute for the $4,200 course and a must-read regardless. It is the shortest path to sounding like someone who has run AI in production — exactly what a seed-stage FDE/PM interview probes — and the playbook for p-eval-harness.",
+      "The free substitute for the $4,200 course and a must-read regardless. It is the shortest path to sounding like someone who has run AI in production — exactly what a seed-stage FDE/PM interview probes — and the playbook for p-eval-harness, the project the doc calls 'the #1 FDE/AI-PM skill'.",
     priority: "must_do",
     producesArtifact: false,
     trackIds: ["T1_AI_ML", "T3_PRODUCT"],
@@ -315,8 +383,9 @@ export const t1Resources: Resource[] = [
     roleRelevance: ["PM", "FDE", "SE", "Developer", "CTO"],
     tags: ["evals", "llm_as_judge", "error_analysis", "free", "must_read", "phase_2"],
     freshness: "current",
-    qualitySignal: "Widely cited practitioner canon; the doc names it the free substitute for the paid course. Field Guide also published on O'Reilly Radar.",
-    notes: "Two posts; read Evals first, then the Field Guide. Spec DAG: eval material → p-eval-harness → p-ai-soc-triage.",
+    qualitySignal:
+      "Widely cited practitioner canon; the doc names it 'the free substitute for the paid course; must-read regardless'. Field Guide also published on O'Reilly Radar.",
+    notes: "Two posts, ~2–4h total; read Evals first, then the Field Guide. Spec DAG: eval material → p-eval-harness → p-ai-soc-triage.",
     links: [
       { label: "Your AI Product Needs Evals", url: "https://hamel.dev/blog/posts/evals/" },
       { label: "A Field Guide to Rapidly Improving AI Products", url: "https://hamel.dev/blog/posts/field-guide/" },
@@ -325,6 +394,7 @@ export const t1Resources: Resource[] = [
 
   // ---------------------------------------------------------------------------
   // Eval / observability tooling (learn by using; mostly OSS)
+  // Doc recommendation: standardize on Langfuse + Promptfoo (security angle) + DeepEval.
   // ---------------------------------------------------------------------------
   {
     id: "t1-langfuse",
@@ -335,14 +405,14 @@ export const t1Resources: Resource[] = [
     urlVerifiedDate: DOC,
     resourceType: "tool",
     format: "tool",
-    cost: { model: "free", note: "Open source and self-hostable; hosted plans exist." },
+    cost: { model: "free", note: "Open source and self-hostable (free); hosted plans exist." },
     estHours: 6,
     timeBucket: "2_10h",
     difficulty: "intermediate",
     prerequisites: ["A Python or TypeScript app that calls an LLM"],
     buildsSkill: "LLM tracing, prompt management and evals in one OSS stack — see every step of an agent run and score it.",
     whyForHim:
-      "The doc's recommended standard for his stack (Langfuse + Promptfoo + DeepEval). Self-hostable matters when he sells to security buyers who will not ship traces to a SaaS. Backbone of p-eval-harness and the audit trail in p-secure-mcp-agent.",
+      "The doc's recommended standard for his stack (Langfuse + Promptfoo + DeepEval). Self-hostable matters when he sells to security buyers who will not ship traces to a SaaS. Backbone of p-eval-harness and the audit trail of tool calls in p-secure-mcp-agent.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T1_AI_ML"],
@@ -350,8 +420,8 @@ export const t1Resources: Resource[] = [
     roleRelevance: ["Developer", "FDE", "CTO"],
     tags: ["observability", "tracing", "evals", "oss", "self_hosted", "recommended_stack"],
     freshness: "current",
-    qualitySignal: "Recommended by the doc as the tracing standard; OSS, self-hostable; now part of ClickHouse.",
-    notes: "Learn by using — instrument p-eval-harness rather than reading docs cover to cover.",
+    qualitySignal: "Doc: 'OSS, self-hostable tracing/evals (now part of ClickHouse)'; the tracing half of the doc's recommended standard stack.",
+    notes: "Learn by using — instrument p-eval-harness rather than reading docs cover to cover. Named in the p-eval-harness stack (DeepEval/Promptfoo + Langfuse tracing).",
   },
   {
     id: "t1-promptfoo",
@@ -370,7 +440,7 @@ export const t1Resources: Resource[] = [
     buildsSkill:
       "Declarative eval suites, model/prompt comparison and LLM red-teaming with 500+ attack vectors — regression tests and security tests from one CLI.",
     whyForHim:
-      "The strongest OSS option for security testing, which is his wedge: the same tool runs the regression suite for p-eval-harness and the red-team pass for p-redteam-writeup and d-ctf-week. A Promptfoo red-team report is a credible artifact in a CISO conversation.",
+      "The strongest OSS option for security testing, which is his wedge: the same tool runs the regression suite for p-eval-harness and the red-team pass for p-redteam-writeup and d-ctf-week. A Promptfoo red-team report is a credible artifact in a CISO conversation and the bridge between his T1 and T7 stories.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T1_AI_ML", "T7_DOMAIN"],
@@ -378,8 +448,9 @@ export const t1Resources: Resource[] = [
     roleRelevance: ["Developer", "FDE", "SE", "CTO"],
     tags: ["evals", "red_teaming", "prompt_injection", "model_comparison", "oss", "recommended_stack"],
     freshness: "current",
-    qualitySignal: "Doc: 'strongest for security testing'; part of the recommended Langfuse + Promptfoo + DeepEval standard. Also listed in T7 as the red-team tool.",
-    notes: "500+ attack vectors per the doc. Cross-listed with T7 (t7-promptfoo-redteam).",
+    qualitySignal:
+      "Doc: 'OSS, red-teaming + model comparison (500+ attack vectors), strongest for security testing'; part of the recommended Langfuse + Promptfoo + DeepEval standard.",
+    notes: "Cross-listed with T7 (t7-promptfoo-redteam covers the red-team workflow). Named in the p-eval-harness stack.",
   },
   {
     id: "t1-deepeval",
@@ -398,7 +469,7 @@ export const t1Resources: Resource[] = [
     buildsSkill:
       "pytest-style LLM unit tests and agent metrics (task completion, tool correctness, hallucination, RAG faithfulness) that run in CI.",
     whyForHim:
-      "Makes evals look like normal tests, which is how he gets a CI gate into p-eval-harness and how an engineering team will actually adopt it. The T1 ready-when literally says 'an eval harness that gates a change'. Sister project DeepTeam covers red-teaming (see T7).",
+      "Makes evals look like normal tests, which is how he gets a CI gate into p-eval-harness and how an engineering team he later leads will actually adopt it. The T1 ready-when literally says 'an eval harness that gates a change'. Sister project DeepTeam covers red-teaming (see t7-deepteam).",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T1_AI_ML"],
@@ -406,7 +477,7 @@ export const t1Resources: Resource[] = [
     roleRelevance: ["Developer", "FDE", "CTO"],
     tags: ["evals", "pytest", "ci_gate", "agent_metrics", "oss", "mit", "recommended_stack"],
     freshness: "current",
-    qualitySignal: "OSS (MIT); recommended in the doc's standard stack (Langfuse + Promptfoo + DeepEval).",
+    qualitySignal: "Doc: 'OSS (MIT), pytest-style evals + agent metrics'; part of the recommended Langfuse + Promptfoo + DeepEval standard.",
     notes: "Named in the p-eval-harness stack (DeepEval/Promptfoo + Langfuse tracing, LLM-as-judge, CI gate).",
   },
   {
@@ -426,7 +497,7 @@ export const t1Resources: Resource[] = [
     buildsSkill:
       "OpenTelemetry-native tracing and evaluation of LLM/agent apps; OTel spans as the lingua franca for AI observability.",
     whyForHim:
-      "Worth knowing because it speaks OpenTelemetry — a standard a security-conscious enterprise already runs — and because Aman Khan's free agent-evals course uses it. An alternative to Langfuse, not an addition; the doc's standard stack stays Langfuse.",
+      "Worth knowing because it speaks OpenTelemetry — a standard a security-conscious enterprise already runs — and because Aman Khan's free agent-evals course (t1-dlai-evaluating-agents) uses it. An alternative to Langfuse, not an addition; the doc's standard stack stays Langfuse.",
     priority: "optional",
     producesArtifact: false,
     trackIds: ["T1_AI_ML"],
@@ -434,8 +505,9 @@ export const t1Resources: Resource[] = [
     roleRelevance: ["Developer", "FDE", "CTO"],
     tags: ["observability", "tracing", "opentelemetry", "evals", "oss"],
     freshness: "current",
-    qualitySignal: "OSS, OpenTelemetry-native (doc). Arize is named in the 5-year plan among the evals/observability incumbents.",
-    notes: "URL: phoenix.arize.com redirected to arize.com/phoenix at seed time — re-verify.",
+    qualitySignal: "Doc: 'OpenTelemetry-native OSS tracing'. Arize is also named in the five-year plan among the evals/observability incumbents.",
+    notes:
+      "Doc gives no URL. phoenix.arize.com returned a 301 to arize.com/phoenix at seed time (redirect confirmed; page content not fetched) — re-verify.",
   },
   {
     id: "t1-braintrust",
@@ -453,7 +525,7 @@ export const t1Resources: Resource[] = [
     prerequisites: ["An LLM app and a small eval dataset"],
     buildsSkill: "Hosted experiment tracking and observability: compare prompt/model versions on datasets with scores, and inspect traces.",
     whyForHim:
-      "Know it as the SaaS benchmark that competitors and customers name-drop (the 5-year plan lists Braintrust in the crowded evals/observability layer). Try the free tier for vocabulary; standardize on the OSS stack.",
+      "Know it as the SaaS benchmark that competitors and customers name-drop (the five-year plan lists Braintrust in the crowded evals/observability layer he may compete with or integrate against). Try the free tier for vocabulary; standardize on the OSS stack.",
     priority: "optional",
     producesArtifact: false,
     trackIds: ["T1_AI_ML"],
@@ -461,26 +533,26 @@ export const t1Resources: Resource[] = [
     roleRelevance: ["PM", "FDE", "Developer"],
     tags: ["evals", "observability", "saas", "experiments", "free_tier"],
     freshness: "current",
-    qualitySignal: "SaaS with a free tier per the doc; vendor-hosted, so treat capability claims as marketing.",
-    notes: "Landing page did not state pricing at seed time; the free-tier note is from the research doc.",
+    qualitySignal: "Doc: 'SaaS experiment/observability with free tiers'. Vendor-hosted, so treat capability claims as marketing (doc caveat on eval vendors).",
+    notes: "Doc gives no URL; landing page reached at seed time but did not state pricing. The free-tier note is from the research doc.",
   },
   {
     id: "t1-langsmith",
     title: "LangSmith",
     creator: "LangChain",
     url: "https://www.langchain.com/langsmith",
-    urlVerified: false,
+    urlVerified: true,
     urlVerifiedDate: SEED,
     resourceType: "tool",
     format: "tool",
-    cost: { model: "freemium", note: "SaaS with a free tier per the doc; pricing not captured." },
+    cost: { model: "freemium", note: "Free tier for development and small-scale production; paid plans scale with trace volume (page, 2026-09-16)." },
     estHours: 3,
     timeBucket: "2_10h",
     difficulty: "intermediate",
     prerequisites: ["A LangChain or LangGraph app"],
     buildsSkill: "Tracing, datasets and evals for LangChain/LangGraph apps.",
     whyForHim:
-      "Only relevant if he ends up on LangGraph (which the HF Agents course teaches). It locks you into LangChain, so it should not be his default — but he should be able to read a LangSmith trace when a customer uses one.",
+      "Only relevant if he ends up on LangGraph (which the HF Agents course teaches). The doc's caveat is that it locks you into LangChain, so it should not be his default — but as an FDE he should be able to read a LangSmith trace when a customer's team uses one.",
     priority: "skip_unless_relevant",
     producesArtifact: false,
     trackIds: ["T1_AI_ML"],
@@ -488,12 +560,12 @@ export const t1Resources: Resource[] = [
     roleRelevance: ["Developer", "FDE"],
     tags: ["observability", "evals", "langchain", "langgraph", "saas", "free_tier", "vendor_lock_in"],
     freshness: "current",
-    qualitySignal: "SaaS with a free tier; doc caveat: locks to LangChain.",
-    notes: "URL fetch failed at seed time (DNS) — re-verify; the app itself lives at smith.langchain.com.",
+    qualitySignal: "Doc: 'SaaS experiment/observability with free tiers (LangSmith locks to LangChain)'.",
+    notes: "Doc gives no URL; product page verified 2026-09-16. The app itself lives at smith.langchain.com.",
   },
 
   // ---------------------------------------------------------------------------
-  // Serving / inference
+  // Serving / inference (learn quantization, KV cache, batching by doing)
   // ---------------------------------------------------------------------------
   {
     id: "t1-ollama",
@@ -511,7 +583,7 @@ export const t1Resources: Resource[] = [
     prerequisites: ["A laptop with ~8GB+ RAM/VRAM; basic CLI"],
     buildsSkill: "Run open models locally in one command; feel quantization (GGUF Q4/Q8), context length and memory limits by doing.",
     whyForHim:
-      "Lets him demo without sending customer data to an API — the first question a security buyer asks. Default local backend for p-fullstack-ai and for private experiments in p-ai-soc-triage.",
+      "Lets him demo without sending customer data to an API — the first question a security buyer asks, and a habit that will matter when he sells into defense or regulated accounts. Default local backend for p-fullstack-ai and for private experiments in p-ai-soc-triage.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T1_AI_ML"],
@@ -519,7 +591,7 @@ export const t1Resources: Resource[] = [
     roleRelevance: ["Developer", "FDE", "SE", "CTO"],
     tags: ["inference", "serving", "quantization", "local_models", "oss", "demo"],
     freshness: "current",
-    qualitySignal: "Doc: run/serve open models locally; learn quantization, KV cache and batching by doing. The de-facto local runner.",
+    qualitySignal: "Doc: 'run/serve open models locally; learn quantization, KV cache, batching by doing'. The de-facto local runner.",
     notes: "Named in the p-fullstack-ai stack (Ollama/vLLM or API).",
   },
   {
@@ -539,7 +611,7 @@ export const t1Resources: Resource[] = [
     buildsSkill:
       "Production serving of open models: PagedAttention / KV-cache management, continuous batching, quantized weights, OpenAI-compatible endpoints.",
     whyForHim:
-      "The serving layer he will actually deploy for a customer who cannot use a hosted API (defense, regulated). Gives him the KV-cache and batching vocabulary for the T1 self-test and the cost/latency tradeoffs in the T2 ready-when.",
+      "The serving layer he will actually deploy for a customer who cannot use a hosted API (defense, regulated). Gives him the KV-cache and batching vocabulary for the T1 self-test and the cost/latency tradeoffs the T2 ready-when demands of a product-CTO.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T1_AI_ML", "T2_BACKEND_SYSTEMS"],
@@ -547,30 +619,33 @@ export const t1Resources: Resource[] = [
     roleRelevance: ["Developer", "CTO", "FDE"],
     tags: ["serving", "inference", "kv_cache", "batching", "quantization", "oss", "production"],
     freshness: "current",
-    qualitySignal: "The standard OSS inference server; the doc pairs it with Ollama for learn-by-doing.",
+    qualitySignal: "Doc pairs it with Ollama for learn-by-doing on quantization, KV cache and batching; the standard OSS inference server.",
     notes: "Named in the p-fullstack-ai stack (Ollama/vLLM or API).",
   },
 
   // ---------------------------------------------------------------------------
-  // Agentic coding tools
+  // Agentic coding tools (spec-driven development: CLAUDE.md/AGENTS.md, plan mode, hooks)
   // ---------------------------------------------------------------------------
   {
     id: "t1-claude-code",
     title: "Claude Code",
     creator: "Anthropic",
-    url: "https://platform.claude.com/docs/en/docs/claude-code",
-    urlVerified: false,
+    url: "https://code.claude.com/docs/en/overview",
+    urlVerified: true,
     urlVerifiedDate: SEED,
     resourceType: "tool",
     format: "tool",
-    cost: { model: "subscription", note: "Requires a paid Claude plan or API usage; price not captured in the research doc." },
+    cost: {
+      model: "subscription",
+      note: "Most surfaces require a Claude subscription or an Anthropic Console (API) account (docs, 2026-09-16); price not captured in the research doc.",
+    },
     timeBucket: "ongoing",
     difficulty: "intermediate",
     prerequisites: ["Comfortable in a terminal and with git"],
     buildsSkill:
       "Agentic coding mastery: spec-driven development with CLAUDE.md / AGENTS.md, plan mode, hooks, MCP servers and subagents — directing an AI to build what he specifies.",
     whyForHim:
-      "He will build every portfolio project with AI assistance, so mastery here is a force multiplier on all nine projects. It is also how a 'can develop but isn't a developer' product-CTO ships real product surfaces. This platform itself is built with it.",
+      "Doc: 'Since he'll build with AI assistance, mastery here is a force multiplier.' He will build all nine portfolio projects with it, and it is how a 'can develop but isn't a developer' product-CTO ships real product surfaces solo (p-fullstack-ai). This platform itself is built with it.",
     priority: "must_do",
     producesArtifact: false,
     trackIds: ["T1_AI_ML", "T2_BACKEND_SYSTEMS"],
@@ -578,8 +653,15 @@ export const t1Resources: Resource[] = [
     roleRelevance: ["Developer", "CTO", "FDE", "PM"],
     tags: ["ai_coding_tools", "spec_driven_development", "mcp", "hooks", "plan_mode", "force_multiplier"],
     freshness: "current",
-    qualitySignal: "Named in the doc as the agentic coding tool to master; category demand signalled by Spec Kit's 93,000+ stars.",
-    notes: "Docs URL: docs.anthropic.com redirected to platform.claude.com at seed time — re-verify. Pricing not captured in the doc.",
+    qualitySignal:
+      "Named in the doc as the agentic coding tool to master (with Cursor); category demand signalled by Spec Kit's 93,000+ stars (doc: a demand indicator, not a quality rating).",
+    notes:
+      "Doc gives no URL. docs.claude.com 301-redirects to code.claude.com; overview page verified 2026-09-16. Free structured on-ramp: t1-dlai-claude-code-course.",
+    links: [
+      { label: "CLAUDE.md & memory", url: "https://code.claude.com/docs/en/memory" },
+      { label: "Hooks", url: "https://code.claude.com/docs/en/hooks" },
+      { label: "MCP", url: "https://code.claude.com/docs/en/mcp" },
+    ],
   },
   {
     id: "t1-cursor",
@@ -596,7 +678,7 @@ export const t1Resources: Resource[] = [
     prerequisites: ["Any editor experience; git basics"],
     buildsSkill: "IDE-native agentic coding: rules files, agent mode, multi-file edits — the same spec-driven habits inside an editor.",
     whyForHim:
-      "The second agentic coding tool the doc names, and what Aman Khan's AI-PM course and 'Cursor for PMs' build in, so fluency here doubles as AI-PM credibility. Pick one primary (Claude Code) and keep Cursor for IDE work.",
+      "The second agentic coding tool the doc names, and what Aman Khan's AI-PM course (t3-aipm-khan) and 'Cursor for PMs' build in, so fluency here doubles as AI-PM credibility. Pick one primary (Claude Code) and keep Cursor for IDE work.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T1_AI_ML", "T3_PRODUCT"],
@@ -605,7 +687,7 @@ export const t1Resources: Resource[] = [
     tags: ["ai_coding_tools", "ide", "spec_driven_development", "ai_pm"],
     freshness: "current",
     qualitySignal: "Named alongside Claude Code in the doc; the IDE used in t3-aipm-khan and 'Cursor for PMs'.",
-    notes: "Site verified at seed time. Pricing not captured in the doc.",
+    notes: "Doc gives no URL; site reached at seed time. Pricing not captured in the doc.",
   },
   {
     id: "t1-spec-kit",
@@ -623,7 +705,7 @@ export const t1Resources: Resource[] = [
     prerequisites: ["One agentic coding tool installed (Claude Code or Cursor)"],
     buildsSkill: "Spec-driven development workflow: constitution → spec → plan → tasks → implement, with templates for AI coding agents.",
     whyForHim:
-      "A reference implementation of the workflow the doc wants him to learn (CLAUDE.md/AGENTS.md, plan mode). As a product-oriented CTO, writing the spec IS his job; this shows how specs drive agents end to end.",
+      "The doc's reference implementation of the workflow it wants him to learn (CLAUDE.md/AGENTS.md, plan mode). As a product-oriented CTO, writing the spec IS his job; this shows how specs drive agents end to end.",
     priority: "optional",
     producesArtifact: false,
     trackIds: ["T1_AI_ML"],
@@ -633,11 +715,11 @@ export const t1Resources: Resource[] = [
     freshness: "current",
     qualitySignal:
       "93,000+ GitHub stars as of May 2026; hit v1.0.0 on its one-year anniversary after a Sept 2, 2025 launch. Doc caveat: treat the star count as a demand indicator for the spec-driven-development category, not a quality rating.",
-    notes: "Reference, not a course. Borrow the spec/plan/tasks split; the full ceremony is optional.",
+    notes: "Doc names it as 'Reference: GitHub Spec Kit (github/spec-kit)' — a reference, not a course. Borrow the spec/plan/tasks split; the full ceremony is optional.",
   },
 
   // ---------------------------------------------------------------------------
-  // Fine-tuning tooling (from the p-finetune-security stack)
+  // Fine-tuning tooling (from the p-finetune-security stack: HF + LoRA/QLoRA/Unsloth)
   // ---------------------------------------------------------------------------
   {
     id: "t1-unsloth",
@@ -655,7 +737,7 @@ export const t1Resources: Resource[] = [
     prerequisites: ["t1-hf-llm-course"],
     buildsSkill: "Fast, memory-efficient LoRA/QLoRA fine-tuning of small open models on a single consumer or Colab GPU.",
     whyForHim:
-      "Named in the p-finetune-security stack (HF + LoRA/QLoRA/Unsloth). It is what makes fine-tuning a security-text classifier feasible on a free Colab in an evening, so the project actually ships instead of stalling on compute.",
+      "Named in the p-finetune-security stack (HF + LoRA/QLoRA/Unsloth). It is what makes fine-tuning a security-text classifier feasible on a free Colab in an evening, so the Phase 3 project actually ships instead of stalling on compute he does not own.",
     priority: "optional",
     producesArtifact: false,
     trackIds: ["T1_AI_ML"],
@@ -664,62 +746,7 @@ export const t1Resources: Resource[] = [
     tags: ["finetuning", "lora", "qlora", "oss", "phase_3"],
     freshness: "current",
     qualitySignal: "Named in the spec's p-finetune-security stack; widely used OSS fine-tuning accelerator.",
-    notes: "URL from memory — re-verify (repo: github.com/unslothai/unsloth).",
-  },
-
-  // ---------------------------------------------------------------------------
-  // Staying current (AI-engineering feeds; the security feeds live in T7)
-  // ---------------------------------------------------------------------------
-  {
-    id: "t1-latent-space",
-    title: "Latent Space",
-    creator: "swyx & Alessio Fanelli",
-    url: "https://www.latent.space",
-    urlVerified: true,
-    urlVerifiedDate: SEED,
-    resourceType: "newsletter",
-    format: "reading",
-    cost: { model: "free" },
-    timeBucket: "ongoing",
-    difficulty: "intermediate",
-    prerequisites: [],
-    buildsSkill: "Staying current on AI engineering — agents, evals, inference and the tooling churn — from practitioners, weekly.",
-    whyForHim:
-      "The AI-engineering feed in the doc's 'curate 4–6 feeds max' list: the vocabulary of the FDE / AI-engineer community he is joining. Same author as 'Learn in Public' (t8-learning-public), so it models the habit too.",
-    priority: "high",
-    producesArtifact: false,
-    trackIds: ["T1_AI_ML", "T8_META"],
-    skillIds: ["agents", "evals", "inference"],
-    roleRelevance: ["FDE", "Developer", "CTO", "PM"],
-    tags: ["newsletter", "podcast", "ai_engineering", "staying_current", "ongoing"],
-    freshness: "current",
-    qualitySignal: "Named in the doc's staying-current list; site states 200,000+ subscribers (Sept 2026).",
-    notes: "Newsletter + podcast. Doc rule: cap total feeds at 4–6 (with Simon Willison, tl;dr sec, Import AI).",
-  },
-  {
-    id: "t1-import-ai",
-    title: "Import AI",
-    creator: "Jack Clark",
-    url: "https://importai.substack.com",
-    urlVerified: true,
-    urlVerifiedDate: SEED,
-    resourceType: "newsletter",
-    format: "reading",
-    cost: { model: "free" },
-    timeBucket: "ongoing",
-    difficulty: "intermediate",
-    prerequisites: [],
-    buildsSkill: "Weekly research-level awareness of frontier models, agents and AI policy/safety.",
-    whyForHim:
-      "Keeps his research literacy (p-reproduce-paper, d-paper-week) sharp without reading arXiv daily; the policy/safety angle feeds AI-governance conversations with enterprise and defense buyers.",
-    priority: "optional",
-    producesArtifact: false,
-    trackIds: ["T1_AI_ML", "T7_DOMAIN"],
-    skillIds: ["transformers", "agents", "ai-governance"],
-    roleRelevance: ["CTO", "PM", "CEO"],
-    tags: ["newsletter", "research", "ai_policy", "staying_current", "ongoing"],
-    freshness: "current",
-    qualitySignal: "Named in the doc's staying-current list; Substack states 140,000+ subscribers (Sept 2026).",
-    notes: "Doc rule: cap total feeds at 4–6.",
+    notes: "Doc gives no URL. unsloth.ai returned HTTP 403 to the seed-time fetch (bot block) — re-verify; the repo is github.com/unslothai/unsloth.",
+    links: [{ label: "GitHub: unslothai/unsloth", url: "https://github.com/unslothai/unsloth" }],
   },
 ];

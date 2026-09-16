@@ -376,12 +376,12 @@ export const strategy: Strategy = {
       title: "Skills I want (close myself, 12–24 months)",
       kind: "want",
       skills: [
-        "hands-on AI (run/fine-tune/agents/RL/MCP basics)",
-        "backend + system design",
-        "PM craft (discovery/PRD/roadmap/metrics)",
-        "founder-led sales",
-        "technical storytelling (incl. fundraising narrative and telling the failed-founding story as a strength)",
-        "people mgmt",
+        "hands-on AI fluency: run/fine-tune models, build agents, understand RL/inference/MCP basics (enough to be credible and to demo) — via structured courses (e.g., DeepLearning.AI, Hugging Face, fast.ai) + shipping a real demo/POC",
+        "backend & system-design fundamentals (to be a credible product-CTO)",
+        "PM craft: discovery, PRDs, roadmapping, metrics ownership (Lenny's Newsletter/Reforge-type resources; do it live inside the startup he joins)",
+        "founder-led sales (enough to sell without being CEO)",
+        "technical storytelling + fundraising narrative (including how to tell the failed-founding story as a strength)",
+        "people management basics",
       ],
     },
     {

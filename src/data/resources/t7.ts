@@ -266,7 +266,7 @@ export const t7Resources: Resource[] = [
     qualitySignal:
       "Developed in collaboration with Google and aligned with Google's Secure AI Framework (SAIF); 12 modules, 230 sections, difficulty 'Hard' (HTB Academy page). Spec: high — 'the one credential worth considering'.",
     notes:
-      "Also includes HTB's Offensive AI Security CTF. Spend discipline: this is the only T7 paid item the spec endorses (~$490/yr).",
+      "Also includes HTB's Offensive AI Security CTF. Spend discipline: this is the only T7 paid item the spec endorses (~$490/yr). The matching certification is listed by HTB as 'Certified Offensive AI Expert' (see t7-cert-htb-cairt), priced separately.",
     links: [{ label: "Hack The Box platform", url: "https://www.hackthebox.com" }],
   },
   {
@@ -282,7 +282,7 @@ export const t7Resources: Resource[] = [
     estHours: 6,
     timeBucket: "2_10h",
     difficulty: "intermediate",
-    prerequisites: ["Promptfoo basics from T1 (t1-promptfoo)", "t7-owasp-llm"],
+    prerequisites: ["t1-promptfoo", "t7-owasp-llm"],
     buildsSkill:
       "Automate red-team runs against his own agents/apps with hundreds of attack vectors and turn findings into CI regression tests.",
     whyForHim:
@@ -310,7 +310,7 @@ export const t7Resources: Resource[] = [
     estHours: 5,
     timeBucket: "2_10h",
     difficulty: "intermediate",
-    prerequisites: ["t7-owasp-llm"],
+    prerequisites: ["t7-owasp-llm", "t1-deepeval"],
     buildsSkill:
       "Run vulnerability scans on LLM apps whose results map to OWASP LLM Top 10, MITRE ATLAS and NIST — framework-aligned findings out of the box.",
     whyForHim:
@@ -330,7 +330,7 @@ export const t7Resources: Resource[] = [
     title: "OWASP FinBot CTF — agentic AI capture-the-flag",
     creator: "OWASP GenAI Security Project (Agentic Security Initiative)",
     url: "https://genai.owasp.org/resource/finbot-agentic-ai-capture-the-flag-ctf-application/",
-    urlVerified: false,
+    urlVerified: true,
     urlVerifiedDate: SEED,
     resourceType: "ctf",
     format: "hands_on_lab",
@@ -351,11 +351,12 @@ export const t7Resources: Resource[] = [
     tags: ["ctf", "owasp", "agentic", "mcp", "free"],
     freshness: "current",
     qualitySignal:
-      "Positioned by OWASP as the 'Juice Shop for agentic AI'; challenges are tagged to the LLM Top 10 (2025), Agentic Top 10 (2026), CWE and MITRE ATLAS.",
-    notes: "URL surfaced via web search (Sept 2026), not fetched — verify. Self-hostable from the OWASP GitHub repo.",
+      "OWASP resource page (fetched Sept 2026): 'the Juice Shop for Agentic AI', created by Helen Oakley and Allie Howe under the OWASP GenAI Agentic Security Initiative; the spec names it the Agentic Top 10's companion CTF. Free.",
+    notes:
+      "Current scope (per the page) is goal-manipulation attacks in a financial-services context — expect it to grow with the Agentic Top 10. Self-hostable from the OWASP-ASI GitHub repo; map each solved challenge back to an Agentic Top 10 entry in his write-up.",
     links: [
-      { label: "Hosted CTF", url: "https://owasp-finbot-ctf.org/" },
-      { label: "GitHub (OWASP-ASI/finbot-ctf)", url: "https://github.com/OWASP-ASI/finbot-ctf" },
+      { label: "Hosted CTF", url: "http://owasp-finbot-ctf.org/" },
+      { label: "GitHub (OWASP-ASI/finbot-ctf-demo)", url: "https://github.com/OWASP-ASI/finbot-ctf-demo" },
     ],
   },
   {
@@ -451,7 +452,7 @@ export const t7Resources: Resource[] = [
     title: "PromptTrace — transparent prompt-injection labs + Gauntlet CTF",
     creator: "PromptTrace (AI Red Lab)",
     url: "https://prompttrace.airedlab.com",
-    urlVerified: false,
+    urlVerified: true,
     urlVerifiedDate: SEED,
     resourceType: "interactive_lab",
     format: "hands_on_lab",
@@ -472,8 +473,9 @@ export const t7Resources: Resource[] = [
     tags: ["lab", "prompt_injection", "defenses", "free"],
     freshness: "current",
     qualitySignal:
-      "Free, always-live; the spec highlights that it 'explains why defenses fail'. Per its site: 10 labs across five modules plus a 17-level Gauntlet CTF.",
-    notes: "URL from web search (Sept 2026), not fetched — verify.",
+      "Spec: free, always-live, 'explains why defenses fail'. Site (fetched Sept 2026): 100% free with no paid tiers; 9 learning modules, 10 prompt-injection labs against real LLMs, a 17-level Gauntlet CTF and a 133-technique cheat sheet, aligned to OWASP frameworks.",
+    notes:
+      "Covers prompt injection, RAG poisoning and tool exploitation — the same attack classes p-secure-mcp-agent must defend against, so log each failed defense as a control to add there.",
   },
   {
     id: "t7-portswigger-academy",
@@ -736,7 +738,7 @@ export const t7Resources: Resource[] = [
     id: "t7-a2a-protocol",
     title: "A2A — Agent-to-Agent protocol",
     creator: "A2A Project (Linux Foundation; originated by Google)",
-    url: "https://a2a-protocol.org",
+    url: "https://a2a-protocol.org/latest/",
     urlVerified: false,
     urlVerifiedDate: SEED,
     resourceType: "framework",
@@ -758,7 +760,8 @@ export const t7Resources: Resource[] = [
     tags: ["protocol", "agents", "multi_agent", "nhi"],
     freshness: "current",
     qualitySignal: "Listed in the spec's SPIFFE pairing set; open protocol with broad vendor support.",
-    notes: "URL from memory — verify; the GitHub org (a2aproject) is the canonical source.",
+    notes:
+      "a2a-protocol.org redirects to /latest/ (checked Sept 2026; content not fetched) — verify. The GitHub org (a2aproject) is the canonical source.",
     links: [{ label: "A2A on GitHub", url: "https://github.com/a2aproject/A2A" }],
   },
   {
@@ -766,7 +769,7 @@ export const t7Resources: Resource[] = [
     title: "HashiCorp Vault — SPIFFE auth method with SPIRE (hands-on)",
     creator: "HashiCorp",
     url: "https://developer.hashicorp.com/vault/docs/auth/spiffe",
-    urlVerified: false,
+    urlVerified: true,
     urlVerifiedDate: SEED,
     resourceType: "tutorial",
     format: "hands_on_lab",
@@ -788,7 +791,7 @@ export const t7Resources: Resource[] = [
     freshness: "current",
     qualitySignal: "Official HashiCorp docs; the spec cites 'HashiCorp Vault SPIFFE support' as NHI-landscape evidence.",
     notes:
-      "URL surfaced via web search — verify. The auth method validates SVIDs from an external SPIFFE authority (SPIRE); Vault does not mint SPIFFE IDs itself.",
+      "Docs fetched Sept 2026: Vault validates X.509 and JWT SVIDs issued by an external SPIFFE authority (e.g. SPIRE) against a configured trust bundle; Vault does not mint SPIFFE IDs itself. The SPIRE→Vault walkthrough sub-link is from memory — verify.",
     links: [{ label: "SPIRE → Vault walkthrough", url: "https://developer.hashicorp.com/vault/docs/auth/spiffe/spire-auth-vault" }],
   },
   {
@@ -859,7 +862,7 @@ export const t7Resources: Resource[] = [
     title: "XBOW validation benchmarks — 104 web-security challenges",
     creator: "XBOW (OSS)",
     url: "https://github.com/xbow-engineering/validation-benchmarks",
-    urlVerified: false,
+    urlVerified: true,
     urlVerifiedDate: SEED,
     resourceType: "repo",
     format: "hands_on_lab",
@@ -871,16 +874,18 @@ export const t7Resources: Resource[] = [
     buildsSkill:
       "A reproducible, authorized target set for measuring an autonomous pentest agent's solve rate — the benchmark the spec names for p-autonomous-pentest.",
     whyForHim:
-      "Gives p-autonomous-pentest a number ('my agent solves X/104') instead of anecdotes — the benchmarked write-up that reads as offensive-AI credibility to Tenzai/XBOW-style teams.",
+      "Gives p-autonomous-pentest a number ('my agent solves X/104') instead of anecdotes — the benchmarked write-up that reads as offensive-AI credibility to Tenzai/XBOW-style teams. In 2026 a high solve rate is table stakes; the interesting write-up is cost, time and false-positive rate per challenge, then graduating to CVE-Bench-style real targets.",
     priority: "high",
     producesArtifact: true,
     trackIds: ["T7_DOMAIN"],
     skillIds: ["autonomous-pentest", "appsec", "agents"],
     roleRelevance: ["Developer", "FDE"],
     tags: ["benchmark", "target", "autonomous_pentest", "docker", "oss"],
-    freshness: "current",
-    qualitySignal: "Open-source benchmark set released by XBOW; referenced in the spec as the '104-challenge benchmark'.",
-    notes: "URL from memory — verify. Authorized/ethical scope only: run locally.",
+    freshness: "aging",
+    qualitySignal:
+      "Spec: 'XBOW's 104-challenge benchmark'. Repo (fetched Sept 2026): 104 challenges, Apache-2.0, 'curated with the explicit intent to evaluate the proficiency of web-based offensive tools'.",
+    notes:
+      "The README now warns the benchmarks are outdated as of mid-2026 (LLM performance has improved substantially since the 2024 release) and are kept for historical purposes — use as a baseline, not a headline. Authorized/ethical scope only: run locally in Docker.",
   },
   {
     id: "t7-pentest-papers",
@@ -1205,27 +1210,28 @@ export const t7Resources: Resource[] = [
     title: "BSides TLV — community security conference (speaking target)",
     creator: "BSidesTLV community",
     url: "https://bsidestlv.com",
-    urlVerified: false,
+    urlVerified: true,
     urlVerifiedDate: SEED,
     resourceType: "conference",
     format: "event",
-    cost: { model: "free", note: "Free/low-cost community event — confirm." },
+    cost: { model: "free", note: "100% non-profit; the site says sponsors keep it 'accessible to everyone' — confirm ticket price at registration." },
     estHours: 8,
     timeBucket: "2_10h",
     difficulty: "intermediate",
     prerequisites: [],
     buildsSkill: "A low-barrier stage to present his red-team write-up or NHI prototype to a technical Israeli audience.",
     whyForHim:
-      "Variant B's explicit output is 'present at BSides TLV / Cyber Week'. A talk here is the public proof for the T7 assessment and the cheapest way to build the visible reputation the five-year plan says precedes founding.",
+      "Variant B's explicit output is 'present at BSides TLV / Cyber Week'. A talk here is the public proof for the T7 assessment and the cheapest way to build the visible reputation the five-year plan says precedes founding. The 2026 edition (Nov 11) sits inside Cyber Week (Nov 9–12), so one week on the TAU campus covers both — submit the red-team write-up to the CFP well before then.",
     priority: "high",
     producesArtifact: true,
     trackIds: ["T7_DOMAIN", "T8_META"],
     skillIds: ["learning-in-public", "red-teaming", "israeli-ecosystem"],
     roleRelevance: ["Developer", "FDE", "CTO"],
     tags: ["conference", "tel_aviv", "speaking", "public_proof", "israel"],
-    freshness: "unknown",
-    qualitySignal: "Named in the spec as a target venue for presenting his work; dates/CFP not captured.",
-    notes: "URL from memory — verify; check CFP timing.",
+    freshness: "current",
+    qualitySignal:
+      "Named in the spec as a target venue for presenting his work. Site (fetched Sept 2026): 2026 edition 'Alice in AI Land', Nov 11 2026, Smolarz Auditorium, Tel Aviv University; 10+ years running, 100% non-profit, CFP open; claims 12,000+ participants, an AI-hacking village and a 54-hour CTF (site figures, not independently verified).",
+    notes: "CFP deadline not captured — check the site; the AI-hacking village is the natural home for an agent-security talk.",
   },
   {
     id: "t7-snc-defensetech-map",
@@ -1291,7 +1297,7 @@ export const t7Resources: Resource[] = [
     title: "tl;dr sec newsletter",
     creator: "Clint Gibler",
     url: "https://tldrsec.com",
-    urlVerified: false,
+    urlVerified: true,
     urlVerifiedDate: SEED,
     resourceType: "newsletter",
     format: "reading",
@@ -1309,7 +1315,8 @@ export const t7Resources: Resource[] = [
     roleRelevance: ["FDE", "SE", "Developer", "CTO"],
     tags: ["newsletter", "feed", "security", "ongoing"],
     freshness: "current",
-    qualitySignal: "Long-running, widely read practitioner newsletter (spec-listed).",
+    qualitySignal:
+      "Spec-listed. Site (fetched Sept 2026): weekly 'best tools, talks, and resources' delivered to 90,000+ security professionals in about seven minutes a week.",
   },
   {
     id: "t7-latent-space",
@@ -1365,18 +1372,18 @@ export const t7Resources: Resource[] = [
   // ───────────────────── Certifications — honest verdicts ─────────────────────
   {
     id: "t7-cert-htb-cairt",
-    title: "HTB Certified AI Red Teamer (CAIRT)",
+    title: "HTB Certified AI Red Teamer (now listed as HTB Certified Offensive AI Expert, COAE)",
     creator: "Hack The Box",
-    url: "https://academy.hackthebox.com/preview/certifications/htb-certified-ai-red-teamer",
-    urlVerified: false,
+    url: "https://academy.hackthebox.com/preview/certifications/htb-certified-offensive-ai-expert",
+    urlVerified: true,
     urlVerifiedDate: SEED,
     resourceType: "certification",
     format: "hands_on_lab",
     cost: {
-      model: "subscription",
+      model: "one_time",
       amount: 490,
       currency: "USD",
-      note: "Covered in part by the ~$490/yr Silver subscription; exam voucher price not captured — re-verify.",
+      note: "HTB's certifications listing (fetched Sept 2026) prices the cert at $490 — read as the exam voucher, separate from the ~$490/yr Silver subscription budgeted under t7-htb-ai; the spec's '~$490/yr' refers to the subscription. Re-verify what the $490 includes before buying.",
       freeAlternativeId: "t7-hackaprompt",
     },
     estHours: 20,
@@ -1393,8 +1400,10 @@ export const t7Resources: Resource[] = [
     roleRelevance: ["FDE", "SE", "Developer"],
     tags: ["certification", "htb", "red_teaming", "verdict-high"],
     freshness: "current",
-    qualitySignal: "Spec verdict: 'HTB Certified AI Red Teamer: the one credential worth considering — aligns with his wedge.' Net: artifacts > certs.",
-    notes: "URL from memory — verify. Exam pricing not confirmed.",
+    qualitySignal:
+      "Spec verdict: 'HTB Certified AI Red Teamer: the one credential worth considering — aligns with his wedge.' Net: artifacts > certs. HTB's listing (Sept 2026) no longer shows a cert with that name; the matching credential is 'HTB Certified Offensive AI Expert', with 'AI Red Teamer' as its job-role path.",
+    notes:
+      "URL taken from HTB's certifications listing page (the old /htb-certified-ai-red-teamer slug 404s). Confirm on the cert page that COAE is the renamed AI Red Teamer credential and what the $490 covers.",
   },
   {
     id: "t7-cert-cissp",

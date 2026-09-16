@@ -1,4 +1,559 @@
 import type { Resource } from "@/types";
 
-// Seeded from the curriculum spec (Track 3). Replace with real records.
-export const t3Resources: Resource[] = [];
+// ============================================================================
+// TRACK 3 — Product Management Craft (priorityRank 4 in the spec)
+// Seeded from docs/curriculum-spec.md ("TRACK 3", the T3 ready-when, the
+// Sequenced Learning Paths, Recommendations and Caveats) and, for the
+// person-specific rationale, docs/five-year-plan.md (role strategy: FDE >
+// founding/SME PM; 2029–30 outcome: CPO or product-oriented CTO).
+//
+// The spec's own IDs are kept verbatim (t3-momtest, t3-inspired,
+// t3-continuous-discovery, t3-escaping-build-trap, t3-lennys, t3-lenny-course,
+// t3-reforge, t3-aipm-khan, t3-prototyping). Bundled mentions are split into
+// individual records: EMPOWERED / TRANSFORMED (optional per the spec), Lenny's
+// podcast (the free half of the freemium bundle), and the four prototyping
+// tools (Figma, v0, Lovable, Claude artifacts). Aman Khan's companion Maven
+// courses stay as `links`/`notes` on t3-aipm-khan, and his free DeepLearning.AI
+// "Evaluating AI Agents" course is referenced by its Track 1 ID
+// (t1-dlai-evaluating-agents) instead of being duplicated here.
+//
+// URL verification: DOC = the URL is written out in the research doc (Sept
+// 2026 pass). SEED = fetched at seed time (2026-09-16); urlVerified is true
+// only where the page loaded — svpg.com (DNS failure), lovable.dev (403 to
+// automated fetch), figma.com and claude.ai (stable vendor domains, not
+// fetched) are flagged in `notes`.
+// ============================================================================
+
+const DOC = "2026-09-01";
+const SEED = "2026-09-16";
+
+export const t3Resources: Resource[] = [
+  // --------------------------------------------------------------------------
+  // Must-do books — the core craft
+  // --------------------------------------------------------------------------
+  {
+    id: "t3-momtest",
+    title: "The Mom Test",
+    creator: "Rob Fitzpatrick",
+    url: "https://www.momtestbook.com",
+    urlVerified: true,
+    urlVerifiedDate: SEED,
+    resourceType: "book",
+    format: "book",
+    cost: {
+      model: "one_time",
+      amount: 20,
+      currency: "USD",
+      note: "~$20 USD per the research doc (approximate; Kindle/print/Gumroad editions differ — re-verify at purchase).",
+    },
+    estHours: 4,
+    timeBucket: "2_10h",
+    difficulty: "foundational",
+    prerequisites: [],
+    buildsSkill:
+      "Customer interviews that don't lie to you: asking about past behaviour instead of opinions, recognising compliments and fluff, pushing for commitment and advancement, and running a discovery conversation where the customer does the talking.",
+    whyForHim:
+      "Discovery is the muscle every step of his ladder depends on: AI FDEs spend 30–40% of the week on conversational customer discovery (T4), a founding/SME PM lives on interviews, and the pre-founding threshold is 'a design partner + a crisp wedge' — which he can only validate by interviewing without fooling himself. It is the method behind the weekly d-customer-interview-week drill, the 'skeptical CISO buyer' roleplay workout, and the first half of the T3 ready-when ('run 5 discovery interviews'). Four hours, foundational, and it fixes a failure mode (hearing what he wants to hear) that also bit his last co-founder search.",
+    priority: "must_do",
+    producesArtifact: false,
+    trackIds: ["T3_PRODUCT", "T4_FDE_SE", "T5_SALES_GTM"],
+    skillIds: ["discovery", "jtbd", "technical-discovery"],
+    roleRelevance: ["PM", "FDE", "SE", "CEO", "CTO"],
+    tags: ["discovery", "customer_interviews", "jtbd", "book", "must_do", "phase_2", "variant_c"],
+    freshness: "current",
+    qualitySignal:
+      "Must-do in the research doc ('customer interviews without lying to yourself'); the canonical customer-interview text, name-checked by the spec's drills, soft-skill workouts and Variant C.",
+    notes:
+      "Evergreen (first published 2013; content does not date). Path placement: Primary Phase 2 (with Continuous Discovery Habits) and Variant C ('Minimum viable founder skills'). Pairs with d-customer-interview-week (one Mom-Test-style call per week) and the AI-roleplay 'skeptical CISO buyer' workout. Site links to Amazon/Gumroad/Kindle purchase options; no price shown on the page.",
+  },
+  {
+    id: "t3-inspired",
+    title: "INSPIRED: How to Create Tech Products Customers Love",
+    creator: "Marty Cagan (SVPG)",
+    url: "https://www.svpg.com/books/",
+    urlVerified: false,
+    urlVerifiedDate: SEED,
+    resourceType: "book",
+    format: "book",
+    cost: {
+      model: "one_time",
+      amount: 28,
+      currency: "USD",
+      note: "~$25–30 USD each for the SVPG books per the research doc; a 'Product is Hard' box set (INSPIRED + EMPOWERED + TRANSFORMED) exists. Re-verify at purchase.",
+    },
+    estHours: 8,
+    timeBucket: "2_10h",
+    difficulty: "foundational",
+    prerequisites: [],
+    buildsSkill:
+      "How strong product teams actually work: empowered product teams vs feature teams, discovery vs delivery, the four product risks (value, usability, feasibility, viability), the PM's job relative to engineering and design, and the discovery techniques that de-risk a bet before building it.",
+    whyForHim:
+      "He is aiming at founding/technical seats, not a PM ladder, so the spec says prefer books plus targeted cohorts over certifications and Reforge — and INSPIRED is the one book that gives him the shared vocabulary of product craft that founders, VCs and first PMs all use. The five-year plan's 1–2-year goals ('own a metric, ship a customer-facing surface, run US customer discovery') and the 2029–30 CPO / product-oriented-CTO outcome are exactly the empowered-team roles this book describes. Also the fallback door: a founding/SME PM seat is easier to argue for when he can talk product risk and discovery fluently.",
+    priority: "must_do",
+    producesArtifact: false,
+    trackIds: ["T3_PRODUCT"],
+    skillIds: ["b2b-pm", "discovery", "prd"],
+    roleRelevance: ["PM", "CTO", "CEO", "FDE"],
+    tags: ["b2b_pm", "discovery", "prd", "svpg", "book", "must_do"],
+    freshness: "current",
+    qualitySignal:
+      "Must-do per the research doc ('Must-do: INSPIRED. Others optional.'); the SVPG trilogy is the standard reference for empowered product teams.",
+    notes:
+      "Read INSPIRED first; EMPOWERED (t3-empowered) and TRANSFORMED (t3-transformed) are optional follow-ons. svpg.com did not resolve to the seed-time fetcher (DNS failure) — re-verify the URL; the books are also on Amazon/Wiley. 2nd edition (2017) is the current one.",
+  },
+  {
+    id: "t3-empowered",
+    title: "EMPOWERED: Ordinary People, Extraordinary Products",
+    creator: "Marty Cagan with Chris Jones (SVPG)",
+    url: "https://www.svpg.com/books/",
+    urlVerified: false,
+    urlVerifiedDate: SEED,
+    resourceType: "book",
+    format: "book",
+    cost: {
+      model: "one_time",
+      amount: 28,
+      currency: "USD",
+      note: "~$25–30 USD per the research doc; included in the 'Product is Hard' box set. Re-verify at purchase.",
+    },
+    estHours: 8,
+    timeBucket: "2_10h",
+    difficulty: "intermediate",
+    prerequisites: ["t3-inspired"],
+    buildsSkill:
+      "Product leadership: coaching and staffing product people, setting team objectives that empower rather than dictate, product vision and strategy, and the leader's role in moving from feature teams to empowered teams.",
+    whyForHim:
+      "The leadership sequel becomes relevant the moment he leads product or engineering — the 3–4-year pre-founder stretch and the CPO / product-oriented-CTO seat in 2029–30. It overlaps with the T6 people-leadership books (The Manager's Path, High Output Management, Radical Candor) but is written from the product side, which is the side he wants to own. Optional per the spec: read it after INSPIRED, once he is in the job and managing or coaching someone.",
+    priority: "optional",
+    producesArtifact: false,
+    trackIds: ["T3_PRODUCT", "T6_FOUNDER"],
+    skillIds: ["b2b-pm", "leadership", "hiring"],
+    roleRelevance: ["CTO", "CEO", "PM"],
+    tags: ["b2b_pm", "leadership", "product_leadership", "svpg", "book", "optional", "phase_3"],
+    freshness: "current",
+    qualitySignal: "Part of the SVPG trilogy the research doc bundles under t3-inspired ('Others optional').",
+    notes:
+      "Split out of the spec's t3-inspired bundle. svpg.com did not resolve to the seed-time fetcher — re-verify. Best read alongside t6-managers-path in Phase 3.",
+  },
+  {
+    id: "t3-transformed",
+    title: "TRANSFORMED: Moving to the Product Operating Model",
+    creator: "Marty Cagan (SVPG)",
+    url: "https://www.svpg.com/books/",
+    urlVerified: false,
+    urlVerifiedDate: SEED,
+    resourceType: "book",
+    format: "book",
+    cost: {
+      model: "one_time",
+      amount: 28,
+      currency: "USD",
+      note: "~$25–30 USD per the research doc; included in the 'Product is Hard' box set. Re-verify at purchase.",
+    },
+    estHours: 8,
+    timeBucket: "2_10h",
+    difficulty: "intermediate",
+    prerequisites: ["t3-inspired"],
+    buildsSkill:
+      "The 'product operating model': what changes in how a company builds, discovers and decides when it moves from project/feature mode to a product model, with transformation case studies.",
+    whyForHim:
+      "The least urgent of the three: it is about transforming established companies, not starting one. Its value for him is vocabulary — as an FDE/SE selling into enterprises mid-transformation, and later as a founder deciding how his own company should operate from day one. Optional per the spec; skip or read last.",
+    priority: "optional",
+    producesArtifact: false,
+    trackIds: ["T3_PRODUCT"],
+    skillIds: ["b2b-pm"],
+    roleRelevance: ["PM", "CTO", "CEO"],
+    tags: ["b2b_pm", "product_operating_model", "svpg", "book", "optional"],
+    freshness: "current",
+    qualitySignal: "Part of the SVPG trilogy the research doc bundles under t3-inspired ('Others optional'). Published 2024.",
+    notes: "Split out of the spec's t3-inspired bundle. svpg.com did not resolve to the seed-time fetcher — re-verify.",
+  },
+  {
+    id: "t3-continuous-discovery",
+    title: "Continuous Discovery Habits",
+    creator: "Teresa Torres (Product Talk)",
+    url: "https://www.producttalk.org/",
+    urlVerified: true,
+    urlVerifiedDate: SEED,
+    resourceType: "book",
+    format: "book",
+    cost: {
+      model: "one_time",
+      amount: 25,
+      currency: "USD",
+      note: "~$25 USD per the research doc; re-verify at purchase.",
+    },
+    estHours: 6,
+    timeBucket: "2_10h",
+    difficulty: "intermediate",
+    prerequisites: ["Best after The Mom Test (t3-momtest): interviewing basics first, then Torres's weekly-cadence system on top"],
+    buildsSkill:
+      "Opportunity solution trees, continuous (weekly) customer interviewing, mapping opportunities to outcomes, and comparing solutions with assumption tests — a repeatable discovery system rather than one-off research.",
+    whyForHim:
+      "The opportunity solution tree is literally in the T3 ready-when ('synthesize an opportunity solution tree'), and the weekly-interview habit is the structure behind d-customer-interview-week. As an FDE he will collect a firehose of customer conversations; this book turns them into a tree of opportunities and a defensible roadmap instead of a list of feature requests — the artifact that lets him own a product surface and a metric in years 1–2. It is also the discovery system he can run with design partners before founding.",
+    priority: "high",
+    producesArtifact: true,
+    trackIds: ["T3_PRODUCT", "T4_FDE_SE"],
+    skillIds: ["discovery", "jtbd", "customer-ontology"],
+    roleRelevance: ["PM", "FDE", "CEO", "CTO"],
+    tags: ["discovery", "jtbd", "opportunity_solution_tree", "continuous_interviewing", "book", "phase_2"],
+    freshness: "current",
+    qualitySignal: "High per the research doc ('Opportunity solution trees, continuous interviewing'). Product Talk runs a 2026 book club around it.",
+    notes:
+      "Artifact: his own opportunity solution tree for a real problem space (design partners or the startup he joins). Path placement: Primary Phase 2 ('Continuous Discovery Habits + Mom Test'). Site verified at seed time (book linked to Amazon).",
+  },
+  {
+    id: "t3-escaping-build-trap",
+    title: "Escaping the Build Trap: How Effective Product Management Creates Real Value",
+    creator: "Melissa Perri",
+    url: "https://melissaperri.com/book",
+    urlVerified: true,
+    urlVerifiedDate: SEED,
+    resourceType: "book",
+    format: "book",
+    cost: {
+      model: "one_time",
+      currency: "USD",
+      note: "Price not captured in the research doc — re-verify at purchase.",
+    },
+    estHours: 6,
+    timeBucket: "2_10h",
+    difficulty: "intermediate",
+    prerequisites: [],
+    buildsSkill:
+      "Outcomes over outputs: recognising the build trap (measuring success by features shipped), the product kata, strategy deployment from company vision down to team goals, and the PM's role in tying work to business outcomes.",
+    whyForHim:
+      "The build trap is the FDE's occupational hazard: shipping whatever each customer asks for and calling it product. This book gives him the counter-frame — outcomes, not outputs — which is also the frame VCs will use when they ask what he owned in years 1–2 ('own a metric'). Optional-high per the spec: the first optional book to pick up after INSPIRED and Continuous Discovery Habits.",
+    priority: "optional",
+    producesArtifact: false,
+    trackIds: ["T3_PRODUCT"],
+    skillIds: ["b2b-pm", "metrics"],
+    roleRelevance: ["PM", "CTO", "CEO", "FDE"],
+    tags: ["b2b_pm", "outcomes_over_outputs", "product_strategy", "book", "optional_high"],
+    freshness: "current",
+    qualitySignal: "Rated 'Optional-high' in the research doc.",
+    notes:
+      "Spec priority is 'Optional-high' — recorded here as optional with this flag so it sorts just below the high items. Page verified at seed time ('Book — Melissa Perri').",
+  },
+
+  // --------------------------------------------------------------------------
+  // Staying current — Lenny (freemium newsletter + free podcast)
+  // --------------------------------------------------------------------------
+  {
+    id: "t3-lennys",
+    title: "Lenny's Newsletter",
+    creator: "Lenny Rachitsky",
+    url: "https://www.lennysnewsletter.com",
+    urlVerified: true,
+    urlVerifiedDate: DOC,
+    resourceType: "newsletter",
+    format: "reading",
+    cost: {
+      model: "freemium",
+      amount: 150,
+      currency: "USD",
+      note: "~$150/yr for the full newsletter + Slack community (per the research doc; approximate). Free tier exists and the podcast is free. The annual sub bundles product-tool credits.",
+      freeAlternativeId: "t3-lennys-podcast",
+    },
+    timeBucket: "ongoing",
+    difficulty: "intermediate",
+    prerequisites: [],
+    buildsSkill:
+      "Current PM practice — discovery, PRDs, roadmapping, metrics, growth, hiring and, increasingly, AI-PM workflows — delivered as weekly deep-dives and guest essays.",
+    whyForHim:
+      "The five-year plan names 'Lenny's Newsletter/Reforge-type resources' as the way to learn PM craft live inside the startup he joins, and the research doc says about half of its 2026 content is AI-adjacent — so it keeps his product vocabulary current with the AI-PM shift without a paid cohort. It is also the free-alternative anchor for Reforge (t3-reforge) in the Budget view. Counts as one of the 4–6 feeds the T8 'staying current' rule allows.",
+    priority: "high",
+    producesArtifact: false,
+    trackIds: ["T3_PRODUCT", "T6_FOUNDER"],
+    skillIds: ["b2b-pm", "ai-pm", "metrics", "discovery"],
+    roleRelevance: ["PM", "CEO", "CTO", "FDE"],
+    tags: ["newsletter", "ai_pm", "b2b_pm", "metrics", "staying_current", "freemium"],
+    freshness: "current",
+    qualitySignal: "High per the research doc; ~half of 2026 content is AI-adjacent.",
+    notes:
+      "Freemium: the free tier plus the podcast (t3-lennys-podcast) cover most of the value; pay for the annual plan only if he wants the Slack community and the bundled product-tool credits. Keep total feeds to 4–6 (T8 rule).",
+    links: [{ label: "Lenny's Podcast (free)", url: "https://www.lennysnewsletter.com/podcast" }],
+  },
+  {
+    id: "t3-lennys-podcast",
+    title: "Lenny's Podcast",
+    creator: "Lenny Rachitsky",
+    url: "https://www.lennysnewsletter.com/podcast",
+    urlVerified: false,
+    urlVerifiedDate: SEED,
+    resourceType: "podcast",
+    format: "self_paced",
+    cost: { model: "free", note: "Podcast is free per the research doc." },
+    timeBucket: "ongoing",
+    difficulty: "foundational",
+    prerequisites: [],
+    buildsSkill:
+      "Long-form interviews with product leaders and founders on discovery, strategy, metrics, hiring and AI-PM practice — the tacit knowledge behind the frameworks.",
+    whyForHim:
+      "The free half of the Lenny bundle and the free alternative to the paid newsletter: commute-friendly listening that fits the 10–15h/week budget without eating build time. Guest interviews are where the AI-PM shift shows up first, which matters for the founding/SME-PM fallback door and for talking product with founders as an FDE.",
+    priority: "high",
+    producesArtifact: false,
+    trackIds: ["T3_PRODUCT", "T6_FOUNDER"],
+    skillIds: ["b2b-pm", "ai-pm", "discovery"],
+    roleRelevance: ["PM", "CEO", "CTO", "FDE"],
+    tags: ["podcast", "ai_pm", "b2b_pm", "staying_current", "free"],
+    freshness: "current",
+    qualitySignal: "The free podcast half of the resource the research doc rates high (t3-lennys).",
+    notes:
+      "Split out of the spec's t3-lennys bundle so the Budget view has a free alternative. URL added from memory (podcast tab of the Substack) — not fetched at seed time; also distributed on YouTube/Spotify/Apple Podcasts.",
+  },
+
+  // --------------------------------------------------------------------------
+  // Cohorts / subscriptions — skip-unless-relevant and the one worth paying for
+  // --------------------------------------------------------------------------
+  {
+    id: "t3-lenny-course",
+    title: "Product Management Fundamentals (Maven)",
+    creator: "Lenny Rachitsky (Maven)",
+    url: "https://maven.com/lenny/product-management-fundamentals",
+    urlVerified: true,
+    urlVerifiedDate: DOC,
+    resourceType: "course",
+    format: "cohort",
+    cost: {
+      model: "one_time",
+      currency: "USD",
+      note: "Price not captured in the research doc — re-verify on the Maven page if considered.",
+    },
+    estHours: 14,
+    timeBucket: "10_30h",
+    difficulty: "foundational",
+    prerequisites: [],
+    buildsSkill: "PM fundamentals for early-career PMs: the core loop of discovery, prioritisation, specs, launch and metrics, taught live in a 3-week cohort.",
+    whyForHim:
+      "Aimed at PMs with under two years' experience — likely too junior for a senior generalist who already runs customer-facing technical work. The only reason to join is the network and cohort accountability (T8), not the content; INSPIRED + Continuous Discovery Habits cover the same ground for the price of two books.",
+    priority: "skip_unless_relevant",
+    producesArtifact: false,
+    trackIds: ["T3_PRODUCT"],
+    skillIds: ["discovery", "prd", "metrics"],
+    roleRelevance: ["PM"],
+    tags: ["cohort", "maven", "pm_fundamentals", "skip_unless_relevant", "network"],
+    freshness: "current",
+    qualitySignal: "Lenny Rachitsky's Maven cohort; the research doc flags the audience as '<2yr PMs — likely too junior for him'.",
+    notes: "~3–6h/week over 3 weeks (estHours is the midpoint). Skip unless he wants the network.",
+  },
+  {
+    id: "t3-reforge",
+    title: "Reforge",
+    creator: "Reforge",
+    url: "https://www.reforge.com",
+    urlVerified: true,
+    urlVerifiedDate: SEED,
+    resourceType: "course",
+    format: "self_paced",
+    cost: {
+      model: "subscription",
+      amount: 1995,
+      currency: "USD",
+      note: "$1,995 USD/year, Individual Plan, per Reforge's official Knowledge Base (Sept 2026 research). Not shown on the homepage at seed time — re-verify.",
+      freeAlternativeId: "t3-lennys",
+    },
+    timeBucket: "ongoing",
+    difficulty: "intermediate",
+    prerequisites: [],
+    buildsSkill: "Membership access to Reforge's PM/growth programs and artifacts (product strategy, growth, experimentation, monetisation) built for climbing the PM ladder at scale-ups.",
+    whyForHim:
+      "Overrated for his goals (Key Finding 6): he is aiming at founding/technical seats, not a PM ladder, and the spend-discipline rule says skip Reforge ($1,995/yr) along with CISSP/OSCP. Lenny's Newsletter (t3-lennys) plus the books cover the craft he needs; consider Reforge only if an employer pays.",
+    priority: "skip_unless_relevant",
+    producesArtifact: false,
+    trackIds: ["T3_PRODUCT"],
+    skillIds: ["b2b-pm", "metrics"],
+    roleRelevance: ["PM"],
+    tags: ["subscription", "pm_ladder", "skip_unless_relevant", "employer_funded_only"],
+    freshness: "current",
+    qualitySignal: "Well-known PM/growth program, but the research doc rates it 'overrated for his goals' (Key Finding 6; Recommendation 5: skip).",
+    notes: "SKIP unless an employer pays. Free alternative: t3-lennys. Homepage verified at seed time (no price displayed there).",
+  },
+  {
+    id: "t3-aipm-khan",
+    title: "Prototype to Production: The AI PM Playbook",
+    creator: "Aman Khan (Head of Product, Arize) — Maven",
+    url: "https://maven.com/aman-khan/thriving-as-an-ai-pm",
+    urlVerified: true,
+    urlVerifiedDate: DOC,
+    resourceType: "course",
+    format: "cohort",
+    cost: {
+      model: "one_time",
+      currency: "USD",
+      note: "Price not confirmed — not captured by the research doc and not listed on the course page at seed time (2026-09-16). Re-verify before enrolling. Spend-discipline rule: pay for ONE cohort — this or Hamel's evals ($4,200) — ideally employer-funded.",
+      freeAlternativeId: "t1-dlai-evaluating-agents",
+    },
+    estHours: 20,
+    timeBucket: "10_30h",
+    difficulty: "intermediate",
+    prerequisites: ["t1-hf-agents"],
+    buildsSkill:
+      "Building AI agents in Cursor as a PM, writing evals as product work, PM–eng collaboration on AI features, H1/H2 AI roadmaps and a prototype-to-production implementation plan.",
+    whyForHim:
+      "The one PM cohort the spec says is worth paying for, and the fastest route to AI-PM credibility for the founding/SME-PM fallback door (five-year plan: FDE first, founding PM second). It closes the second half of the T3 ready-when — 'define a north-star metric + eval plan for an AI feature' — and evals are the two-track twofer (AI engineering + product) that also gate p-eval-harness and p-ai-soc-triage. Placed in Phase 2, once he is in the seed-stage job and can apply it to a real feature.",
+    priority: "high",
+    producesArtifact: true,
+    trackIds: ["T3_PRODUCT", "T1_AI_ML"],
+    skillIds: ["ai-pm", "evals", "prd", "metrics", "agents", "ai-coding-tools"],
+    roleRelevance: ["PM", "FDE", "CTO"],
+    tags: ["ai_pm", "evals", "cursor", "agents", "cohort", "maven", "phase_2", "paid"],
+    freshness: "current",
+    qualitySignal:
+      "Rated 4.8 per the research doc (4.8/5 from 60 reviews on the Maven page at seed time). Instructor led DeepLearning.AI's free 'Evaluating AI Agents' course.",
+    notes:
+      "Course page at seed time: 4-week live sprint, 8 sessions, 3 weekly office hours, recorded for async; students build functional agents, an evaluation system, an H1/H2 AI roadmap and a prototype→production plan; next cohort listed as starting Jan 27 (year not shown). Page bio reads 'AI PM Leader, ex-Spotify, Apple, Cruise'; the Arize title is per the research doc. Companion Maven courses by the same instructor: 'Cursor for PMs' (linked), 'Claude Code for PMs (w/ Fable)' and 'Build AI Product Sense' (no URLs captured — find via his Maven instructor page). Free related: t1-dlai-evaluating-agents.",
+    links: [
+      { label: "Companion: Cursor for PMs (Maven)", url: "https://maven.com/aman-khan/coding-agents-for-product-managers" },
+      { label: "Free related: Evaluating AI Agents (DeepLearning.AI)", url: "https://www.deeplearning.ai/courses/evaluating-ai-agents" },
+    ],
+  },
+
+  // --------------------------------------------------------------------------
+  // Prototyping tools — show, don't tell (umbrella + one record per tool)
+  // --------------------------------------------------------------------------
+  {
+    id: "t3-prototyping",
+    title: "Prototyping toolkit for non-designers (Figma, v0, Lovable, Claude artifacts)",
+    creator: "Figma / Vercel / Lovable / Anthropic",
+    url: "https://www.figma.com",
+    urlVerified: false,
+    urlVerifiedDate: SEED,
+    resourceType: "tool",
+    format: "tool",
+    cost: { model: "freemium", note: "All four have free tiers; paid plans vary by tool — re-verify." },
+    estHours: 6,
+    timeBucket: "2_10h",
+    difficulty: "foundational",
+    prerequisites: [],
+    buildsSkill:
+      "Turning an idea into a clickable prototype without a designer: mock a flow in Figma, generate a working UI from a prompt with v0 or Lovable, or spin up an interactive artifact in Claude — then put it in front of a customer.",
+    whyForHim:
+      "He is a non-designer who has to show rather than tell: a prototype in a discovery call gets Mom-Test-grade reactions that a slide never does, a demo (d-demo-week, T4 demo craft) is stronger with a real UI, and a fundable idea needs a clickable mock before any code. Rated high in the spec; learn by prototyping one real feature, not by touring the tools.",
+    priority: "high",
+    producesArtifact: true,
+    trackIds: ["T3_PRODUCT", "T4_FDE_SE"],
+    skillIds: ["prototyping", "demo-craft", "prd"],
+    roleRelevance: ["PM", "FDE", "SE", "CEO", "CTO"],
+    tags: ["prototyping", "figma", "v0", "lovable", "claude_artifacts", "tools", "freemium", "demo"],
+    freshness: "current",
+    qualitySignal: "High per the research doc ('For a non-designer to prototype').",
+    notes:
+      "Umbrella record for the spec's t3-prototyping bundle; each tool also has its own record (t3-figma, t3-v0, t3-lovable, t3-claude-artifacts). Pick one AI builder (v0 pairs with his Next.js/Vercel stack) plus Claude artifacts; Figma only when a static mock is enough. figma.com is a stable vendor domain not fetched at seed time.",
+    links: [
+      { label: "Figma", url: "https://www.figma.com" },
+      { label: "v0 (Vercel)", url: "https://v0.app" },
+      { label: "Lovable", url: "https://lovable.dev" },
+      { label: "Claude artifacts", url: "https://claude.ai" },
+    ],
+  },
+  {
+    id: "t3-v0",
+    title: "v0 (Vercel)",
+    creator: "Vercel",
+    url: "https://v0.app",
+    urlVerified: true,
+    urlVerifiedDate: SEED,
+    resourceType: "tool",
+    format: "tool",
+    cost: { model: "freemium", note: "Free tier plus paid plans (pricing not shown on the product page at seed time — re-verify)." },
+    estHours: 3,
+    timeBucket: "2_10h",
+    difficulty: "foundational",
+    prerequisites: [],
+    buildsSkill: "Prompt-to-UI prototyping that outputs real React/Next.js components deployable on Vercel — a prototype that can become the front end of a POC.",
+    whyForHim:
+      "The AI builder that matches his chosen stack: the spec's T2 path is Next.js + Vercel, so a v0 prototype is not throwaway — it can slide straight into p-fullstack-ai or a customer POC. For an FDE that is the difference between a mock and a demo that survives 'can I try it?'.",
+    priority: "high",
+    producesArtifact: true,
+    trackIds: ["T3_PRODUCT", "T2_BACKEND_SYSTEMS"],
+    skillIds: ["prototyping", "fullstack", "demo-craft"],
+    roleRelevance: ["PM", "FDE", "SE", "Developer"],
+    tags: ["prototyping", "v0", "vercel", "nextjs", "ai_builder", "freemium"],
+    freshness: "current",
+    qualitySignal: "One of the four prototyping tools the research doc rates high (bundled as t3-prototyping).",
+    notes: "Split out of the spec's t3-prototyping bundle. Product page verified at seed time ('What is v0?'); the tool has moved between v0.dev and v0.app — either should resolve.",
+  },
+  {
+    id: "t3-lovable",
+    title: "Lovable",
+    creator: "Lovable",
+    url: "https://lovable.dev",
+    urlVerified: false,
+    urlVerifiedDate: SEED,
+    resourceType: "tool",
+    format: "tool",
+    cost: { model: "freemium", note: "Free tier plus paid plans — re-verify." },
+    estHours: 3,
+    timeBucket: "2_10h",
+    difficulty: "foundational",
+    prerequisites: [],
+    buildsSkill: "Prompt-to-full-app prototyping (UI plus backend/auth wiring) for a working demo of an idea in an afternoon, without a designer or a scaffold.",
+    whyForHim:
+      "The fastest way to get a whole clickable app in front of a design partner when he is validating a wedge, not just a screen. Optional alternative to v0: choose it when the prototype needs data and login, not only a UI; treat the output as a throwaway unless it matches the stack he intends to ship.",
+    priority: "optional",
+    producesArtifact: true,
+    trackIds: ["T3_PRODUCT"],
+    skillIds: ["prototyping", "demo-craft"],
+    roleRelevance: ["PM", "FDE", "SE", "CEO"],
+    tags: ["prototyping", "lovable", "ai_builder", "freemium"],
+    freshness: "current",
+    qualitySignal: "One of the four prototyping tools the research doc rates high (bundled as t3-prototyping).",
+    notes: "Split out of the spec's t3-prototyping bundle. lovable.dev returned 403 to the automated fetch at seed time (bot protection) — the vendor domain is correct; re-verify in a browser.",
+  },
+  {
+    id: "t3-claude-artifacts",
+    title: "Claude artifacts (interactive prototypes in Claude)",
+    creator: "Anthropic",
+    url: "https://claude.ai",
+    urlVerified: false,
+    urlVerifiedDate: SEED,
+    resourceType: "tool",
+    format: "tool",
+    cost: { model: "freemium", note: "Available on the free plan with limits; paid Claude plans raise them — re-verify." },
+    estHours: 2,
+    timeBucket: "2_10h",
+    difficulty: "foundational",
+    prerequisites: [],
+    buildsSkill: "Zero-setup interactive prototypes (HTML/React, diagrams, mini-apps) generated in a conversation and shared by link — good for mocking a flow live in a call.",
+    whyForHim:
+      "He will already be living in Claude Code (t1-claude-code) for building, so artifacts are the zero-friction way to mock an interactive UI mid-conversation with a customer or co-founder candidate and iterate on it in front of them — the 'show, don't tell' habit the spec wants from a non-designer PM, with no deploy step.",
+    priority: "high",
+    producesArtifact: true,
+    trackIds: ["T3_PRODUCT"],
+    skillIds: ["prototyping", "ai-coding-tools"],
+    roleRelevance: ["PM", "FDE", "SE", "CEO", "CTO"],
+    tags: ["prototyping", "claude", "artifacts", "ai_builder", "freemium"],
+    freshness: "current",
+    qualitySignal: "One of the four prototyping tools the research doc rates high (bundled as t3-prototyping).",
+    notes: "Split out of the spec's t3-prototyping bundle. claude.ai is a stable vendor domain not fetched at seed time; the artifacts help article link below is from memory — re-verify.",
+    links: [{ label: "What are artifacts? (Claude help center)", url: "https://support.claude.com/en/articles/9487310-what-are-artifacts-and-how-do-i-use-them" }],
+  },
+  {
+    id: "t3-figma",
+    title: "Figma",
+    creator: "Figma",
+    url: "https://www.figma.com",
+    urlVerified: false,
+    urlVerifiedDate: SEED,
+    resourceType: "tool",
+    format: "tool",
+    cost: { model: "freemium", note: "Free starter plan; paid seats for teams — re-verify." },
+    estHours: 4,
+    timeBucket: "2_10h",
+    difficulty: "foundational",
+    prerequisites: [],
+    buildsSkill: "Static and clickable mock-ups, wireframes and simple flows — enough Figma to sketch a screen for a PRD or a demo without a designer.",
+    whyForHim:
+      "The lowest-fidelity tool in the kit and the one designers and founders already speak: a Figma frame in a PRD (d-prd-rewrite) or a pitch deck reads as 'product thinking', and it is the right choice when he needs a picture, not working code. Optional: the AI builders and Claude artifacts cover most of his prototyping; learn just enough Figma to read and annotate a designer's file.",
+    priority: "optional",
+    producesArtifact: true,
+    trackIds: ["T3_PRODUCT"],
+    skillIds: ["prototyping", "prd"],
+    roleRelevance: ["PM", "FDE", "CEO"],
+    tags: ["prototyping", "figma", "design", "wireframes", "freemium"],
+    freshness: "current",
+    qualitySignal: "One of the four prototyping tools the research doc rates high (bundled as t3-prototyping).",
+    notes: "Split out of the spec's t3-prototyping bundle. figma.com is a stable vendor domain not fetched at seed time.",
+  },
+];
