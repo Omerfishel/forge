@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/styles/app.css"
+        ],
+        "createdAt": "2026-09-16T07:59:12.351Z",
+        "reason": "user instruction: base the UI/UX on the Sapir-Cyber-Learn reference, whose index.html uses 3-4px left colour stripes on .task, .phase-h::before, .deliver and .toast; the stripes carry track colour and are the reference's signature"
+      }
+    ]
+  }
+}
