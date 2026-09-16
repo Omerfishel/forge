@@ -2,7 +2,9 @@
 
 A single-user learning **and doing** platform: eight tracks of curated resources, nine portfolio projects, recurring drills, spaced-repetition flashcards, readiness rubrics, a strategy compass, and progress tracking, all in one place. Content comes from two research documents in `docs/` (the curriculum spec and the five-year plan).
 
-Everything runs in the browser; progress is stored in `localStorage` (key `forge_v1`). Export a JSON backup from **Settings** whenever you like.
+**Live:** https://omerfishel.github.io/forge/ — deployed automatically from `main` by `.github/workflows/pages.yml` (typecheck → unit tests → build → GitHub Pages).
+
+Everything runs in the browser; progress is stored in `localStorage` (key `forge_v1`) of whichever browser you use, so export a JSON backup from **Settings** before switching devices and import it on the other one.
 
 ## Run it
 
