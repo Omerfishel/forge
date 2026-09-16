@@ -16,6 +16,19 @@ function download(name: string, text: string) {
   } catch { /* ignore */ }
 }
 
+/** Numeric input that tolerates an empty/partial draft while typing and commits only valid values. */
+function NumField({ value, min, max, onCommit, testId, step }: { value: number; min: number; max: number; onCommit: (n: number) => void; testId: string; step?: number }) {
+  const [draft, setDraft] = useState(String(value));
+  const [editing, setEditing] = useState(false);
+  const shown = editing ? draft : String(value);
+  return (
+    <input className="fi" type="number" min={min} max={max} step={step} value={shown} data-testid={testId}
+      onFocus={() => { setDraft(String(value)); setEditing(true); }}
+      onChange={(e) => { const v = e.target.value; setDraft(v); const n = Number(v); if (v.trim() !== "" && Number.isFinite(n) && n >= min && n <= max) onCommit(n); }}
+      onBlur={() => setEditing(false)} />
+  );
+}
+
 export default function SettingsPage() {
   const settings = useForge((s) => s.settings);
   const update = useForge((s) => s.updateSettings);
@@ -30,7 +43,6 @@ export default function SettingsPage() {
   const [importText, setImportText] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
 
-  const num = (v: string, min: number, max: number, fallback: number) => { const n = Number(v); return Number.isFinite(n) && n >= min && n <= max ? n : fallback; };
   const setPomo = (patch: Partial<typeof settings.pomo>) => {
     const pomo = { ...settings.pomo, ...patch };
     update({ pomo });
@@ -62,8 +74,8 @@ export default function SettingsPage() {
                 <span className="xs faint">Phases, week numbers and pace are computed from this date.</span>
               </label>
               <div className="row2">
-                <label>Hours per week<input className="fi" type="number" min={1} max={60} value={settings.hoursPerWeek} onChange={(e) => update({ hoursPerWeek: num(e.target.value, 1, 60, settings.hoursPerWeek) })} data-testid="set-hours" /></label>
-                <label>Daily goal (items)<input className="fi" type="number" min={1} max={10} value={settings.dailyGoal} onChange={(e) => update({ dailyGoal: num(e.target.value, 1, 10, settings.dailyGoal) })} data-testid="set-goal" /></label>
+                <label>Hours per week<NumField value={settings.hoursPerWeek} min={1} max={60} onCommit={(n) => update({ hoursPerWeek: n })} testId="set-hours" /></label>
+                <label>Daily goal (items)<NumField value={settings.dailyGoal} min={1} max={10} onCommit={(n) => update({ dailyGoal: n })} testId="set-goal" /></label>
               </div>
               <label>Active path
                 <select className="fi" value={settings.activePathId} onChange={(e) => { update({ activePathId: e.target.value }); toast(<>Active path: <b>{content.paths.find((p) => p.id === e.target.value)?.name}</b></>, "ok"); }} data-testid="set-path">
@@ -82,12 +94,12 @@ export default function SettingsPage() {
           <Card title="⏱ Pomodoro">
             <div className="frm">
               <div className="row2">
-                <label>Focus (min)<input className="fi" type="number" min={1} max={120} value={settings.pomo.focus} onChange={(e) => setPomo({ focus: num(e.target.value, 1, 120, settings.pomo.focus) })} data-testid="set-pomo-focus" /></label>
-                <label>Short break (min)<input className="fi" type="number" min={1} max={60} value={settings.pomo.short} onChange={(e) => setPomo({ short: num(e.target.value, 1, 60, settings.pomo.short) })} data-testid="set-pomo-short" /></label>
+                <label>Focus (min)<NumField value={settings.pomo.focus} min={1} max={120} onCommit={(n) => setPomo({ focus: n })} testId="set-pomo-focus" /></label>
+                <label>Short break (min)<NumField value={settings.pomo.short} min={1} max={60} onCommit={(n) => setPomo({ short: n })} testId="set-pomo-short" /></label>
               </div>
               <div className="row2">
-                <label>Long break (min)<input className="fi" type="number" min={1} max={90} value={settings.pomo.long} onChange={(e) => setPomo({ long: num(e.target.value, 1, 90, settings.pomo.long) })} data-testid="set-pomo-long" /></label>
-                <label>Rounds before long break<input className="fi" type="number" min={1} max={12} value={settings.pomo.rounds} onChange={(e) => setPomo({ rounds: num(e.target.value, 1, 12, settings.pomo.rounds) })} data-testid="set-pomo-rounds" /></label>
+                <label>Long break (min)<NumField value={settings.pomo.long} min={1} max={90} onCommit={(n) => setPomo({ long: n })} testId="set-pomo-long" /></label>
+                <label>Rounds before long break<NumField value={settings.pomo.rounds} min={1} max={12} onCommit={(n) => setPomo({ rounds: n })} testId="set-pomo-rounds" /></label>
               </div>
               <label className="inline">Sound at the end of a block<Switch checked={settings.pomo.sound} onChange={(v) => update({ pomo: { ...settings.pomo, sound: v } })} label="Pomodoro sound" testId="set-pomo-sound" /></label>
             </div>
