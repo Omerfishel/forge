@@ -63,3 +63,14 @@ export function useActivePath() {
   const pathId = useForge((s) => s.settings.activePathId);
   return useMemo(() => activePath(content, pathId), [pathId]);
 }
+
+/**
+ * Persisted open/closed state for a collapsible section. `defaultOpen` applies
+ * until the user toggles it; the toggle always flips the *current* state.
+ */
+export function useOpen(key: string, defaultOpen: boolean): [boolean, () => void] {
+  const stored = useForge((s) => s.ui.collapsed[key]);
+  const setCollapsed = useForge((s) => s.setCollapsed);
+  const open = stored === undefined ? defaultOpen : !stored;
+  return [open, () => setCollapsed(key, open)];
+}

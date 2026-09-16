@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { content } from "@/data";
 import { useForge } from "@/store";
@@ -29,7 +30,7 @@ export default function DashboardPage() {
   const setPomodoro = useForge((s) => s.setPomodoro);
   const logDrill = useForge((s) => s.logDrill);
   const collapsed = useForge((s) => s.ui.collapsed);
-  const toggleCollapsed = useForge((s) => s.toggleCollapsed);
+  const setCollapsed = useForge((s) => s.setCollapsed);
   const toast = useToast();
 
   const doneToday = completions[today] ?? 0;
@@ -37,12 +38,19 @@ export default function DashboardPage() {
   const nextLesson = plan.next[0];
   const nextDrill = plan.drillsDue[0];
   const inProgress = Object.values(progress).filter((p) => p.status === "in_progress" && findItem(content, p.itemId)).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)).slice(0, 5);
-  const blockedOpen = !collapsed["today-blocked"] ? false : true; // collapsed by default → open when key set
+  const blockedOpen = collapsed["today-blocked"] === undefined ? false : !collapsed["today-blocked"]; // collapsed by default
+  // Items completed during this visit stay visible (done) so a mis-click can be undone.
+  const [sessionDone, setSessionDone] = useState<typeof plan.next>([]);
+  const weekRows = [...plan.next, ...sessionDone.filter((d) => !plan.next.some((n) => n.item.itemId === d.item.itemId))];
 
   const done = (id: string, type: PathItemType) => {
     const wasDone = progress[id]?.status === "done";
     toggleDone(id, type as never);
-    if (!wasDone) toast(<><b>Done.</b> {findItem(content, id)?.item.title}</>, "ok");
+    if (!wasDone) {
+      const row = plan.next.find((n) => n.item.itemId === id);
+      if (row) setSessionDone((l) => (l.some((x) => x.item.itemId === id) ? l : [...l, row]));
+      toast(<><b>Done.</b> {findItem(content, id)?.item.title}</>, "ok");
+    } else setSessionDone((l) => l.filter((x) => x.item.itemId !== id));
   };
 
   return (
@@ -70,11 +78,11 @@ export default function DashboardPage() {
 
       <div className="grid-2" style={{ alignItems: "start" }}>
         <Card title="🗓 This week" right={<span className="pill">{plan.next.length} next</span>} testId="week-card">
-          {plan.next.length === 0 ? (
+          {weekRows.length === 0 ? (
             <Empty>Nothing unblocked in the active path. Finish a prerequisite or switch paths.</Empty>
           ) : (
             <div data-testid="week-list">
-              {plan.next.map((n) => {
+              {weekRows.map((n) => {
                 const f = findItem(content, n.item.itemId);
                 if (!f) return null;
                 const tr = trackOf(n.item.itemId);
@@ -161,7 +169,7 @@ export default function DashboardPage() {
       </div>
 
       <div style={{ marginTop: 16 }}>
-        <Accordion title="⛔ Blocked" meta={`${plan.blocked.length} waiting on prerequisites`} color="var(--bad)" open={blockedOpen} onToggle={() => toggleCollapsed("today-blocked")} testId="blocked-toggle">
+        <Accordion title="⛔ Blocked" meta={`${plan.blocked.length} waiting on prerequisites`} color="var(--bad)" open={blockedOpen} onToggle={() => setCollapsed("today-blocked", blockedOpen)} testId="blocked-toggle">
           {plan.blocked.length === 0 ? <Empty>Nothing is blocked.</Empty> : (
             <div data-testid="blocked-list">
               {plan.blocked.map((b) => (

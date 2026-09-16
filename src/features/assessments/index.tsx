@@ -76,7 +76,7 @@ function AssessmentBlock({ a, track }: { a: Assessment; track: Track }) {
 export default function AssessmentsPage() {
   const progress = useForge((s) => s.progress);
   const collapsed = useForge((s) => s.ui.collapsed);
-  const toggleCollapsed = useForge((s) => s.toggleCollapsed);
+  const setCollapsed = useForge((s) => s.setCollapsed);
   const tracks = [...content.tracks].sort((a, b) => a.priorityRank - b.priorityRank);
   const rubricOf = (t: Track) => content.assessments.find((a) => a.trackId === t.id && a.type === "rubric");
   const pctOf = (a?: Assessment) => (a && a.criteria.length ? Math.round(((progress[a.id]?.criteriaDone?.length ?? 0) / a.criteria.length) * 100) : 0);
@@ -100,7 +100,7 @@ export default function AssessmentsPage() {
         const open = collapsed[key] === undefined ? i === 0 : !collapsed[key];
         const r = rubricOf(t);
         return (
-          <Accordion key={t.id} title={`${t.icon} ${t.code} · ${t.name}`} meta={`${list.length} checks`} color={t.color} open={open} onToggle={() => toggleCollapsed(key)} pct={pctOf(r)} testId={`assess-track-${t.id}`}>
+          <Accordion key={t.id} title={`${t.icon} ${t.code} · ${t.name}`} meta={`${list.length} checks`} color={t.color} open={open} onToggle={() => setCollapsed(key, open)} pct={pctOf(r)} testId={`assess-track-${t.id}`}>
             {list.map((a) => <AssessmentBlock key={a.id} a={a} track={t} />)}
           </Accordion>
         );

@@ -46,7 +46,7 @@ export default function LibraryPage() {
   const setFilters = useForge((s) => s.setLibraryFilters);
   const progress = useForge((s) => s.progress);
   const collapsed = useForge((s) => s.ui.collapsed);
-  const toggleCollapsed = useForge((s) => s.toggleCollapsed);
+  const setCollapsed = useForge((s) => s.setCollapsed);
   const [params, setParams] = useSearchParams();
   const [sort, setSort] = useState<Sort>("priority");
   const [layout, setLayout] = useState<Layout>("grouped");
@@ -132,17 +132,20 @@ export default function LibraryPage() {
         <div data-testid="lib-list">{filtered.map((r) => <ResourceRow key={r.id} r={r} prefix="lib" />)}</div>
       ) : (
         <div data-testid="lib-list">
-          {[...content.tracks].sort((a, b) => a.priorityRank - b.priorityRank).map((t) => {
-            const rows = filtered.filter((r) => r.trackIds[0] === t.id);
+          {(() => { const assigned = new Set<string>(); return [...content.tracks].sort((a, b) => a.priorityRank - b.priorityRank).map((t) => {
+            // With a track filter active, group under the selected track(s) a resource belongs to
+            // (each resource once); otherwise under its primary track.
+            const rows = filtered.filter((r) => !assigned.has(r.id) && (filters.tracks.length ? filters.tracks.includes(t.id) && r.trackIds.includes(t.id) : r.trackIds[0] === t.id));
+            rows.forEach((r) => assigned.add(r.id));
             if (rows.length === 0) return null;
             const done = rows.filter((r) => progress[r.id]?.status === "done").length;
             const key = `lib-track-${t.id}`;
             return (
-              <Accordion key={t.id} title={`${t.icon} ${t.code} · ${t.name}`} meta={`${rows.length} resources · #${t.priorityRank} priority`} color={t.color} open={!collapsed[key]} onToggle={() => toggleCollapsed(key)} pct={rows.length ? Math.round((done / rows.length) * 100) : 0} testId={`lib-group-${t.id}`}>
+              <Accordion key={t.id} title={`${t.icon} ${t.code} · ${t.name}`} meta={`${rows.length} resources · #${t.priorityRank} priority`} color={t.color} open={!collapsed[key]} onToggle={() => setCollapsed(key, !collapsed[key])} pct={rows.length ? Math.round((done / rows.length) * 100) : 0} testId={`lib-group-${t.id}`}>
                 {rows.map((r) => <ResourceRow key={r.id} r={r} prefix="lib" />)}
               </Accordion>
             );
-          })}
+          }); })()}
         </div>
       )}
     </div>

@@ -71,7 +71,7 @@ export default function PathsPage() {
   const progress = useForge((s) => s.progress);
   const drillLog = useForge((s) => s.drillLog);
   const collapsed = useForge((s) => s.ui.collapsed);
-  const toggleCollapsed = useForge((s) => s.toggleCollapsed);
+  const setCollapsed = useForge((s) => s.setCollapsed);
   const active = useActivePath();
   const toast = useToast();
   const phase = currentPhase(active, settings.startDate);
@@ -121,7 +121,7 @@ export default function PathsPage() {
           const key = `path-${active.id}-${ph.phase}`;
           const open = collapsed[key] === undefined ? ph.phase === phase : !collapsed[key];
           return (
-            <Accordion key={ph.phase} title={`Phase ${ph.phase} · ${ph.title}`} meta={`months ${ph.months[0]}–${ph.months[1]} · ${items.length} items${ph.phase === phase ? " · current" : ""}`} color={ph.phase === phase ? "var(--acc)" : "var(--faint)"} open={open} onToggle={() => toggleCollapsed(key)} pct={countable.length ? Math.round((done / countable.length) * 100) : 0} testId={`path-phase-${ph.phase}`}>
+            <Accordion key={ph.phase} title={`Phase ${ph.phase} · ${ph.title}`} meta={`months ${ph.months[0]}–${ph.months[1]} · ${items.length} items${ph.phase === phase ? " · current" : ""}`} color={ph.phase === phase ? "var(--acc)" : "var(--faint)"} open={open} onToggle={() => setCollapsed(key, open)} pct={countable.length ? Math.round((done / countable.length) * 100) : 0} testId={`path-phase-${ph.phase}`}>
               <p className="muted small" style={{ margin: "6px 4px 10px" }}>{ph.summary}</p>
               {items.map((it) => <PathItemRow key={it.itemId} it={it} />)}
             </Accordion>

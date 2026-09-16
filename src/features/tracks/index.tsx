@@ -41,7 +41,7 @@ function TrackDetail({ t }: { t: Track }) {
   const role = useForge((s) => s.settings.roleFilter);
   const progress = useForge((s) => s.progress);
   const collapsed = useForge((s) => s.ui.collapsed);
-  const toggleCollapsed = useForge((s) => s.toggleCollapsed);
+  const setCollapsed = useForge((s) => s.setCollapsed);
   const s = trackStats(content, progress, t.id, role);
   const res = content.resources.filter((r) => r.trackIds.includes(t.id) && (role === "all" || r.roleRelevance.includes(role)));
   const projects = content.projects.filter((p) => p.trackIds.includes(t.id) && (role === "all" || p.roleRelevance.includes(role)));
@@ -82,7 +82,7 @@ function TrackDetail({ t }: { t: Track }) {
         const open = collapsed[key] === undefined ? p === "must_do" || p === "high" : !collapsed[key];
         const done = rows.filter((r) => progress[r.id]?.status === "done").length;
         return (
-          <Accordion key={p} title={PRIORITY_LABEL[p]} meta={`${rows.length} resources`} color={p === "must_do" ? "var(--warn)" : p === "high" ? "var(--acc)" : "var(--faint)"} open={open} onToggle={() => toggleCollapsed(key)} pct={Math.round((done / rows.length) * 100)} testId={`track-group-${p}`}>
+          <Accordion key={p} title={PRIORITY_LABEL[p]} meta={`${rows.length} resources`} color={p === "must_do" ? "var(--warn)" : p === "high" ? "var(--acc)" : "var(--faint)"} open={open} onToggle={() => setCollapsed(key, open)} pct={Math.round((done / rows.length) * 100)} testId={`track-group-${p}`}>
             {rows.map((r) => <ResourceRow key={r.id} r={r} prefix="track" />)}
           </Accordion>
         );

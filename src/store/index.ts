@@ -116,6 +116,8 @@ export interface ForgeState {
   setLibraryFilters: (patch: Partial<UiState["libraryFilters"]>) => void;
   toggleExpanded: (key: string) => void;
   toggleCollapsed: (key: string) => void;
+  /** Explicitly set a collapsible section closed (true) or open (false). */
+  setCollapsed: (key: string, collapsed: boolean) => void;
   markCelebrated: (id: string) => void;
   importState: (data: unknown) => boolean;
   exportState: () => string;
@@ -307,6 +309,7 @@ export const useForge = create<ForgeState>()(
       setLibraryFilters: (patch) => set((s) => ({ ui: { ...s.ui, libraryFilters: { ...s.ui.libraryFilters, ...patch } } })),
       toggleExpanded: (key) => set((s) => ({ ui: { ...s.ui, expanded: { ...s.ui.expanded, [key]: !s.ui.expanded[key] } } })),
       toggleCollapsed: (key) => set((s) => ({ ui: { ...s.ui, collapsed: { ...s.ui.collapsed, [key]: !s.ui.collapsed[key] } } })),
+      setCollapsed: (key, collapsed) => set((s) => ({ ui: { ...s.ui, collapsed: { ...s.ui.collapsed, [key]: collapsed } } })),
       markCelebrated: (id) => set((s) => ({ celebrated: { ...s.celebrated, [id]: true } })),
 
       importState: (data) => {
@@ -345,6 +348,26 @@ export const useForge = create<ForgeState>()(
       name: STORAGE_KEY,
       version: 1,
       storage: createJSONStorage(() => localStorage),
+      // Deep-merge nested objects so partial/older persisted state keeps new defaults.
+      merge: (persisted, current) => {
+        const p = (persisted ?? {}) as Partial<ForgeState>;
+        const base = defaultData();
+        return {
+          ...current,
+          ...p,
+          settings: { ...base.settings, ...(p.settings ?? {}), pomo: { ...base.settings.pomo, ...(p.settings?.pomo ?? {}) } },
+          pomodoro: { ...base.pomodoro, ...(p.pomodoro ?? {}) },
+          ui: { ...base.ui, ...(p.ui ?? {}), libraryFilters: { ...base.ui.libraryFilters, ...(p.ui?.libraryFilters ?? {}) } },
+          progress: p.progress ?? {},
+          drillLog: p.drillLog ?? {},
+          completions: p.completions ?? {},
+          notes: Array.isArray(p.notes) ? p.notes : [],
+          srs: p.srs ?? {},
+          srsReviewedToday: p.srsReviewedToday ?? {},
+          celebrated: p.celebrated ?? {},
+          pomoCount: typeof p.pomoCount === "number" ? p.pomoCount : 0,
+        };
+      },
       partialize: (s) => {
         const out: Record<string, unknown> = {};
         for (const k of PERSIST_KEYS) out[k] = s[k];

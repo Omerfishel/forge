@@ -146,7 +146,7 @@ export function Card({ title, children, right, className, testId, bodyStyle }: {
 export function Accordion({ title, meta, color, open, onToggle, children, pct, right, testId }: { title: ReactNode; meta?: ReactNode; color?: string; open: boolean; onToggle: () => void; children: ReactNode; pct?: number; right?: ReactNode; testId?: string }) {
   return (
     <div className={`phase ${open ? "" : "col"}`} style={{ ["--pc" as string]: color }} data-testid={testId}>
-      <div className="phase-h" onClick={onToggle} role="button" aria-expanded={open} tabIndex={0} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onToggle(); } }}>
+      <div className="phase-h" onClick={onToggle} role="button" aria-expanded={open} tabIndex={0} data-testid={testId ? `${testId}-h` : undefined} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onToggle(); } }}>
         <span className="car">▼</span>
         <span className="nm">{title}</span>
         {meta && <span className="wk">{meta}</span>}

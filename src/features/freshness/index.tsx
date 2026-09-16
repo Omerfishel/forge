@@ -21,7 +21,7 @@ export default function FreshnessPage() {
   const checkedAt = useForge((s) => s.settings.freshnessCheckedAt);
   const update = useForge((s) => s.updateSettings);
   const collapsed = useForge((s) => s.ui.collapsed);
-  const toggleCollapsed = useForge((s) => s.toggleCollapsed);
+  const setCollapsed = useForge((s) => s.setCollapsed);
   const toast = useToast();
   const counts = (["current", "aging", "stale", "unknown"] as Freshness[]).map((f) => ({ f, n: content.resources.filter((r) => r.freshness === f).length }));
   const nextDue = checkedAt ? addDaysKey(checkedAt, 90) : null;
@@ -45,15 +45,15 @@ export default function FreshnessPage() {
         const key = `fresh-${g.key}`;
         const open = collapsed[key] === undefined ? g.key !== "current" : !collapsed[key];
         return (
-          <Accordion key={g.key} title={g.title} meta={`${rows.length} · ${g.hint}`} color={g.color} open={open} onToggle={() => toggleCollapsed(key)} testId={`fresh-group-${g.key}`}>
+          <Accordion key={g.key} title={g.title} meta={`${rows.length} · ${g.hint}`} color={g.color} open={open} onToggle={() => setCollapsed(key, open)} testId={`fresh-group-${g.key}`}>
             {rows.length === 0 ? <div className="rubric" style={{ padding: 6 }}>None.</div> : rows.map((r) => { const tr = content.tracks.find((t) => t.id === r.trackIds[0]); return (
-              <div key={r.id} className="item" style={{ ["--tc" as string]: trackColorVar(r.trackIds[0]) }} data-testid={`fresh-row-${r.id}`}>
+              <div key={r.id} className="item" style={{ ["--tc" as string]: trackColorVar(r.trackIds[0]) }} data-testid={`fresh-row-${g.key}-${r.id}`}>
                 <span className="i-type" style={{ marginTop: 2 }}>{TYPE_ICON[r.resourceType]}</span>
                 <div className="i-main">
                   <div className="i-titlerow" style={{ cursor: "default" }}><a className="i-title" href={r.url} target="_blank" rel="noreferrer" style={{ color: "var(--ink)" }}>{r.title}</a><span className="faint xs">{r.creator}</span><FreshBdg freshness={r.freshness} />{!r.urlVerified && <span className="bdg high">url unverified</span>}</div>
                   <div className="i-badges">{tr && <TrackBdg trackId={tr.id} code={tr.code} />}<span className="pill">verified {r.urlVerifiedDate}</span>{r.notes && <span className="faint xs" style={{ maxWidth: 520, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} title={r.notes}>{r.notes}</span>}</div>
                 </div>
-                <div className="i-right"><a className="focusbtn" href={r.url} target="_blank" rel="noreferrer" data-testid={`fresh-open-${r.id}`}>Open ↗</a></div>
+                <div className="i-right"><a className="focusbtn" href={r.url} target="_blank" rel="noreferrer" data-testid={`fresh-open-${g.key}-${r.id}`}>Open ↗</a></div>
               </div>
             ); })}
           </Accordion>
