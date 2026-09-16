@@ -186,3 +186,15 @@ describe("store: import sanitising", () => {
     expect(useForge.getState().importState([])).toBe(false);
   });
 });
+
+describe("store: project percent after leaving done", () => {
+  it("recomputes the percent from the step checklist", () => {
+    const s = useForge.getState();
+    s.toggleCriterion("p", 0, 4, "project"); // 25%
+    s.setStatus("p", "project", "done");
+    s.setStatus("p", "project", "in_progress");
+    expect(useForge.getState().progress.p.percentComplete).toBe(25);
+    s.setStatus("p", "project", "todo");
+    expect(useForge.getState().progress.p.percentComplete).toBe(0);
+  });
+});

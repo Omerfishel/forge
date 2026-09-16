@@ -78,7 +78,7 @@ export default function NotesPage() {
           <Seg<SortDir> value={sort} onChange={setSort} testId="notes-sort" options={[{ value: "newest", label: "Newest" }, { value: "oldest", label: "Oldest" }]} />
           <span className="fmeta" style={{ marginLeft: "auto" }} data-testid="notes-count">{list.length} of {notes.length}</span>
         </div>
-        {tagList.length > 0 && <div className="chips" style={{ marginTop: 10 }}>{tagList.map((t) => <Chip key={t.tag} small on={tags.includes(t.tag)} onClick={() => setTags((v) => (v.includes(t.tag) ? v.filter((x) => x !== t.tag) : [...v, t.tag]))} testId={`notes-tag-${t.tag}`}>#{t.tag} <span className="xs faint">{t.count}</span></Chip>)}{(tags.length > 0 || q || link !== "all") && <button className="linkbtn xs" onClick={() => { setTags([]); setQ(""); setLink("all"); }} data-testid="notes-clear">Clear filters</button>}</div>}
+        {(tagList.length > 0 || tags.length > 0 || q || link !== "all") && <div className="chips" style={{ marginTop: 10 }}>{tagList.map((t) => <Chip key={t.tag} small on={tags.includes(t.tag)} onClick={() => setTags((v) => (v.includes(t.tag) ? v.filter((x) => x !== t.tag) : [...v, t.tag]))} testId={`notes-tag-${t.tag}`}>#{t.tag} <span className="xs faint">{t.count}</span></Chip>)}{(tags.length > 0 || q || link !== "all") && <button className="linkbtn xs" onClick={() => { setTags([]); setQ(""); setLink("all"); }} data-testid="notes-clear">Clear filters</button>}</div>}
       </div>
 
       {exportedMd && (

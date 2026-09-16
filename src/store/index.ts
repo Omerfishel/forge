@@ -229,6 +229,7 @@ export function sanitizeImport(data: unknown): Partial<ForgeState> | null {
     if (raw.hoursLogged !== undefined) e.hoursLogged = num(raw.hoursLogged, 0, 0, 100000);
     if (Array.isArray(raw.links)) e.links = raw.links.filter(isObj).map((l) => ({ label: str(l.label), url: str(l.url) })).filter((l) => l.label && l.url);
     if (Array.isArray(raw.criteriaDone)) e.criteriaDone = raw.criteriaDone.map((n) => num(n, -1, 0, 999)).filter((n) => n >= 0);
+    if (raw.criteriaTotal !== undefined) e.criteriaTotal = Math.round(num(raw.criteriaTotal, 0, 0, 999)) || undefined;
     progress[id] = e;
   }
   const drillLog: Record<string, string[]> = {};
@@ -285,8 +286,10 @@ export const useForge = create<ForgeState>()(
           const wasDone = prev?.status === "done";
           const isDone = status === "done";
           const prevPct = prev?.percentComplete;
-          // Leaving "done" drops the 100%; todo/skipped reset to 0; in-progress keeps a real partial value only.
-          const percentComplete = isDone ? 100 : status === "in_progress" ? (prevPct !== undefined && prevPct > 0 && prevPct < 100 ? prevPct : undefined) : 0;
+          // Leaving "done" drops the 100%; todo/skipped reset to 0; in-progress keeps a real partial value
+          // (recomputed from a checklist when one exists).
+          const fromSteps = prev?.criteriaDone && prev.criteriaTotal ? Math.round((prev.criteriaDone.length / prev.criteriaTotal) * 100) : undefined;
+          const percentComplete = isDone ? 100 : status === "in_progress" ? (fromSteps !== undefined && fromSteps > 0 && fromSteps < 100 ? fromSteps : prevPct !== undefined && prevPct > 0 && prevPct < 100 ? prevPct : undefined) : 0;
           const entry: ProgressEntry = {
             ...(prev ?? { itemId, itemType }),
             itemId, itemType, status,
@@ -348,7 +351,7 @@ export const useForge = create<ForgeState>()(
           if (status === "done" && !wasDone) completions = bumpCompletion(completions, +1);
           if (status !== "done" && wasDone) completions = bumpCompletion(completions, -1);
           return {
-            progress: { ...s.progress, [assessmentId]: { ...(prev ?? { itemId: assessmentId, itemType }), itemId: assessmentId, itemType, status, percentComplete: p, criteriaDone: done, updatedAt: nowIso() } },
+            progress: { ...s.progress, [assessmentId]: { ...(prev ?? { itemId: assessmentId, itemType }), itemId: assessmentId, itemType, status, percentComplete: p, criteriaDone: done, criteriaTotal: total, updatedAt: nowIso() } },
             completions,
           };
         }),

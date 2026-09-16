@@ -257,8 +257,10 @@ export interface ProgressEntry {
   updatedAt: string;
   /** Publish links for projects (repo / blog / demo). */
   links?: { label: string; url: string }[];
-  /** Rubric criteria ticked (assessments). */
+  /** Rubric criteria / project steps ticked. */
   criteriaDone?: number[];
+  /** Total criteria/steps at the time of the last tick (lets percent be recomputed). */
+  criteriaTotal?: number;
 }
 
 export interface Tag {

@@ -106,7 +106,7 @@ function ProjectModal({ p, onClose }: { p: Project; onClose: () => void }) {
           )}
           <div style={{ marginBottom: 10 }}>
             <span className="lbl">Hours · {fmtHours(entry?.hoursLogged ?? 0)} logged</span>
-            <div className="row"><input className="sel" type="number" min={0} max={100} step={0.5} value={hours} onChange={(e) => setHours(e.target.value)} style={{ width: 70 }} aria-label="Hours" data-testid="proj-hours" /><button className="sbtn sm" onClick={() => { const h = Number(hours); if (!(h > 0) || h > 100) { toast("Enter between 0.5 and 100 hours.", "bad"); return; } const wasTodo = !entry || entry.status === "todo"; logHours(p.id, "project", h); toast(<>Logged <b>{h}h</b>{wasTodo ? " · moved to In progress" : ""}</>, "ok"); }} data-testid="proj-hours-add">Log</button></div>
+            <div className="row"><input className="sel" type="number" min={0} max={100} step={0.5} value={hours} onChange={(e) => setHours(e.target.value)} style={{ width: 70 }} aria-label="Hours" data-testid="proj-hours" /><button className="sbtn sm" onClick={() => { const h = Number(hours); if (!(h > 0) || h > 100) { toast("Enter more than 0 and at most 100 hours.", "bad"); return; } const wasTodo = !entry || entry.status === "todo"; logHours(p.id, "project", h); toast(<>Logged <b>{h}h</b>{wasTodo ? " · moved to In progress" : ""}</>, "ok"); }} data-testid="proj-hours-add">Log</button></div>
           </div>
           <div>
             <span className="lbl">Publish links</span>

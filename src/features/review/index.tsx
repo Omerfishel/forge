@@ -120,10 +120,11 @@ export default function ReviewPage() {
           <div className="front">{session.length > 0 ? "Session complete." : "All caught up."}</div>
           <div className="muted small">{counts.fresh > 0 ? `${counts.fresh} new cards are waiting.` : nextDue ? `Next card due ${fmtDate(nextDue)}.` : "No cards scheduled."} {reviewedToday > 0 && `${reviewedToday} reviewed today.`}</div>
           <div className="row" style={{ justifyContent: "center" }}>
-            <button className="sbtn primary" onClick={() => { setAhead(true); build(true); }} data-testid="srs-ahead">Study ahead</button>
+            <button className="sbtn primary" onClick={() => { setAhead(true); build(true); }} data-testid="srs-ahead" title="Review learned cards before they are due">Study ahead</button>
             {session.length > 0 && <button className="sbtn" onClick={() => build(false)} data-testid="srs-again">New session</button>}
           </div>
           {ahead && session.length === 0 && <div className="rubric">Nothing to study ahead in this deck.</div>}
+          <div className="xs faint">Study ahead reviews the soonest-due learned cards early; it does not add new cards.</div>
         </div>
       )}
 

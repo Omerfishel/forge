@@ -52,12 +52,13 @@ function PathItemRow({ it }: { it: PathItem }) {
           {f.kind === "milestone" && <span className="pill">target week {f.item.targetWeek}</span>}
           {inProg && <span className="bdg info">in progress</span>}
           {!isDone && !inProg && bl.length === 0 && it.itemType !== "milestone" && <span className="bdg ok">Ready</span>}
-          {bl.length > 0 && <span className="bdg bad" title={bl.map((b) => itemTitle(content, b)).join(", ")}>Blocked by {bl.map((b) => itemTitle(content, b)).join(", ")}</span>}
+          {bl.length > 0 && <span className="bdg bad" title={`Blocked by: ${bl.map((b) => itemTitle(content, b)).join(", ")}`}>Blocked by {bl.length}</span>}
         </div>
         <div className="i-badges">
           {track && <TrackBdg trackId={track.id} code={track.code} />}
           <span className="bdg type">{it.itemType}</span>
           {f.kind === "milestone" ? <span className="faint xs">{f.item.criteria}</span> : it.note ? <span className="faint xs">{it.note}</span> : null}
+          {bl.length > 0 && <span className="faint xs" style={{ whiteSpace: "normal" }}>needs: {bl.map((b) => itemTitle(content, b)).join(", ")}</span>}
         </div>
       </div>
       <div className="i-right"><span className="hrs">{hours ? fmtHours(hours) : ""}</span></div>

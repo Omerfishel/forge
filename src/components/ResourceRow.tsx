@@ -89,7 +89,7 @@ export function ResourceRow({ r, prefix, compact }: { r: Resource; prefix: strin
               </label>
               <label className="row" style={{ gap: 6 }}><span className="lbl" style={{ margin: 0 }}>Hours</span>
                 <input className="sel" type="number" min={0} max={100} step={0.5} value={hours} placeholder="1" onChange={(e) => setHours(e.target.value)} style={{ width: 64 }} aria-label="Hours to log" data-testid={`${prefix}-hours-${r.id}`} />
-                <button className="sbtn sm" onClick={() => { const h = Number(hours); if (!(h > 0) || h > 100) { toast("Enter between 0.5 and 100 hours.", "bad"); return; } logHours(r.id, "resource", h); setHours(""); toast(<>Logged <b>{h}h</b> on {r.title}</>, "ok"); }} data-testid={`${prefix}-hours-add-${r.id}`}>Log</button>
+                <button className="sbtn sm" onClick={() => { const h = Number(hours); if (!(h > 0) || h > 100) { toast("Enter more than 0 and at most 100 hours.", "bad"); return; } logHours(r.id, "resource", h); setHours(""); toast(<>Logged <b>{h}h</b> on {r.title}</>, "ok"); }} data-testid={`${prefix}-hours-add-${r.id}`}>Log</button>
                 <span className="mono xs muted">{fmtHours(entry?.hoursLogged ?? 0)} logged</span>
               </label>
               <button className="sbtn sm" onClick={() => setNoteOpen((v) => !v)} data-testid={`${prefix}-note-${r.id}`}>📓 {noteOpen ? "Cancel" : "Add note"}</button>
