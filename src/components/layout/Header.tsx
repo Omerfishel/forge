@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useForge } from "@/store";
 import { useOverall, usePace, usePlan, useStreak } from "@/lib/hooks";
@@ -11,11 +12,24 @@ export function Header() {
   const settings = useForge((s) => s.settings);
   const update = useForge((s) => s.updateSettings);
 
+  const ref = useRef<HTMLElement>(null);
+  // Keep the sticky offsets of the side nav and rail exact whatever the header wraps to.
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const apply = () => document.documentElement.style.setProperty("--header-h", `${Math.round(el.getBoundingClientRect().height)}px`);
+    apply();
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(apply) : null;
+    ro?.observe(el);
+    window.addEventListener("resize", apply);
+    return () => { ro?.disconnect(); window.removeEventListener("resize", apply); };
+  }, []);
+
   const pct = overall.pct;
   const paceCls = pace.cls === "ahead" ? "tcx-ahead" : pace.cls === "behind" ? "tcx-behind" : "tcx-onpace";
 
   return (
-    <header className="top" data-testid="header">
+    <header className="top" data-testid="header" ref={ref}>
       <div className="top-in">
         <div className="brandrow">
           <div className="logo" aria-hidden="true" />

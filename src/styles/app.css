@@ -138,13 +138,16 @@ html[data-theme="light"] header.top { background: linear-gradient(180deg, rgba(2
 main { min-width: 0; }
 
 /* left nav — collapsed icon rail, expands on hover */
-.side { width: 56px; position: sticky; top: var(--header-h); align-self: start; z-index: 40; }
+.side { width: 56px; position: sticky; top: calc(var(--header-h) + 8px); align-self: start; z-index: 40; max-height: calc(100vh - var(--header-h) - 16px); }
 .tabs {
-  width: 56px; display: flex; flex-direction: column; gap: 4px; padding: 6px; border-radius: 15px;
-  background: transparent; border: 1px solid transparent; overflow: hidden;
+  width: 56px; display: flex; flex-direction: column; gap: 2px; padding: 5px; border-radius: 15px;
+  background: transparent; border: 1px solid transparent; overflow: hidden auto;
+  max-height: calc(100vh - var(--header-h) - 16px); scrollbar-width: none;
   transition: width .18s ease, background .18s, box-shadow .18s, border-color .18s;
 }
-.tabs:hover, .tabs:focus-within, .tabs.pinned {
+.tabs::-webkit-scrollbar { display: none; }
+/* Expands on hover, on keyboard focus (not after a mouse click), or when pinned. */
+.tabs:hover, .tabs:has(.tab:focus-visible), .tabs.pinned {
   width: 224px; background: var(--panel); border-color: var(--line-solid);
   box-shadow: 0 18px 44px rgba(0,0,0,.34); z-index: 60;
 }
@@ -153,29 +156,29 @@ main { min-width: 0; }
 .wrap.navpinned.norail { grid-template-columns: 224px 1fr; }
 .wrap.navpinned .side { width: 224px; }
 .tab {
-  display: flex; align-items: center; gap: 12px; width: 210px; background: transparent;
-  border: 1px solid transparent; color: var(--muted); padding: 9px 8px; font-size: 14px;
+  display: flex; align-items: center; gap: 12px; width: 212px; flex: 0 0 auto; background: transparent;
+  border: 1px solid transparent; color: var(--muted); padding: 6px 8px; font-size: 13.5px;
   font-weight: 600; border-radius: 12px; text-align: left; transition: background .12s, color .12s;
   position: relative; cursor: pointer; text-decoration: none;
 }
 .tab:hover { color: var(--ink); background: var(--panel2); text-decoration: none; }
 .tab.sel { color: var(--acc-ink); background: var(--acc); border-color: var(--acc); }
-.tab .ti { flex: 0 0 auto; width: 28px; height: 28px; display: grid; place-items: center; font-size: 20px; line-height: 1; position: relative; }
+.tab .ti { flex: 0 0 auto; width: 28px; height: 26px; display: grid; place-items: center; font-size: 19px; line-height: 1; position: relative; }
 .tab .tl { flex: 1 1 auto; white-space: nowrap; overflow: hidden; opacity: 0; transition: opacity .14s; }
-.tabs:hover .tab .tl, .tabs:focus-within .tab .tl, .tabs.pinned .tab .tl { opacity: 1; }
+.tabs:hover .tab .tl, .tabs:has(.tab:focus-visible) .tab .tl, .tabs.pinned .tab .tl { opacity: 1; }
 .tab .c { flex: 0 0 auto; font: 700 10px/1 var(--mono); color: #fff; background: #5b6472; border-radius: 20px; padding: 3px 7px; opacity: 0; transition: opacity .14s; }
-.tabs:hover .tab .c, .tabs:focus-within .tab .c, .tabs.pinned .tab .c { opacity: 1; }
+.tabs:hover .tab .c, .tabs:has(.tab:focus-visible) .tab .c, .tabs.pinned .tab .c { opacity: 1; }
 .tab.sel .c { color: #f6c453; background: var(--acc-ink); }
 .tab .c.hot { background: #fb923c; color: #1a1205; }
-.tabs:not(:hover):not(:focus-within):not(.pinned) .tab.has-badge .ti::after {
+.tabs:not(:hover):not(:has(.tab:focus-visible)):not(.pinned) .tab.has-badge .ti::after {
   content: ""; position: absolute; top: 1px; right: 1px; width: 9px; height: 9px; border-radius: 50%;
   background: var(--acc); box-shadow: 0 0 0 2px var(--bg);
 }
-.tabs:not(:hover):not(:focus-within):not(.pinned) .tab.has-badge.hot .ti::after { background: #fb923c; }
-.tabsep { height: 1px; background: var(--line); margin: 4px 8px; }
+.tabs:not(:hover):not(:has(.tab:focus-visible)):not(.pinned) .tab.has-badge.hot .ti::after { background: #fb923c; }
+.tabsep { height: 1px; flex: 0 0 auto; background: var(--line); margin: 3px 8px; }
 
 /* right rail */
-.rail { position: sticky; top: var(--header-h); max-height: calc(100vh - 140px); overflow-y: auto; overflow-x: hidden; display: flex; flex-direction: column; gap: 13px; padding-right: 6px; }
+.rail { position: sticky; top: calc(var(--header-h) + 8px); max-height: calc(100vh - var(--header-h) - 16px); overflow-y: auto; overflow-x: hidden; display: flex; flex-direction: column; gap: 13px; padding-right: 6px; }
 .rail::-webkit-scrollbar { width: 8px; } .rail::-webkit-scrollbar-thumb { background: var(--line-solid); border-radius: 8px; } .rail::-webkit-scrollbar-track { background: transparent; }
 
 /* ---------- cards ---------- */
@@ -453,7 +456,8 @@ main { min-width: 0; }
 @media (max-width: 940px) {
   .wrap, .wrap.navpinned, .wrap.navpinned.norail { grid-template-columns: minmax(0, 1fr); padding: 12px; }
   .wrap > * { min-width: 0; }
-  .side, .wrap.navpinned .side { position: static; width: auto; max-width: 100%; }
+  .side, .wrap.navpinned .side { position: static; width: auto; max-width: 100%; max-height: none; }
+  .tabs { max-height: none; overflow: auto hidden; }
   .tabs, .tabs:hover, .tabs.pinned { width: auto; flex-direction: row; overflow-x: auto; gap: 7px; padding: 8px 2px; background: var(--bg); border: none; border-radius: 0; box-shadow: none; }
   .tab { width: auto; flex: 0 0 auto; padding: 8px 14px; border: 1px solid var(--line-solid); background: var(--panel); border-radius: 999px; }
   .tab .ti { width: 22px; font-size: 17px; }

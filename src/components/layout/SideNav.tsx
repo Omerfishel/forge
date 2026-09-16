@@ -24,7 +24,7 @@ export function SideNav() {
           return (
             <span key={n.key} style={{ display: "contents" }}>
               {n.sep && <div className="tabsep" />}
-              <NavLink to={n.path} onClick={() => { if (n.key === "library" && libQFromLink) { setLibraryFilters({ q: "" }); setUi({ libQFromLink: false }); } }} className={({ isActive }) => `tab ${isActive ? "sel" : ""} ${has ? "has-badge" : ""} ${has && b.hot ? "hot" : ""}`} data-testid={`nav-${n.key}`} title={n.label}>
+              <NavLink to={n.path} onClick={(e) => { if (n.key === "library" && libQFromLink) { setLibraryFilters({ q: "" }); setUi({ libQFromLink: false }); } if (e.detail > 0) e.currentTarget.blur(); }} className={({ isActive }) => `tab ${isActive ? "sel" : ""} ${has ? "has-badge" : ""} ${has && b.hot ? "hot" : ""}`} data-testid={`nav-${n.key}`} title={n.label}>
                 <span className="ti" aria-hidden="true">{n.icon}</span>
                 <span className="tl">{n.label}</span>
                 {has && <span className={`c ${b.hot ? "hot" : ""}`}>{b.n > 99 ? "99+" : b.n}</span>}
