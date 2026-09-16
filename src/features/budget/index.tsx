@@ -11,11 +11,12 @@ type Filter = "all" | Exclude<CostModel, "free">;
 
 export default function BudgetPage() {
   const progress = useForge((s) => s.progress);
-  const setStatus = useForge((s) => s.setStatus);
+  const planned = useForge((s) => s.planned);
+  const togglePlanned = useForge((s) => s.togglePlanned);
   const toast = useToast();
   const [filter, setFilter] = useState<Filter>("all");
-  const summary = useMemo(() => budgetSummary(content, progress), [progress]);
-  const lines = useMemo(() => costLines(content, progress).filter((l) => filter === "all" || l.resource.cost.model === filter).sort((a, b) => (b.amountUsd ?? -1) - (a.amountUsd ?? -1) || a.resource.title.localeCompare(b.resource.title)), [progress, filter]);
+  const summary = useMemo(() => budgetSummary(content, progress, planned), [progress, planned]);
+  const lines = useMemo(() => costLines(content, progress, planned).filter((l) => filter === "all" || l.resource.cost.model === filter).sort((a, b) => (b.amountUsd ?? -1) - (a.amountUsd ?? -1) || a.resource.title.localeCompare(b.resource.title)), [progress, planned, filter]);
   const skips = content.resources.filter((r) => r.priority === "skip_unless_relevant");
 
   return (
@@ -23,7 +24,7 @@ export default function BudgetPage() {
       <PageHeader title="💰 Budget" sub="What the library would cost, what you've actually committed to, and the free substitute for every paid item." />
       <div className="stat-grid">
         <div className="stat" data-testid="budget-total"><div className="big">{fmtUsd(summary.totalUsd)}</div><div className="lb">If you bought everything</div><div className="sm">{summary.paidCount} priced items</div></div>
-        <div className="stat" data-testid="budget-planned"><div className="big">{fmtUsd(summary.plannedUsd)}</div><div className="lb">Planned / spent</div><div className="sm">items in progress or done</div></div>
+        <div className="stat" data-testid="budget-planned"><div className="big">{fmtUsd(summary.plannedUsd)}</div><div className="lb">Planned / spent</div><div className="sm">items you plan to buy, plus done ones</div></div>
         <div className="stat" data-testid="budget-recurring"><div className="big">{fmtUsd(summary.recurringUsd)}</div><div className="lb">Recurring per year</div></div>
         <div className="stat" data-testid="budget-free"><div className="big">{summary.freeCount}</div><div className="lb">Free resources</div><div className="sm">vs {summary.paidCount} paid · {summary.withFreeAlt} have a free alternative{summary.unpriced ? ` · ${summary.unpriced} unpriced` : ""}</div></div>
       </div>
@@ -36,7 +37,7 @@ export default function BudgetPage() {
                 <td><CostBdg model={r.cost.model} amount={r.cost.amount} currency={r.cost.currency} />{l.amountUsd !== null && r.cost.currency && r.cost.currency !== "USD" && <div className="xs faint">≈ {fmtUsd(l.amountUsd)}</div>}</td>
                 <td>{l.freeAlternative ? <Link to={`/library?q=${encodeURIComponent(l.freeAlternative.title)}`} className="small">{l.freeAlternative.title}</Link> : <span className="faint">—</span>}</td>
                 <td><span className={`bdg ${st === "done" ? "ok" : st === "in_progress" ? "info" : "type"}`}>{STATUS_LABEL[st]}</span></td>
-                <td><label className="row" style={{ gap: 6 }}><input type="checkbox" className="cbx" checked={l.planned} onChange={(e) => { setStatus(r.id, "resource", e.target.checked ? "in_progress" : "todo"); toast(e.target.checked ? <>Planned: <b>{r.title}</b></> : <>Unplanned: {r.title}</>, "ok"); }} data-testid={`budget-plan-${r.id}`} /><span className="xs muted">{l.planned ? "planned" : "not planned"}</span></label></td>
+                <td><label className="row" style={{ gap: 6 }}><input type="checkbox" className="cbx" checked={l.planned} disabled={st === "done"} aria-label={`Plan to buy ${r.title}`} onChange={(e) => { togglePlanned(r.id); toast(e.target.checked ? <>Planned: <b>{r.title}</b></> : <>Unplanned: {r.title}</>, "ok"); }} data-testid={`budget-plan-${r.id}`} /><span className="xs muted">{st === "done" ? "done" : l.planned ? "planned" : "not planned"}</span></label></td>
               </tr>
             ); })}
           </tbody></table></div>

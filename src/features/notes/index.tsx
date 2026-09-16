@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { content } from "@/data";
 import { useForge } from "@/store";
@@ -36,6 +36,9 @@ export default function NotesPage() {
 
   const list = useMemo(() => filterNotes(content, notes, { q, tags, link, sort }), [notes, q, tags, link, sort]);
   const tagList = useMemo(() => allTags(notes), [notes]);
+  // Drop selected tags that no longer exist (note deleted or re-tagged).
+  useEffect(() => { setTags((cur) => { const keep = cur.filter((t) => tagList.some((x) => x.tag === t)); return keep.length === cur.length ? cur : keep; }); }, [tagList]);
+  const [exportedMd, setExportedMd] = useState("");
   const linkOptions = useMemo(() => [
     ...content.resources.map((r) => ({ value: `resource:${r.id}`, label: `R · ${r.title}` })),
     ...content.projects.map((p) => ({ value: `project:${p.id}`, label: `P · ${p.title}` })),
@@ -50,11 +53,13 @@ export default function NotesPage() {
     const d = { ...draft, title: draft.title.trim(), body: draft.body.trim(), tags: parseTags(tagInput) };
     if (!d.title && !d.body) return;
     if (editing === "new") { addNote({ ...d, title: d.title || d.body.slice(0, 40) }); toast(<><b>Note saved.</b></>, "ok"); }
-    else if (editing) { updateNote(editing, { ...d, title: d.title || d.body.slice(0, 40) }); toast("Note updated.", "ok"); }
+    else if (editing && notes.some((n) => n.id === editing)) { updateNote(editing, { ...d, title: d.title || d.body.slice(0, 40) }); toast("Note updated.", "ok"); }
+    else if (editing) { addNote({ ...d, title: d.title || d.body.slice(0, 40) }); toast(<><b>Note re-created</b> — the original had been deleted.</>, "info"); }
     cancel();
   };
   const exportAll = async () => {
     const md = exportMarkdown(content, notes, new Date());
+    setExportedMd(md);
     download("forge-notes.md", md);
     try { await navigator.clipboard.writeText(md); toast(<><b>Exported.</b> Markdown downloaded and copied.</>, "ok"); }
     catch { toast(<><b>Exported.</b> Markdown downloaded.</>, "ok"); }
@@ -73,9 +78,15 @@ export default function NotesPage() {
           <Seg<SortDir> value={sort} onChange={setSort} testId="notes-sort" options={[{ value: "newest", label: "Newest" }, { value: "oldest", label: "Oldest" }]} />
           <span className="fmeta" style={{ marginLeft: "auto" }} data-testid="notes-count">{list.length} of {notes.length}</span>
         </div>
-        {tagList.length > 0 && <div className="chips" style={{ marginTop: 10 }}>{tagList.map((t) => <Chip key={t.tag} small on={tags.includes(t.tag)} onClick={() => setTags((v) => (v.includes(t.tag) ? v.filter((x) => x !== t.tag) : [...v, t.tag]))} testId={`notes-tag-${t.tag}`}>#{t.tag} <span className="xs faint">{t.count}</span></Chip>)}</div>}
+        {tagList.length > 0 && <div className="chips" style={{ marginTop: 10 }}>{tagList.map((t) => <Chip key={t.tag} small on={tags.includes(t.tag)} onClick={() => setTags((v) => (v.includes(t.tag) ? v.filter((x) => x !== t.tag) : [...v, t.tag]))} testId={`notes-tag-${t.tag}`}>#{t.tag} <span className="xs faint">{t.count}</span></Chip>)}{(tags.length > 0 || q || link !== "all") && <button className="linkbtn xs" onClick={() => { setTags([]); setQ(""); setLink("all"); }} data-testid="notes-clear">Clear filters</button>}</div>}
       </div>
 
+      {exportedMd && (
+        <div className="card mb16" data-testid="notes-export-panel">
+          <div className="card-h">Exported markdown<span className="grow" /><button className="linkbtn" onClick={async () => { try { await navigator.clipboard.writeText(exportedMd); toast("Copied.", "ok"); } catch { toast("Clipboard unavailable — select the text below.", "bad"); } }}>Copy</button><button className="linkbtn" style={{ marginLeft: 10 }} onClick={() => setExportedMd("")}>Hide</button></div>
+          <div className="body"><textarea className="ta" readOnly value={exportedMd} style={{ minHeight: 120, fontFamily: "var(--mono)", fontSize: 11 }} aria-label="Exported markdown" data-testid="notes-export-text" /></div>
+        </div>
+      )}
       {editing && (
         <div className="card mb16" data-testid="note-editor">
           <div className="card-h">{editing === "new" ? "New note" : "Edit note"}</div>
@@ -122,7 +133,7 @@ export default function NotesPage() {
                     </div>
                     <div className="row" style={{ gap: 6 }}>
                       <button className="sbtn sm" onClick={() => startEdit(n)} data-testid={`note-edit-${n.id}`}>Edit</button>
-                      <button className="sbtn sm ghost" onClick={async () => { if (await confirm(<>Delete “{n.title}”?</>)) { deleteNote(n.id); toast("Deleted."); } }} data-testid={`note-delete-${n.id}`}>Delete</button>
+                      <button className="sbtn sm ghost" onClick={async () => { if (await confirm(<>Delete “{n.title}”?</>)) { if (editing === n.id) cancel(); deleteNote(n.id); toast("Deleted."); } }} data-testid={`note-delete-${n.id}`}>Delete</button>
                     </div>
                   </div>
                   {n.body && <div className="small muted" style={{ marginTop: 8 }}><Md text={n.body} /></div>}

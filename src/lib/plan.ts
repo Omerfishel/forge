@@ -131,8 +131,8 @@ export function paceInfo(bundle: ContentBundle, path: Path, progress: Record<str
   let expected = 0;
   for (const ph of path.phases) {
     const phItems = items.filter((i) => i.phase === ph.phase);
-    const startW = ph.months[0] * 4.345;
-    const endW = ph.months[1] * 4.345;
+    const startW = Math.round(ph.months[0] * 4.345);
+    const endW = Math.min(totalWeeks, Math.round(ph.months[1] * 4.345));
     if (week >= endW) expected += phItems.length;
     else if (week > startW) expected += Math.floor(phItems.length * ((week - startW) / (endW - startW)));
   }
@@ -148,7 +148,7 @@ export function paceInfo(bundle: ContentBundle, path: Path, progress: Record<str
   };
   if (delta > 0) { r.status = `🏇 ${delta} item${delta > 1 ? "s" : ""} ahead of plan`; r.msg = "You're ahead of schedule — keep the lead and bank buffer for the harder projects."; }
   else if (delta === 0) { r.status = "🎯 Right on pace"; r.msg = "Bang on schedule. Finish one more item and you're ahead of the plan."; }
-  else { const b = -delta; r.status = `⏳ ${b} item${b > 1 ? "s" : ""} behind plan`; r.msg = `The path expected ${expected} items by week ${week}; you've completed ${actual}. Knock out ${b} to get back on track.`; }
+  else { const b = -delta; r.status = `⏳ ${b} item${b > 1 ? "s" : ""} behind plan`; r.msg = `The path expected ${expected} item${expected === 1 ? "" : "s"} by week ${Math.min(week + 1, totalWeeks)}; you've completed ${actual}. Knock out ${b} to get back on track.`; }
   void bundle;
   return r;
 }
@@ -235,7 +235,7 @@ export function weekPlan(
     }
   }
   const drillIds = new Set(path.items.filter((i) => i.itemType === "drill").map((i) => i.itemId));
-  const drillsDue = bundle.drills.filter((d) => drillIds.has(d.id) && (!d.phases || d.phases.length === 0 || d.phases.includes(phase)) && drillDue(d, opts.drillLog[d.id], todayKey(now)));
+  const drillsDue = bundle.drills.filter((d) => d.kind === "habit" && drillIds.has(d.id) && (!d.phases || d.phases.length === 0 || d.phases.includes(phase)) && drillDue(d, opts.drillLog[d.id], todayKey(now)));
   const srs = dueCount(bundle.cards.map((c) => c.id), opts.srs, todayKey(now));
   const milestones = bundle.milestones.filter((m) => m.pathId === path.id && m.phase === phase);
   return { phase, phaseTitle, week, next, blocked, drillsDue, srs, milestones, budgetHours: opts.hoursPerWeek, plannedHours: Math.round(planned) };

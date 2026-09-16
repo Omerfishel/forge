@@ -78,8 +78,8 @@ test.describe("Drills", () => {
     await page.getByTestId("workout-expand-d-workout-pitch").click();
     await expect(page.getByTestId("workout-script-d-workout-pitch")).toBeVisible();
     await page.getByTestId("workout-log-d-workout-pitch").click();
-    await expect(page.getByTestId("workout-d-workout-pitch")).toContainText("1 sessions");
-    await expect(page.getByTestId("workout-log-d-workout-pitch")).toBeDisabled();
+    await expect(page.getByTestId("workout-d-workout-pitch")).toContainText("1 session");
+    await expect(page.getByTestId("workout-undo-d-workout-pitch")).toBeVisible();
     await expect(page.getByTestId("heatmap")).toBeVisible();
     expect(errors).toEqual([]);
   });

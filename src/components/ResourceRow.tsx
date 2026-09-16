@@ -20,13 +20,14 @@ export function ResourceRow({ r, prefix, compact }: { r: Resource; prefix: strin
   const setPomodoro = useForge((s) => s.setPomodoro);
   const progress = useForge((s) => s.progress);
   const toast = useToast();
-  const [hours, setHours] = useState("1");
+  const [hours, setHours] = useState("");
   const [noteOpen, setNoteOpen] = useState(false);
   const [note, setNote] = useState("");
 
   const status: ProgressStatus = entry?.status ?? "todo";
   const done = status === "done";
   const pct = entry?.percentComplete ?? (done ? 100 : 0);
+  const hasPct = entry?.percentComplete !== undefined && entry.percentComplete > 0;
   const tc = trackColorVar(r.trackIds[0]);
   const tracks = content.tracks;
   const blocked = blockers(content, progress, r.id);
@@ -34,13 +35,13 @@ export function ResourceRow({ r, prefix, compact }: { r: Resource; prefix: strin
 
   return (
     <div className={`item ${done ? "done" : ""} ${blocked.length ? "blocked" : ""}`} style={{ ["--tc" as string]: tc }} data-testid={`${prefix}-row-${r.id}`}>
-      <input type="checkbox" className="cbx" checked={done} onChange={() => { toggleDone(r.id, "resource"); if (!done) toast(<><b>Done.</b> {r.title}</>, "ok"); }} aria-label={`Mark ${r.title} done`} data-testid={`${prefix}-done-${r.id}`} />
+      <input type="checkbox" className="cbx" checked={done} onChange={() => { toggleDone(r.id, "resource"); toast(done ? <>Marked <b>not done</b>: {r.title}</> : <><b>Done.</b> {r.title}</>, done ? "info" : "ok"); }} aria-label={`Mark ${r.title} done`} data-testid={`${prefix}-done-${r.id}`} />
       <div className="i-main">
         <div className="i-titlerow" onClick={() => toggleExpanded(`${prefix}:${r.id}`)} role="button" aria-expanded={expanded} tabIndex={0} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleExpanded(`${prefix}:${r.id}`); } }} data-testid={`${prefix}-expand-${r.id}`}>
           <span className="i-type" title={TYPE_LABEL[r.resourceType]}>{TYPE_ICON[r.resourceType]}</span>
           <span className="i-title">{r.title}</span>
           <span className="faint xs">{r.creator}</span>
-          {status === "in_progress" && <span className="bdg info">{pct}%</span>}
+          {status === "in_progress" && hasPct && <span className="bdg info">{pct}%</span>}
           {status === "skipped" && <span className="bdg type">skipped</span>}
         </div>
         {!compact && (
@@ -87,8 +88,8 @@ export function ResourceRow({ r, prefix, compact }: { r: Resource; prefix: strin
                 <span className="mono xs muted">{pct}%</span>
               </label>
               <label className="row" style={{ gap: 6 }}><span className="lbl" style={{ margin: 0 }}>Hours</span>
-                <input className="sel" type="number" min={0} step={0.5} value={hours} onChange={(e) => setHours(e.target.value)} style={{ width: 64 }} aria-label="Hours to log" data-testid={`${prefix}-hours-${r.id}`} />
-                <button className="sbtn sm" onClick={() => { const h = Number(hours); if (h > 0) { logHours(r.id, "resource", h); toast(<>Logged <b>{h}h</b> on {r.title}</>, "ok"); } }} data-testid={`${prefix}-hours-add-${r.id}`}>Log</button>
+                <input className="sel" type="number" min={0} max={100} step={0.5} value={hours} placeholder="1" onChange={(e) => setHours(e.target.value)} style={{ width: 64 }} aria-label="Hours to log" data-testid={`${prefix}-hours-${r.id}`} />
+                <button className="sbtn sm" onClick={() => { const h = Number(hours); if (!(h > 0) || h > 100) { toast("Enter between 0.5 and 100 hours.", "bad"); return; } logHours(r.id, "resource", h); setHours(""); toast(<>Logged <b>{h}h</b> on {r.title}</>, "ok"); }} data-testid={`${prefix}-hours-add-${r.id}`}>Log</button>
                 <span className="mono xs muted">{fmtHours(entry?.hoursLogged ?? 0)} logged</span>
               </label>
               <button className="sbtn sm" onClick={() => setNoteOpen((v) => !v)} data-testid={`${prefix}-note-${r.id}`}>📓 {noteOpen ? "Cancel" : "Add note"}</button>

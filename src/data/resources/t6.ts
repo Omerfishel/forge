@@ -34,7 +34,7 @@ export const t6Resources: Resource[] = [
     buildsSkill:
       "Working fluency in how startups are financed and built: SAFEs and dilution, seed fundraising mechanics, first hires, and the YC founder playbook end-to-end.",
     whyForHim:
-      "His last founding attempt died on team formation and GTM leadership, not on the idea. Startup School gives him the CEO-side vocabulary (SAFEs, fundraising, hiring) he needs to co-found credibly as CPO or product-CTO next to a CEO-type — and it is free, so it sits in Phase 3 (months 12–18) of the primary path and in Variant C without touching the budget.",
+      "Your last founding attempt died on team formation and GTM leadership, not on the idea. Startup School gives you the CEO-side vocabulary (SAFEs, fundraising, hiring) you need to co-found credibly as CPO or product-CTO next to a CEO-type — and it is free, so it sits in Phase 3 (months 12–18) of the primary path and in Variant C without touching the budget.",
     priority: "must_do",
     producesArtifact: false,
     trackIds: ["T6_FOUNDER"],
@@ -65,9 +65,9 @@ export const t6Resources: Resource[] = [
     difficulty: "intermediate",
     prerequisites: ["t6-cofounder-equity-essays"],
     buildsSkill:
-      "A structured co-founder search: a profile, matching beyond his own network, a time-boxed trial project, and a written equity/vesting agreement instead of a handshake.",
+      "A structured co-founder search: a profile, matching beyond your own network, a time-boxed trial project, and a written equity/vesting agreement instead of a handshake.",
     whyForHim:
-      "His documented failure mode is co-founder selection — he could not assemble the CEO+CTO pairing last time. The spec makes this a dedicated must-do workstream, not vibes: use matching to widen the pool beyond his 8200 circle, run a trial project before committing, and close with a written agreement (roughly equal split, 4-year vesting, 1-year cliff). The Phase 3 milestone is literally 'a co-founder trial completed with written agreement', and the T6 ready-when requires it.",
+      "Your documented failure mode is co-founder selection — you could not assemble the CEO+CTO pairing last time. The spec makes this a dedicated must-do workstream, not vibes: use matching to widen the pool beyond your 8200 circle, run a trial project before committing, and close with a written agreement (roughly equal split, 4-year vesting, 1-year cliff). The Phase 3 milestone is literally 'a co-founder trial completed with written agreement', and the T6 ready-when requires it.",
     priority: "must_do",
     producesArtifact: true,
     trackIds: ["T6_FOUNDER", "T8_META"],
@@ -76,9 +76,9 @@ export const t6Resources: Resource[] = [
     tags: ["cofounder", "equity", "vesting", "trial_project", "founder_prenup", "community", "phase_3"],
     freshness: "current",
     qualitySignal:
-      "Spec: 'MUST-DO given his failure mode'; the platform's median is 3–6 months from first contact to a signed agreement.",
+      "Spec: 'MUST-DO given your failure mode'; the platform's median is 3–6 months from first contact to a signed agreement.",
     notes:
-      "Standard per the spec: ~equal splits, 4-yr vesting / 1-yr cliff; run a trial project before committing. Artifact: a signed co-founder agreement after the trial. Combine with the Israeli structural routes (t6-team8-foundry, t6-cyberstarts) — the five-year plan says Israeli founders overwhelmingly meet co-founders via unit (8200/81), prior company and VC programs, and that joining an 8200-heavy, top-tier-VC startup is the best fix for his failure mode. The co-founder 'prenup' talk is a soft-skill workout: AI-roleplay both sides. Also listed under T8 (t8-accountability) as an accountability community.",
+      "Standard per the spec: ~equal splits, 4-yr vesting / 1-yr cliff; run a trial project before committing. Artifact: a signed co-founder agreement after the trial. Combine with the Israeli structural routes (t6-team8-foundry, t6-cyberstarts) — the five-year plan says Israeli founders overwhelmingly meet co-founders via unit (8200/81), prior company and VC programs, and that joining an 8200-heavy, top-tier-VC startup is the best fix for your failure mode. The co-founder 'prenup' talk is a soft-skill workout: AI-roleplay both sides. Also listed under T8 (t8-accountability) as an accountability community.",
     links: [
       {
         label: "How to Split Equity Among Co-Founders (YC)",
@@ -107,7 +107,7 @@ export const t6Resources: Resource[] = [
     buildsSkill:
       "A defensible equity-split and vesting rationale — equal-ish splits, 4-year vesting with a 1-year cliff — and the mistakes (unvested, lopsided or undocumented splits) that blow founding teams apart.",
     whyForHim:
-      "One hour of reading aimed squarely at the thing that sank his last attempt. He should have the split/vesting/cliff norms memorised before any co-founder conversation, and use them to reframe the failed attempt as 'learned the co-founder-fit lesson the hard way' in the positioning statement the five-year plan wants written this month. The spec's Key Finding 5 puts equity/vesting frameworks and 'founder prenup' essays in T6 as must-do.",
+      "One hour of reading aimed squarely at the thing that sank your last attempt. You should have the split/vesting/cliff norms memorised before any co-founder conversation, and use them to reframe the failed attempt as 'learned the co-founder-fit lesson the hard way' in the positioning statement the five-year plan wants written this month. The spec's Key Finding 5 puts equity/vesting frameworks and 'founder prenup' essays in T6 as must-do.",
     priority: "must_do",
     producesArtifact: false,
     trackIds: ["T6_FOUNDER"],
@@ -151,7 +151,7 @@ export const t6Resources: Resource[] = [
     buildsSkill:
       "The five-part strategic narrative: name a big shift in the world → show winners and losers → tease the Promised Land → present product capabilities as 'magic gifts' → offer evidence. Reusable for sales decks, VC pitches and the company story.",
     whyForHim:
-      "He needs one story that works for three audiences — VCs, CISO buyers and future co-founders — and this is the template the spec ties to both the T5 ready-when ('deliver a Raskin-narrative pitch') and the T6 one ('pitch to a VC'). It is also the natural frame for the five-year plan's 'tell the failed-founding story as a strength'. Soft-skill workout: record the 5-part narrative for his own idea and self-review weekly.",
+      "You need one story that works for three audiences — VCs, CISO buyers and future co-founders — and this is the template the spec ties to both the T5 ready-when ('deliver a Raskin-narrative pitch') and the T6 one ('pitch to a VC'). It is also the natural frame for the five-year plan's 'tell the failed-founding story as a strength'. Soft-skill workout: record the 5-part narrative for your own idea and self-review weekly.",
     priority: "must_do",
     producesArtifact: false,
     trackIds: ["T6_FOUNDER", "T5_SALES_GTM"],
@@ -191,7 +191,7 @@ export const t6Resources: Resource[] = [
     buildsSkill:
       "The engineering-leadership ladder from tech lead to CTO: managing people and teams, running 1:1s, handling underperformance, and what a CTO actually owns versus a VP R&D.",
     whyForHim:
-      "He has never run an engineering org, and the five-year plan is explicit that a product-oriented CTO still has to represent engineering to investors and set technical strategy while a VP-R&D-type runs delivery. Fournier's book is the one written for the tech-lead → manager → CTO path, so it is the first of the three people-leadership books in the spec, scheduled for Phase 3 ('The Manager's Path / High Output Management'). 'People management basics' is a named gap in the five-year plan's skills analysis.",
+      "You have never run an engineering org, and the five-year plan is explicit that a product-oriented CTO still has to represent engineering to investors and set technical strategy while a VP-R&D-type runs delivery. Fournier's book is the one written for the tech-lead → manager → CTO path, so it is the first of the three people-leadership books in the spec, scheduled for Phase 3 ('The Manager's Path / High Output Management'). 'People management basics' is a named gap in the five-year plan's skills analysis.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T6_FOUNDER"],
@@ -249,9 +249,9 @@ export const t6Resources: Resource[] = [
     difficulty: "foundational",
     prerequisites: [],
     buildsSkill:
-      "Giving feedback that is both caring and direct; running 1:1s and career conversations; recognising ruinous empathy and obnoxious aggression in himself and others.",
+      "Giving feedback that is both caring and direct; running 1:1s and career conversations; recognising ruinous empathy and obnoxious aggression in yourself and others.",
     whyForHim:
-      "As a customer-facing solutions architect he is practised at being diplomatic with buyers; a CTO/CPO has to be direct with reports and co-founders. Radical Candor is the frame the spec names for the 'running 1:1s and giving feedback' and 'saying no' workouts, and it doubles as the vocabulary for the co-founder 'prenup' conversation.",
+      "As a customer-facing solutions architect you are practised at being diplomatic with buyers; a CTO/CPO has to be direct with reports and co-founders. Radical Candor is the frame the spec names for the 'running 1:1s and giving feedback' and 'saying no' workouts, and it doubles as the vocabulary for the co-founder 'prenup' conversation.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T6_FOUNDER"],
@@ -281,9 +281,9 @@ export const t6Resources: Resource[] = [
     difficulty: "intermediate",
     prerequisites: [],
     buildsSkill:
-      "Company-building craft from operators: fundraising narratives, first hires, founder-led sales, product and management playbooks — plus a rubric to review his own pitch deck against.",
+      "Company-building craft from operators: fundraising narratives, first hires, founder-led sales, product and management playbooks — plus a rubric to review your own pitch deck against.",
     whyForHim:
-      "The spec's public proof for T6 is 'a real pitch deck reviewed against a First Round-style rubric'. First Round Review is the densest free source of tactical founder content and also hosts Pete Kazanjy's founder-led-selling material that pairs with Founding Sales (t5-founding-sales). Use it as the curation source for SaaS metrics (t6-saas-metrics) rather than reading it front-to-back — the spec caps him at 4–6 feeds total.",
+      "The spec's public proof for T6 is 'a real pitch deck reviewed against a First Round-style rubric'. First Round Review is the densest free source of tactical founder content and also hosts Pete Kazanjy's founder-led-selling material that pairs with Founding Sales (t5-founding-sales). Use it as the curation source for SaaS metrics (t6-saas-metrics) rather than reading it front-to-back — the spec caps you at 4–6 feeds total.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T6_FOUNDER", "T5_SALES_GTM"],
@@ -312,7 +312,7 @@ export const t6Resources: Resource[] = [
     buildsSkill:
       "The investor-side view of company building and category narratives: how a top-tier fund thinks about enterprise/AI startups, and the definitive framing of the forward-deployed-engineer role.",
     whyForHim:
-      "a16z is one of the US funds active in Israeli AI×cyber (five-year plan) and the source of the Joe Schmidt piece (June 2025) calling FDE 'the hottest job in startups' — the role he is targeting first. Reading a16z gives him investor vocabulary for the 2029–30 raise and the framing for his FDE story now.",
+      "a16z is one of the US funds active in Israeli AI×cyber (five-year plan) and the source of the Joe Schmidt piece (June 2025) calling FDE 'the hottest job in startups' — the role you are targeting first. Reading a16z gives you investor vocabulary for the 2029–30 raise and the framing for your FDE story now.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T6_FOUNDER", "T4_FDE_SE"],
@@ -377,7 +377,7 @@ export const t6Resources: Resource[] = [
     buildsSkill:
       "How post-money SAFEs work — valuation cap vs discount vs uncapped MFN, pro-rata side letters — and how they convert and dilute at the priced round.",
     whyForHim:
-      "SAFEs are how seed rounds with US funds get papered; the spec's YC Library entry 'covers SAFEs' and the T6 ready-when requires he can 'explain SAFEs/dilution'. Two hours with the actual documents and the user guide beats any summary, and it is the prerequisite for the cap-table exercise in t6-saas-metrics.",
+      "SAFEs are how seed rounds with US funds get papered; the spec's YC Library entry 'covers SAFEs' and the T6 ready-when requires you can 'explain SAFEs/dilution'. Two hours with the actual documents and the user guide beats any summary, and it is the prerequisite for the cap-table exercise in t6-saas-metrics.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T6_FOUNDER"],
@@ -407,7 +407,7 @@ export const t6Resources: Resource[] = [
     buildsSkill:
       "Reading and building the numbers a seed/Series A investor asks about — ARR and NRR, CAC and payback, the magic number, burn multiple — and modelling dilution across SAFEs and priced rounds by building a cap table from scratch.",
     whyForHim:
-      "The T6 ready-when opens with 'I can build a cap table, explain SAFEs/dilution'. As a future CPO/product-CTO he will own metrics conversations with the CEO and board; as an FDE at a seed startup, NRR and burn multiple tell him which customers and features actually matter. It is also the language for negotiating his own ≥0.15–0.25% equity (five-year plan comp thresholds).",
+      "The T6 ready-when opens with 'I can build a cap table, explain SAFEs/dilution'. As a future CPO/product-CTO you will own metrics conversations with the CEO and board; as an FDE at a seed startup, NRR and burn multiple tell you which customers and features actually matter. It is also the language for negotiating your own ≥0.15–0.25% equity (five-year plan comp thresholds).",
     priority: "high",
     producesArtifact: true,
     trackIds: ["T6_FOUNDER"],
@@ -444,7 +444,7 @@ export const t6Resources: Resource[] = [
     buildsSkill:
       "Operating a real cap table: SAFEs converting into a priced round, option-pool top-ups, per-round dilution scenarios, and reading the equity grant and vesting schedule an employer issues.",
     whyForHim:
-      "The spec names Carta as one of the two sources to curate SaaS-finance literacy from. Concretely for him: when he joins the seed startup by end of 2026 he will negotiate a grant he needs to read as a share of a real cap table (the five-year plan's ≥0.15–0.25% threshold), and at founding in 2029–30 the cap table the T6 rubric asks him to build has to survive contact with the tool investors actually use.",
+      "The spec names Carta as one of the two sources to curate SaaS-finance literacy from. Concretely for you: when you join the seed startup by end of 2026 you will negotiate a grant you need to read as a share of a real cap table (the five-year plan's ≥0.15–0.25% threshold), and at founding in 2029–30 the cap table the T6 rubric asks you to build has to survive contact with the tool investors actually use.",
     priority: "optional",
     producesArtifact: false,
     trackIds: ["T6_FOUNDER"],
@@ -477,7 +477,7 @@ export const t6Resources: Resource[] = [
     buildsSkill:
       "A working map of how Israeli seed rounds happen: the 8200/81 network effect, the serial-founder premium, which local and US funds lead AI×cyber seeds, the foundry/inception routes to core-team seats, and local comp/equity norms.",
     whyForHim:
-      "This is his geography and his network. The five-year plan's first action is to talk to talent partners at Cyberstarts, Team8, YL and Glilot this month; the same relationships become his fundraising pipeline in 3–4 years ('keep a live VC pipeline', 'build FOMO'). He should know each fund's model (Cyberstarts inception, Team8 foundry) and the equity/comp norms before negotiating his seed-startup offer — and before pitching in 2029–30.",
+      "This is your geography and your network. The five-year plan's first action is to talk to talent partners at Cyberstarts, Team8, YL and Glilot this month; the same relationships become your fundraising pipeline in 3–4 years ('keep a live VC pipeline', 'build FOMO'). You should know each fund's model (Cyberstarts inception, Team8 foundry) and the equity/comp norms before negotiating your seed-startup offer — and before pitching in 2029–30.",
     priority: "must_do",
     producesArtifact: true,
     trackIds: ["T6_FOUNDER", "T7_DOMAIN"],
@@ -488,7 +488,7 @@ export const t6Resources: Resource[] = [
     qualitySignal:
       "Spec: 'Israeli-specific norms (8200 network, serial-founder premium, local VCs). Curate via ecosystem sources (see Track 7).' Sourced from the five-year plan (Sept 2026): the top-tier Israeli seed cyber/AI VC list, TLV Partners equity survey (Aug 2025), the Ibex Investors 8200 study and GotFriends comp data (Jerusalem Post, July 2026).",
     notes:
-      "Artifact: a tracked list of 8–10 funds with talent-partner contacts plus the one-line positioning statement. Local top-tier seed cyber/AI funds (five-year plan): Cyberstarts, Team8, YL Ventures, Glilot, Aleph, Vertex, Entrée, TLV Partners, Grove; US funds active in Israel: Sequoia, a16z, Lightspeed, Accel, Greylock, Index, Bessemer, Notable, Conviction. Norms: nearly 50% of $100M+ Israeli cyber exits had 8200-trained founders and 8200-founded startups averaged $317M acquisition prices (Ibex Investors); founders overwhelmingly meet co-founders via unit, prior company and VC programs. Comp (GotFriends via Jerusalem Post, July 2026): average tech salary NIS 39,810; LLM/RAG/NLP specialists NIS 43,212 — his 35–50k target is in-band, 45–50k top-quartile. Equity (TLV Partners, Aug 2025): senior >0.5%, mid-level 0.15–0.25%. Caveats: $60–75M mega-seeds launching with 30–80 staff offer less equity ('employee #1' is increasingly rare — target core-team seats); Cyberstarts' Sunrise program drew a 2024 conflict-of-interest controversy — mentioned for completeness, not endorsement. Finder URL (Startup Nation Central's startup/investor database) from memory; the site returned 403 to automated fetch on 2026-09-16. The spec says to curate via Track 7 ecosystem sources (Cyber Week TAU etc.); VC site links below are from memory (not fetch-verified) except Team8 and Cyberstarts (see their own records).",
+      "Artifact: a tracked list of 8–10 funds with talent-partner contacts plus the one-line positioning statement. Local top-tier seed cyber/AI funds (five-year plan): Cyberstarts, Team8, YL Ventures, Glilot, Aleph, Vertex, Entrée, TLV Partners, Grove; US funds active in Israel: Sequoia, a16z, Lightspeed, Accel, Greylock, Index, Bessemer, Notable, Conviction. Norms: nearly 50% of $100M+ Israeli cyber exits had 8200-trained founders and 8200-founded startups averaged $317M acquisition prices (Ibex Investors); founders overwhelmingly meet co-founders via unit, prior company and VC programs. Comp (GotFriends via Jerusalem Post, July 2026): average tech salary NIS 39,810; LLM/RAG/NLP specialists NIS 43,212 — your 35–50k target is in-band, 45–50k top-quartile. Equity (TLV Partners, Aug 2025): senior >0.5%, mid-level 0.15–0.25%. Caveats: $60–75M mega-seeds launching with 30–80 staff offer less equity ('employee #1' is increasingly rare — target core-team seats); Cyberstarts' Sunrise program drew a 2024 conflict-of-interest controversy — mentioned for completeness, not endorsement. Finder URL (Startup Nation Central's startup/investor database) from memory; the site returned 403 to automated fetch on 2026-09-16. The spec says to curate via Track 7 ecosystem sources (Cyber Week TAU etc.); VC site links below are from memory (not fetch-verified) except Team8 and Cyberstarts (see their own records).",
     links: [
       { label: "Cyber Week TAU (ecosystem source, Track 7)", url: "https://cyberweektau.com" },
       { label: "Team8", url: "https://team8.vc" },
@@ -514,7 +514,7 @@ export const t6Resources: Resource[] = [
     buildsSkill:
       "How the foundry / venture-creation model works: co-founding a company with a fund that supplies the problem thesis, first customers (its CISO network) and early capital — and what that costs in equity and control.",
     whyForHim:
-      "The five-year plan names Team8's foundry as an explicit co-found-with-them sign-up route and one of the 'fastest routes to core-team seats' — a structural fix for his co-founder-finding failure mode rather than another networking hope. It is also on this month's talent-partner call list, and Mate Security (AI-native SOC, a target startup) is Team8-backed.",
+      "The five-year plan names Team8's foundry as an explicit co-found-with-them sign-up route and one of the 'fastest routes to core-team seats' — a structural fix for your co-founder-finding failure mode rather than another networking hope. It is also on this month's talent-partner call list, and Mate Security (AI-native SOC, a target startup) is Team8-backed.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T6_FOUNDER"],
@@ -543,7 +543,7 @@ export const t6Resources: Resource[] = [
     buildsSkill:
       "The inception-investing model: how a cyber-only seed fund forms founding teams around a validated CISO problem, and how to approach its talent partners for a core-team seat.",
     whyForHim:
-      "Cyberstarts backs NewCore and Onyx Security (two of his target startups, both 8200-led) and is the first talent-partner call in the five-year plan's 'this month' list. Inception investing is the other Israeli structural route to a core-team seat besides Team8's foundry — exactly where his 8200 + solutions-architect profile clusters with organic co-founders.",
+      "Cyberstarts backs NewCore and Onyx Security (two of your target startups, both 8200-led) and is the first talent-partner call in the five-year plan's 'this month' list. Inception investing is the other Israeli structural route to a core-team seat besides Team8's foundry — exactly where your 8200 + solutions-architect profile clusters with organic co-founders.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T6_FOUNDER"],

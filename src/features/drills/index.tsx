@@ -7,7 +7,8 @@ import { CADENCE_LABEL, trackColorVar } from "@/lib/labels";
 import { fmtDate, isValidKey } from "@/lib/dates";
 import { Card, PageHeader, Seg, TrackBdg, useToast } from "@/components/ui";
 import type { Drill } from "@/types";
-import { drillInPhase, drillTotals, heatPadding, lastPeriods, loggedLastNDays, longestStreak, PERIOD_NOUN, periodsHit, PHASE_OPTIONS, SOLO_ICON, SOLO_LABEL, totalLogged, type PhaseFilter } from "./lib";
+import { drillInPhase, drillTotals, heatPadding, lastPeriods, longestStreak, PERIOD_NOUN, periodsHit, PHASE_OPTIONS, SOLO_ICON, SOLO_LABEL, totalLogged, weekStartKey, type PhaseFilter } from "./lib";
+import { plural } from "@/lib/labels";
 
 function HabitRow({ d, today }: { d: Drill; today: string }) {
   const log = useForge((s) => s.drillLog[d.id]);
@@ -41,6 +42,12 @@ function HabitRow({ d, today }: { d: Drill; today: string }) {
             {periods.map((p, i) => <i key={p.key} title={p.label} style={{ width: 9, height: 9, borderRadius: 2, display: "inline-block", background: hits[i] ? "var(--acc)" : "var(--panel)", border: `1px solid ${p.current ? "var(--acc)" : "var(--line-solid)"}` }} />)}
           </span>
         </div>
+        {(log ?? []).length > 0 && (
+          <div className="chips" style={{ marginTop: 6 }} data-testid={`drill-history-${d.id}`}>
+            {[...(log ?? [])].sort().slice(-8).reverse().map((k) => <span key={k} className="chip sm" title="Remove this entry">{fmtDate(k)}<button className="linkbtn xs" style={{ marginLeft: 4 }} aria-label={`Remove ${fmtDate(k)}`} onClick={() => { unlogDrill(d.id, k); toast(<>Removed {fmtDate(k)}.</>); }} data-testid={`drill-remove-${d.id}-${k}`}>×</button></span>)}
+            {(log ?? []).length > 8 && <span className="xs faint">+{(log ?? []).length - 8} older</span>}
+          </div>
+        )}
       </div>
       <div className="i-right">
         {loggedToday ? (
@@ -50,7 +57,7 @@ function HabitRow({ d, today }: { d: Drill; today: string }) {
         )}
         <span className="row" style={{ gap: 4, flexWrap: "nowrap" }}>
           <input className="sel" type="date" value={date} max={today} onChange={(e) => setDate(e.target.value)} aria-label="Backfill date" data-testid={`drill-date-${d.id}`} style={{ padding: "3px 5px", fontSize: 11 }} />
-          <button className="sbtn sm ghost" disabled={!isValidKey(date) || date > today} onClick={() => { logDrill(d.id, date); toast(<>Logged for <b>{fmtDate(date)}</b></>, "ok"); setDate(""); }} data-testid={`drill-log-date-${d.id}`}>Log date</button>
+          <button className="sbtn sm ghost" disabled={!isValidKey(date) || date > today} onClick={() => { if ((log ?? []).includes(date)) { toast(<>{fmtDate(date)} is already logged.</>, "info"); return; } logDrill(d.id, date); toast(<>Logged for <b>{fmtDate(date)}</b></>, "ok"); setDate(""); }} data-testid={`drill-log-date-${d.id}`}>Log date</button>
         </span>
       </div>
     </div>
@@ -63,19 +70,23 @@ function WorkoutRow({ d }: { d: Drill }) {
   const toast = useToast();
   const [open, setOpen] = useState(false);
   const today = useToday();
+  const unlogDrill = useForge((s) => s.unlogDrill);
   const copy = async () => {
     try { await navigator.clipboard.writeText(d.script ?? ""); toast(<><b>Script copied.</b> Paste it into your AI of choice.</>, "ok"); }
-    catch { toast("Clipboard unavailable — select the script text and copy manually.", "bad"); }
+    catch { setOpen(true); toast("Clipboard unavailable — the script is shown below; select and copy it.", "bad"); }
   };
+  const loggedToday = (log ?? []).includes(today);
   return (
     <div className="item" style={{ ["--tc" as string]: trackColorVar(d.trackIds[0]) }} data-testid={`workout-${d.id}`}>
       <span className="i-type" style={{ marginTop: 2 }}>{SOLO_ICON[d.soloOrPartner]}</span>
       <div className="i-main">
         <div className="i-titlerow" onClick={() => setOpen((v) => !v)} role="button" aria-expanded={open} tabIndex={0} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setOpen((v) => !v); } }} data-testid={`workout-expand-${d.id}`}>
+          <span className="car" style={{ color: "var(--faint)", fontSize: 11, transform: open ? "none" : "rotate(-90deg)", display: "inline-block", transition: ".2s" }}>▼</span>
           <span className="i-title">{d.title}</span>
           <span className="bdg type">{SOLO_LABEL[d.soloOrPartner]}</span>
           <span className="pill">{d.estMinutes} min</span>
-          <span className="pill">{(log ?? []).length} sessions</span>
+          <span className="pill">{plural((log ?? []).length, "session")}</span>
+          <span className="xs faint">{open ? "hide script" : "show script"}</span>
         </div>
         <div className="muted small" style={{ marginTop: 4 }}>{d.description}</div>
         {open && d.script && (
@@ -87,7 +98,9 @@ function WorkoutRow({ d }: { d: Drill }) {
       </div>
       <div className="i-right">
         <button className="focusbtn" onClick={copy} data-testid={`workout-copy-${d.id}`}>Copy script</button>
-        <button className="focusbtn" disabled={(log ?? []).includes(today)} onClick={() => { logDrill(d.id); toast(<><b>Session logged.</b> {d.title}</>, "ok"); }} data-testid={`workout-log-${d.id}`}>Log session</button>
+        {loggedToday
+          ? <button className="focusbtn" onClick={() => { unlogDrill(d.id); toast("Session removed."); }} data-testid={`workout-undo-${d.id}`}>Undo today</button>
+          : <button className="focusbtn" onClick={() => { logDrill(d.id); toast(<><b>Session logged.</b> {d.title}</>, "ok"); }} data-testid={`workout-log-${d.id}`}>Log session</button>}
       </div>
     </div>
   );
@@ -101,8 +114,9 @@ export default function DrillsPage() {
   const [phase, setPhase] = useState<PhaseFilter>(String(plan.phase) as PhaseFilter);
   const habits = content.drills.filter((d) => d.kind === "habit" && drillInPhase(d, phase));
   const workouts = content.drills.filter((d) => d.kind === "workout");
-  const dueNow = content.drills.filter((d) => d.kind === "habit" && drillDue(d, drillLog[d.id], today)).length;
-  const week = loggedLastNDays(drillLog, 7, today);
+  const dueNow = plan.drillsDue.length;
+  const ws = weekStartKey(today);
+  const week = Object.values(drillLog).reduce((a, l) => a + l.filter((k) => k >= ws && k <= today).length, 0);
   const best = longestStreak(content.drills.filter((d) => d.kind === "habit"), drillLog, today);
   const total = totalLogged(drillLog);
   const cells = heatmap(completions, 91, today);
@@ -113,8 +127,8 @@ export default function DrillsPage() {
     <div data-testid="page-drills">
       <PageHeader title="🔁 Drills" sub="Recurring habits that compound: papers, posts, demos, discovery calls, outreach. Log them, keep the streaks, and use the roleplay scripts for the soft skills." />
       <div className="stat-grid" data-testid="drills-stats">
-        <div className="stat"><div className="big">{dueNow}</div><div className="lb">Due now</div></div>
-        <div className="stat"><div className="big">{week}</div><div className="lb">Logged this week</div></div>
+        <div className="stat"><div className="big">{dueNow}</div><div className="lb">Due now</div><div className="sm">in the active path · phase {plan.phase}</div></div>
+        <div className="stat"><div className="big">{week}</div><div className="lb">Logged this week</div><div className="sm">since Monday</div></div>
         <div className="stat"><div className="big">{best.streak}</div><div className="lb">Longest streak</div><div className="sm">{best.drill ? best.drill.title : "—"}</div></div>
         <div className="stat"><div className="big">{total}</div><div className="lb">Total logged</div></div>
       </div>

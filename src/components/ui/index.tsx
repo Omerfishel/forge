@@ -146,7 +146,7 @@ export function Card({ title, children, right, className, testId, bodyStyle }: {
 export function Accordion({ title, meta, color, open, onToggle, children, pct, right, testId }: { title: ReactNode; meta?: ReactNode; color?: string; open: boolean; onToggle: () => void; children: ReactNode; pct?: number; right?: ReactNode; testId?: string }) {
   return (
     <div className={`phase ${open ? "" : "col"}`} style={{ ["--pc" as string]: color }} data-testid={testId}>
-      <div className="phase-h" onClick={onToggle} role="button" aria-expanded={open} tabIndex={0} data-testid={testId ? `${testId}-h` : undefined} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onToggle(); } }}>
+      <div className="phase-h" onClick={onToggle} role="button" aria-expanded={open} tabIndex={0} aria-label={typeof title === "string" ? `${title} section` : undefined} data-testid={testId ? `${testId}-h` : undefined} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onToggle(); } }}>
         <span className="car">▼</span>
         <span className="nm">{title}</span>
         {meta && <span className="wk">{meta}</span>}
@@ -169,6 +169,13 @@ export function Md({ text }: { text: string }) {
         if (lines.every((l) => /^\s*[-*]\s+/.test(l))) {
           return <ul key={i}>{lines.map((l, j) => <li key={j}>{inline(l.replace(/^\s*[-*]\s+/, ""))}</li>)}</ul>;
         }
+        if (lines.some((l) => /^\s*[-*]\s+/.test(l))) {
+          // mixed: leading prose lines, then bullet lines
+          const firstBullet = lines.findIndex((l) => /^\s*[-*]\s+/.test(l));
+          const prose = lines.slice(0, firstBullet);
+          const bullets = lines.slice(firstBullet).filter((l) => l.trim());
+          return <div key={i}>{prose.length > 0 && <p style={{ margin: "0 0 6px" }}>{inline(prose.join(" "))}</p>}<ul style={{ margin: "0 0 8px" }}>{bullets.map((l, j) => <li key={j}>{inline(l.replace(/^\s*[-*]\s+/, ""))}</li>)}</ul></div>;
+        }
         if (/^#{1,3}\s/.test(lines[0])) {
           const lvl = lines[0].match(/^(#{1,3})/)![1].length;
           const H = (`h${lvl + 2}`) as "h3" | "h4" | "h5";
@@ -190,7 +197,12 @@ function inline(s: string): ReactNode[] {
     if (tok.startsWith("**")) out.push(<b key={k++}>{tok.slice(2, -2)}</b>);
     else if (tok.startsWith("`")) out.push(<code key={k++}>{tok.slice(1, -1)}</code>);
     else if (tok.startsWith("[")) { const label = tok.slice(1, tok.indexOf("]")); out.push(<a key={k++} href={m[2]} target="_blank" rel="noreferrer">{label}</a>); }
-    else out.push(<a key={k++} href={tok} target="_blank" rel="noreferrer">{tok}</a>);
+    else {
+      const trail = tok.match(/[.,;:!?]+$/)?.[0] ?? "";
+      const clean = trail ? tok.slice(0, -trail.length) : tok;
+      out.push(<a key={k++} href={clean} target="_blank" rel="noreferrer">{clean}</a>);
+      if (trail) out.push(trail);
+    }
     last = m.index + tok.length;
   }
   if (last < s.length) out.push(s.slice(last));

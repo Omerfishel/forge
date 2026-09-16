@@ -22,7 +22,7 @@ function RoleFilter() {
 function TrackCard({ t }: { t: Track }) {
   const s = useTrackStats(t.id);
   return (
-    <Link to={`/tracks/${t.id}`} className="card" style={{ display: "block", color: "inherit", textDecoration: "none", borderLeft: `3px solid ${t.color}` }} data-testid={`track-card-${t.id}`}>
+    <Link to={`/tracks/${t.id}`} className="card" aria-label={`${t.code} · ${t.name}`} style={{ display: "block", color: "inherit", textDecoration: "none", borderLeft: `3px solid ${t.color}` }} data-testid={`track-card-${t.id}`}>
       <div className="body">
         <div className="row" style={{ justifyContent: "space-between" }}>
           <b style={{ fontSize: 14 }}>{t.icon} {t.code} · {t.name}</b>
@@ -68,7 +68,7 @@ function TrackDetail({ t }: { t: Track }) {
           <div className="deliver">{t.readyWhen}</div>
           <div className="row" style={{ justifyContent: "space-between" }}>
             <span className="fmeta">{s.done}/{s.total} items · {s.mustDoDone}/{s.mustDoTotal} must-do · {fmtHours(s.hoursDone)} of {fmtHours(s.hours)} logged</span>
-            <Link to="/assess" className="sbtn sm">Rubric ▸ {rubric && progress[rubric.id]?.status === "done" ? "✅" : ""}</Link>
+            <Link to={`/assess?track=${t.id}`} className="sbtn sm">Rubric ▸ {rubric && progress[rubric.id]?.status === "done" ? "✅" : ""}</Link>
           </div>
           <div style={{ marginTop: 8 }}><Bar pct={s.pct} color={t.color} /></div>
         </Card>
@@ -116,7 +116,7 @@ export default function TracksPage() {
   }
   return (
     <div data-testid="page-tracks">
-      <PageHeader title="🗺️ Tracks" sub="Eight tracks, ranked by leverage for the FDE → product-CTO path. The role filter narrows every list in the app." />
+      <PageHeader title="🗺️ Tracks" sub="Eight tracks, ranked by leverage for the FDE → product-CTO path. The role filter narrows the cards and lists here and the per-track bars on Progress." />
       <RoleFilter />
       <div className="grid-auto">
         {[...content.tracks].sort((a, b) => a.priorityRank - b.priorityRank).map((t) => <TrackCard key={t.id} t={t} />)}

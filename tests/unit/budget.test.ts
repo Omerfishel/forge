@@ -8,12 +8,14 @@ describe("budget", () => {
     expect(toUsd(undefined, "USD")).toBeNull();
   });
   it("lists paid resources with free alternatives and planned flags", () => {
-    const lines = costLines(bundle, { "t2-c": { itemId: "t2-c", itemType: "resource", status: "in_progress", updatedAt: "" } });
+    const lines = costLines(bundle, { "t2-c": { itemId: "t2-c", itemType: "resource", status: "in_progress", updatedAt: "" } }, { "t2-c": true });
     expect(lines.map((l) => l.resource.id)).toEqual(["t1-b", "t2-c"]);
     expect(lines[0].freeAlternative?.id).toBe("t1-a");
     expect(lines[0].planned).toBe(false);
     expect(lines[1].recurring).toBe(true);
     expect(lines[1].planned).toBe(true);
+    // done items count as spent even when not explicitly planned
+    expect(costLines(bundle, { "t1-b": { itemId: "t1-b", itemType: "resource", status: "done", updatedAt: "" } })[0].planned).toBe(true);
   });
   it("summarises totals by cost model", () => {
     const s = budgetSummary(bundle, {});

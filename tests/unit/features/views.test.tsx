@@ -19,6 +19,7 @@ import ProgressPage from "@/features/progress";
 import BudgetPage from "@/features/budget";
 import FreshnessPage from "@/features/freshness";
 import SettingsPage from "@/features/settings";
+import { AchievementWatcher } from "@/components/layout/AchievementWatcher";
 
 beforeEach(() => resetStore());
 
@@ -178,12 +179,17 @@ describe("Ready-when, Compass, Progress", () => {
     expect(screen.getByTestId("startup-count")).toHaveTextContent(/^3 of/);
     expect(useForge.getState().ui.compassTab).toBe("startups");
   });
-  it("progress unlocks badges and toasts once", async () => {
+  it("progress shows unlocked badges and stats", () => {
     useForge.getState().setStatus("t1-karpathy-zth", "resource", "done");
     renderPage(<ProgressPage />, { route: "/progress" });
     expect(screen.getByTestId("badge-first")).toHaveClass("got");
-    await waitFor(() => expect(useForge.getState().celebrated.first).toBe(true));
     expect(screen.getByTestId("stat-done")).toHaveTextContent("1/");
+  });
+  it("the global watcher celebrates a new achievement once", async () => {
+    renderPage(<AchievementWatcher />, { route: "/" });
+    useForge.getState().setStatus("t1-karpathy-zth", "resource", "done");
+    await waitFor(() => expect(useForge.getState().celebrated.first).toBe(true));
+    expect(screen.getAllByTestId("toast").pop()).toHaveTextContent("Achievement unlocked");
   });
 });
 
@@ -192,7 +198,8 @@ describe("Budget, Freshness, Settings", () => {
     const { user } = renderPage(<BudgetPage />, { route: "/budget" });
     expect(screen.getByTestId("budget-planned")).toHaveTextContent("$0");
     await user.click(screen.getByTestId("budget-plan-t1-evals-course"));
-    expect(useForge.getState().progress["t1-evals-course"].status).toBe("in_progress");
+    expect(useForge.getState().planned["t1-evals-course"]).toBe(true);
+    expect(useForge.getState().progress["t1-evals-course"]).toBeUndefined(); // planning ≠ starting
     expect(screen.getByTestId("budget-planned")).toHaveTextContent("4,200");
   });
   it("freshness records a check", async () => {

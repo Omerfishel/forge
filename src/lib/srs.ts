@@ -52,7 +52,7 @@ export function dueCount(cardIds: string[], srs: Record<string, SrsState>, now =
   for (const id of cardIds) {
     const s = srs[id];
     if (!s) { fresh += 1; continue; }
-    learned += 1;
+    if (s.reps > 0) learned += 1;
     if (s.due <= now) due += 1;
   }
   return { due, fresh, learned };

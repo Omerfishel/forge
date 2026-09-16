@@ -28,7 +28,7 @@ export const t4Resources: Resource[] = [
     buildsSkill:
       "Role fluency: the FDE operating model (Palantir origin, 2005 → copied by OpenAI, Anthropic, Databricks, Cohere, Google Cloud), the 30–40% customer-discovery workload, and the customer-specific-ontology value unlock.",
     whyForHim:
-      "FDE / founding SE is his first-choice seat by end of 2026 (5-year plan: 'FDE > PM > Developer for him now'; the role fits his post-sales background and is the best bridge to a product-oriented CTO/CPO). Postings grew 800%+ Jan–Sep 2025 and Palantir's own posting frames it as 'a hands-on AI startup CTO' analog — these two pieces give him the vocabulary to interview like an insider and to map his solutions-architect / technical pre- and post-sales experience onto the role's 2026 shape.",
+      "FDE / founding SE is your first-choice seat by end of 2026 (5-year plan: 'FDE > PM > Developer for you now'; the role fits your post-sales background and is the best bridge to a product-oriented CTO/CPO). Postings grew 800%+ Jan–Sep 2025 and Palantir's own posting frames it as 'a hands-on AI startup CTO' analog — these two pieces give you the vocabulary to interview like an insider and to map your solutions-architect / technical pre- and post-sales experience onto the role's 2026 shape.",
     priority: "must_do",
     producesArtifact: false,
     trackIds: ["T4_FDE_SE"],
@@ -62,7 +62,7 @@ export const t4Resources: Resource[] = [
     buildsSkill:
       "The Palantir-origin FDE playbook — embedded engineers, on-site delivery loops, product-feedback ownership — and how the AI labs (OpenAI late 2024, Anthropic's Applied AI group) re-implemented it.",
     whyForHim:
-      "The origin story he will be asked about in every FDE interview. Lets him explain why the AI labs and his target Israeli startups (Tenzai — the 5-year plan's best match — is explicitly hiring FDEs) are staffing this role, and where his customer-facing post-sales muscle already fits.",
+      "The origin story you will be asked about in every FDE interview. Lets you explain why the AI labs and your target Israeli startups (Tenzai — the 5-year plan's best match — is explicitly hiring FDEs) are staffing this role, and where your customer-facing post-sales muscle already fits.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T4_FDE_SE"],
@@ -90,7 +90,7 @@ export const t4Resources: Resource[] = [
     buildsSkill:
       "What an AI FDE does week to week (30–40% conversational customer discovery), the customer-specific-ontology deliverable, and how the role differs from a classic SE or AI engineer.",
     whyForHim:
-      "Turns the job title into a checklist he can benchmark himself against — discovery, ontology-building, shipping at the customer — and shows which of his existing skills (solutions architecture, technical pre/post-sales, product sense) already count toward it and which (hands-on agent building, T1) still need proof.",
+      "Turns the job title into a checklist you can benchmark yourself against — discovery, ontology-building, shipping at the customer — and shows which of your existing skills (solutions architecture, technical pre/post-sales, product sense) already count toward it and which (hands-on agent building, T1) still need proof.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T4_FDE_SE"],
@@ -124,7 +124,7 @@ export const t4Resources: Resource[] = [
     buildsSkill:
       "Presales craft by immersion — discovery, demoing and objection-handling patterns traded by a large SE/FDE practitioner community — plus a referral network into FDE / founding-SE roles.",
     whyForHim:
-      "Free membership is in Primary Phase 1, Variant A and the Days 30–90 recommendation ('join PreSales Collective'). He has no presales peer group inside Tel Aviv's cyber scene; PSC's Slack is where the demo/discovery playbooks he needs are discussed daily, and T8 names it as one of his accountability communities. The free tier is enough — the paid tiers are not on the plan's spend list.",
+      "Free membership is in Primary Phase 1, Variant A and the Days 30–90 recommendation ('join PreSales Collective'). You have no presales peer group inside Tel Aviv's cyber scene; PSC's Slack is where the demo/discovery playbooks you need are discussed daily, and T8 names it as one of your accountability communities. The free tier is enough — the paid tiers are not on the plan's spend list.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T4_FDE_SE", "T8_META"],
@@ -165,7 +165,7 @@ export const t4Resources: Resource[] = [
     buildsSkill:
       "Structured presales fundamentals — discovery, demo delivery frameworks, objection handling, storytelling / value proposition, working with AEs — with roleplays, templates and a completion certificate, instead of learning only by osmosis.",
     whyForHim:
-      "He is senior, not junior: Foundations is aimed at 'Early-Career SEs with 0–2 years of experience' (site) and the Academy ends in a job-search track — both below someone who already lists technical pre/post-sales and solutions architecture as skills he HAS. Worth it only for the cohort's structured demo / objection-handling reps and the accountability (T8); otherwise the demo books (t4-demo2win) plus the weekly d-demo-week recording drill and the d-negotiation-roleplay objection drill cover the same ground for free.",
+      "You are senior, not junior: Foundations is aimed at 'Early-Career SEs with 0–2 years of experience' (site) and the Academy ends in a job-search track — both below someone who already lists technical pre/post-sales and solutions architecture as skills you HAS. Worth it only for the cohort's structured demo / objection-handling reps and the accountability (T8); otherwise the demo books (t4-demo2win) plus the weekly d-demo-week recording drill and the d-negotiation-roleplay objection drill cover the same ground for free.",
     priority: "optional",
     producesArtifact: false,
     trackIds: ["T4_FDE_SE", "T8_META"],
@@ -232,7 +232,7 @@ export const t4Resources: Resource[] = [
     buildsSkill:
       "Demo craft (Great Demo!) and the SE operating manual (Mastering Technical Sales): structuring a demo around the customer's outcome, discovery before demo, POC/evaluation scoping, and objection handling mid-demo.",
     whyForHim:
-      "He has post-sales / solutions-architecture reps, but the FDE bar is a 15-minute demo that survives objections (T4 ready-when). These two books are the methodology behind that bar; pair them with the weekly d-demo-week recording drill and the PSC Demo Days rubric. Books are on the plan's approved spend list.",
+      "You have post-sales / solutions-architecture reps, but the FDE bar is a 15-minute demo that survives objections (T4 ready-when). These two books are the methodology behind that bar; pair them with the weekly d-demo-week recording drill and the PSC Demo Days rubric. Books are on the plan's approved spend list.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T4_FDE_SE", "T5_SALES_GTM"],
@@ -266,7 +266,7 @@ export const t4Resources: Resource[] = [
     buildsSkill:
       "Demo craft: building the demo around the customer's specific situation, showing the payoff early, and running demos as discovery rather than feature tours.",
     whyForHim:
-      "His weekly d-demo-week drill needs a method to self-review against; Great Demo! supplies the structure and PSC's Demo Days rubric supplies the scoring. This is the shortest route from 'can present' (his current post-sales strength) to 'can demo like an FDE'.",
+      "Your weekly d-demo-week drill needs a method to self-review against; Great Demo! supplies the structure and PSC's Demo Days rubric supplies the scoring. This is the shortest route from 'can present' (your current post-sales strength) to 'can demo like an FDE'.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T4_FDE_SE"],
@@ -296,7 +296,7 @@ export const t4Resources: Resource[] = [
     buildsSkill:
       "The SE operating manual: discovery, demo and POC/evaluation management, RFP handling, objection handling, and working alongside sales — the day-to-day of a solutions engineer.",
     whyForHim:
-      "He is moving from post-sales / solutions architecture into a pre-sales-shaped FDE seat; MTS fills in the pre-sales half (POC scoping, evaluation criteria, objection handling) that his background under-indexes on, and gives him the vocabulary for the T4 ready-when ('run technical discovery, scope a POC').",
+      "You are moving from post-sales / solutions architecture into a pre-sales-shaped FDE seat; MTS fills in the pre-sales half (POC scoping, evaluation criteria, objection handling) that your background under-indexes on, and gives you the vocabulary for the T4 ready-when ('run technical discovery, scope a POC').",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T4_FDE_SE", "T5_SALES_GTM"],
@@ -333,9 +333,9 @@ export const t4Resources: Resource[] = [
     difficulty: "foundational",
     prerequisites: ["Presales experience: 4+ yrs (no degree) / 3+ yrs with a relevant degree / 2+ yrs with strong relevant education (NAASE eligibility)"],
     buildsSkill:
-      "A generic, vendor-neutral SE credential earned by professional review of existing presales experience (discovery, demos, proposals, POCs) — no exam, so it certifies what he has done rather than teaching anything new.",
+      "A generic, vendor-neutral SE credential earned by professional review of existing presales experience (discovery, demos, proposals, POCs) — no exam, so it certifies what you have done rather than teaching anything new.",
     whyForHim:
-      "Certifications are deliberately de-emphasized in his plan ('artifacts > certs'); he likely already qualifies on experience, which is exactly why it adds nothing to a seed-stage FDE application — a demo reel and shipped repos decide, not a review of past work. Skip unless a specific target employer asks for it (the research's own override rule).",
+      "Certifications are deliberately de-emphasized in your plan ('artifacts > certs'); you likely already qualifies on experience, which is exactly why it adds nothing to a seed-stage FDE application — a demo reel and shipped repos decide, not a review of past work. Skip unless a specific target employer asks for it (the research's own override rule).",
     priority: "skip_unless_relevant",
     producesArtifact: false,
     trackIds: ["T4_FDE_SE"],
@@ -364,7 +364,7 @@ export const t4Resources: Resource[] = [
     buildsSkill:
       "Practitioner-level view of the SE job — discovery, demos, POCs, career moves — as interviews with working presales professionals; a staying-current feed for the craft.",
     whyForHim:
-      "A low-effort way to absorb SE vocabulary and war stories during commutes while he job-hunts; use it to pre-load interview answers on POC scoping and objection handling. Keep it inside the 4–6 feed cap the plan sets for staying current — it competes with Simon Willison, tl;dr sec, Latent Space and Import AI for those slots.",
+      "A low-effort way to absorb SE vocabulary and war stories during commutes while you job-hunts; use it to pre-load interview answers on POC scoping and objection handling. Keep it inside the 4–6 feed cap the plan sets for staying current — it competes with Simon Willison, tl;dr sec, Latent Space and Import AI for those slots.",
     priority: "optional",
     producesArtifact: false,
     trackIds: ["T4_FDE_SE"],

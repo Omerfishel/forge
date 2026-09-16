@@ -31,7 +31,7 @@ export const paths: Path[] = [
       R("t1-hf-agents", 1, "Unblocks the secured MCP agent project."),
       R("t7-gandalf", 1, "Prompt-injection starter — 2–4 hours."),
       R("t7-owasp-llm", 1),
-      R("t7-owasp-agentic", 1, "Directly his wedge."),
+      R("t7-owasp-agentic", 1, "Directly your wedge."),
       R("t7-mitre-atlas", 1, "Map the red-team write-up to ATLAS."),
       P("p-secure-mcp-agent", 1, "Portfolio piece #1 — agent + permission model."),
       P("p-redteam-writeup", 1, "Portfolio piece #2 — research communication."),

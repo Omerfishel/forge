@@ -17,7 +17,7 @@ export function toUsd(amount: number | undefined, currency: string | undefined):
   return Math.round(amount * fx);
 }
 
-export function costLines(bundle: ContentBundle, progress: Record<string, ProgressEntry>): CostLine[] {
+export function costLines(bundle: ContentBundle, progress: Record<string, ProgressEntry>, planned: Record<string, boolean> = {}): CostLine[] {
   return bundle.resources
     .filter((r) => r.cost.model !== "free")
     .map((r) => ({
@@ -25,7 +25,7 @@ export function costLines(bundle: ContentBundle, progress: Record<string, Progre
       amountUsd: toUsd(r.cost.amount, r.cost.currency),
       recurring: r.cost.model === "subscription",
       freeAlternative: r.cost.freeAlternativeId ? bundle.resources.find((x) => x.id === r.cost.freeAlternativeId) : undefined,
-      planned: progress[r.id]?.status === "in_progress" || progress[r.id]?.status === "done",
+      planned: !!planned[r.id] || progress[r.id]?.status === "done",
     }));
 }
 
@@ -40,18 +40,18 @@ export interface BudgetSummary {
   unpriced: number;
 }
 
-export function budgetSummary(bundle: ContentBundle, progress: Record<string, ProgressEntry>): BudgetSummary {
-  const lines = costLines(bundle, progress);
+export function budgetSummary(bundle: ContentBundle, progress: Record<string, ProgressEntry>, planned: Record<string, boolean> = {}): BudgetSummary {
+  const lines = costLines(bundle, progress, planned);
   const byModel: BudgetSummary["byModel"] = { free: { count: 0, usd: 0 }, one_time: { count: 0, usd: 0 }, subscription: { count: 0, usd: 0 }, freemium: { count: 0, usd: 0 } };
   let totalUsd = 0, plannedUsd = 0, recurringUsd = 0, withFreeAlt = 0, unpriced = 0;
   for (const r of bundle.resources) byModel[r.cost.model].count += 1;
   for (const l of lines) {
+    if (l.freeAlternative) withFreeAlt += 1;
     if (l.amountUsd === null) { unpriced += 1; continue; }
     byModel[l.resource.cost.model].usd += l.amountUsd;
     totalUsd += l.amountUsd;
     if (l.planned) plannedUsd += l.amountUsd;
     if (l.recurring) recurringUsd += l.amountUsd;
-    if (l.freeAlternative) withFreeAlt += 1;
   }
   return { byModel, totalUsd, plannedUsd, recurringUsd, freeCount: byModel.free.count, paidCount: lines.length, withFreeAlt, unpriced };
 }

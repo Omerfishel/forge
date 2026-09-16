@@ -16,7 +16,7 @@ export default defineConfig({
     trace: "retain-on-failure",
     viewport: { width: 1400, height: 900 },
   },
-  projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
+  projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"], viewport: { width: 1400, height: 900 } } }],
   webServer: external
     ? undefined
     : {

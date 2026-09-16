@@ -39,12 +39,13 @@ test.describe("Settings", () => {
     const errors = trackErrors(page);
     await go(page, "/settings", "page-settings");
     await page.getByTestId("set-name").fill("Omer F.");
-    await page.getByTestId("set-hours").fill("15");
-    await expect(page.getByTestId("subline")).toContainText("15h/wk");
     await page.getByTestId("set-start").fill("2025-06-02");
     await expect(page.getByTestId("topctx")).toContainText("Phase 3");
     await page.getByTestId("set-path").selectOption("path-variant-b");
     await expect(page.getByTestId("topctx")).toContainText("Autonomous offense");
+    await expect(page.getByTestId("subline")).toContainText("12h/wk"); // path budget applied
+    await page.getByTestId("set-hours").fill("15");
+    await expect(page.getByTestId("subline")).toContainText("15h/wk");
     await page.getByTestId("set-role").selectOption("FDE");
     await page.getByTestId("set-pomo-focus").fill("50");
     await page.setViewportSize({ width: 1400, height: 900 });

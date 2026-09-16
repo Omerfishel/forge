@@ -6,7 +6,8 @@ import { dueCount, GRADE_LABELS, previewIntervals, queue, schedule, type Grade }
 import { fmtDate } from "@/lib/dates";
 import { Card, Chip, Empty, PageHeader, TrackBdg, useToast } from "@/components/ui";
 
-const deckLabel = (d: string) => d.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+const ACRONYMS: Record<string, string> = { nhi: "NHI", fde: "FDE", gtm: "GTM", srs: "SRS", ai: "AI" };
+const deckLabel = (d: string) => d.split("-").map((w) => ACRONYMS[w] ?? w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
 const fmtInterval = (d: number) => (d <= 0 ? "<1d" : d < 30 ? `${d}d` : d < 365 ? `${Math.round(d / 30)}mo` : `${(d / 365).toFixed(1)}y`);
 
 export default function ReviewPage() {
@@ -32,13 +33,13 @@ export default function ReviewPage() {
 
   const build = useCallback((studyAhead: boolean) => {
     const ids = deckCards.map((c) => c.id);
-    let q = queue(ids, srs, { now: today, maxNew, maxTotal: 60 });
+    const cur = useForge.getState().srs; // always the latest schedule, not a render snapshot
+    let q = queue(ids, cur, { now: today, maxNew, maxTotal: 60 });
     if (q.length === 0 && studyAhead) {
       // Nothing due: pull the soonest-due learned cards plus new ones.
-      q = [...ids].filter((id) => srs[id]).sort((a, b) => srs[a].due.localeCompare(srs[b].due)).slice(0, 10);
+      q = [...ids].filter((id) => cur[id]).sort((a, b) => cur[a].due.localeCompare(cur[b].due)).slice(0, 10);
     }
     setSession(q); setIdx(0); setShown(false); setTotal(q.length);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deckCards, maxNew, today]);
 
   useEffect(() => { setAhead(false); build(false); }, [deck, maxNew, build]);
@@ -86,7 +87,7 @@ export default function ReviewPage() {
         <div className="stat"><div className="big">{counts.fresh}</div><div className="lb">New</div></div>
         <div className="stat"><div className="big">{counts.learned}</div><div className="lb">Learned</div><div className="sm">of {deckCards.length} in deck</div></div>
         <div className="stat"><div className="big">{reviewedToday}</div><div className="lb">Reviewed today</div></div>
-        <div className="stat"><label className="lb" style={{ display: "block", marginTop: 0 }}>New per session</label><input className="sel" type="number" min={0} max={50} value={maxNew} onChange={(e) => setMaxNew(Math.max(0, Math.min(50, Number(e.target.value) || 0)))} aria-label="Max new cards per session" data-testid="srs-max-new" style={{ width: 80, marginTop: 6 }} /></div>
+        <div className="stat"><label className="lb" style={{ display: "block", marginTop: 0 }}>New per session</label><input className="sel" type="number" min={0} max={50} value={maxNew} onChange={(e) => setMaxNew(Math.max(0, Math.min(50, Math.floor(Number(e.target.value)) || 0)))} aria-label="Max new cards per session" data-testid="srs-max-new" style={{ width: 80, marginTop: 6 }} /></div>
       </div>
 
       {card ? (
@@ -101,7 +102,7 @@ export default function ReviewPage() {
               <div className="back" data-testid="srs-back">{card.back}</div>
               <div className="srs-grade">
                 {([0, 1, 2, 3] as Grade[]).map((g) => (
-                  <button key={g} className={`sbtn ${g === 2 ? "primary" : ""}`} onClick={() => grade(g)} data-testid={`srs-grade-${g}`} title={`Key ${g + 1}`}>{GRADE_LABELS[g]}<small>{fmtInterval(preview[g])} · {g + 1}</small></button>
+                  <button key={g} className={`sbtn ${g === 2 ? "primary" : ""}`} onClick={() => grade(g)} data-testid={`srs-grade-${g}`} aria-label={`${GRADE_LABELS[g]} (key ${g + 1})`} title={`Key ${g + 1}`}>{GRADE_LABELS[g]}<small>{fmtInterval(preview[g])} · {g + 1}</small></button>
                 ))}
               </div>
               <div className="row" style={{ justifyContent: "space-between" }}>

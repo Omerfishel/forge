@@ -25,9 +25,9 @@ export function Header() {
           </div>
           <div className="grow" />
           <div className="hbtns">
-            <button className={`iconbtn ${settings.railOpen ? "on" : ""}`} onClick={() => update({ railOpen: !settings.railOpen })} title="Toggle side panel" data-testid="btn-rail" aria-pressed={settings.railOpen}>⏱ <span className="lbl">Panel</span></button>
-            <button className="iconbtn" onClick={() => update({ theme: settings.theme === "dark" ? "light" : "dark" })} title="Toggle theme" data-testid="btn-theme">{settings.theme === "dark" ? "☀" : "☾"} <span className="lbl">{settings.theme === "dark" ? "Light" : "Dark"}</span></button>
-            <Link className="iconbtn" to="/settings" title="Settings" data-testid="btn-settings">⚙ <span className="lbl">Settings</span></Link>
+            <button className={`iconbtn btn-rail ${settings.railOpen ? "on" : ""}`} onClick={() => update({ railOpen: !settings.railOpen })} title="Toggle side panel" data-testid="btn-rail" aria-pressed={settings.railOpen}>⏱ <span className="blbl">Panel</span></button>
+            <button className="iconbtn" onClick={() => update({ theme: settings.theme === "dark" ? "light" : "dark" })} title="Toggle theme" data-testid="btn-theme">{settings.theme === "dark" ? "☀" : "☾"} <span className="blbl">{settings.theme === "dark" ? "Light" : "Dark"}</span></button>
+            <Link className="iconbtn" to="/settings" title="Settings" data-testid="btn-settings">⚙ <span className="blbl">Settings</span></Link>
           </div>
         </div>
         <div className="ovwrap">
@@ -36,9 +36,9 @@ export function Header() {
           <div className="ovmeta" data-testid="ov-pct">{pct}%</div>
         </div>
         <div className="topctx" data-testid="topctx">
-          <span className="tcx-ph" style={{ color: "var(--acc)" }}><span className="tcx-dot" />Phase {plan.phase} · {plan.phaseTitle}</span>
+          <span className="tcx-ph tcx-phase"><span className="tcx-dot" />Phase {plan.phase} · {plan.phaseTitle}</span>
           <span className="tcx-sep">·</span>
-          <span className="tcx-i">week {plan.week + 1} of {pace.totalWeeks}</span>
+          <span className="tcx-i">week {Math.min(plan.week + 1, pace.totalWeeks)} of {pace.totalWeeks}</span>
           <span className="tcx-sep">·</span>
           <span className={paceCls}>{pace.status}</span>
           <span className="tcx-sep">·</span>

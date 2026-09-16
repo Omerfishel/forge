@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { content } from "@/data";
 import { useForge } from "@/store";
 import type { Assessment, Track } from "@/types";
@@ -25,9 +26,9 @@ function AssessmentBlock({ a, track }: { a: Assessment; track: Track }) {
   const validUrl = /^https?:\/\/\S+$/.test(url.trim());
 
   const saveNotes = () => {
-    if (existing) updateNote(existing.id, { body: text });
-    else if (text.trim()) addNote({ title: `${track.code} self-test · ${a.title}`, body: text, tags: ["self-test"], itemId: a.id });
-    toast("Notes saved.", "ok");
+    if (existing) { updateNote(existing.id, { body: text }); toast("Notes saved.", "ok"); }
+    else if (text.trim()) { addNote({ title: `${track.code} self-test · ${a.title}`, body: text, tags: ["self-test"], itemId: a.id }); toast("Notes saved.", "ok"); }
+    else toast("Nothing to save yet — write your answers first.", "info");
   };
 
   return (
@@ -44,7 +45,7 @@ function AssessmentBlock({ a, track }: { a: Assessment; track: Track }) {
         <div className="col" style={{ gap: 6 }}>
           {a.criteria.map((c, i) => (
             <label key={i} className="row" style={{ gap: 10, alignItems: "flex-start", flexWrap: "nowrap", cursor: "pointer" }}>
-              <input type="checkbox" className="cbx" checked={done.has(i)} onChange={() => { toggleCriterion(a.id, i, a.criteria.length); if (!done.has(i) && done.size + 1 === a.criteria.length) toast(<><b>{track.code} ready.</b> {a.title} complete.</>, "ok"); }} data-testid={`assess-crit-${a.id}-${i}`} />
+              <input type="checkbox" className="cbx" checked={done.has(i)} aria-label={c} onChange={() => { toggleCriterion(a.id, i, a.criteria.length); if (!done.has(i) && done.size + 1 === a.criteria.length) toast(<><b>{track.code} ready.</b> {a.title} complete.</>, "ok"); }} data-testid={`assess-crit-${a.id}-${i}`} />
               <span className={`small ${done.has(i) ? "faint" : ""}`}>{c}</span>
             </label>
           ))}
@@ -77,7 +78,19 @@ export default function AssessmentsPage() {
   const progress = useForge((s) => s.progress);
   const collapsed = useForge((s) => s.ui.collapsed);
   const setCollapsed = useForge((s) => s.setCollapsed);
+  const [params, setParams] = useSearchParams();
   const tracks = [...content.tracks].sort((a, b) => a.priorityRank - b.priorityRank);
+  // ?track=ID (from a track page or a summary tile) opens that section and scrolls to it.
+  useEffect(() => {
+    const t = params.get("track");
+    if (!t) return;
+    setCollapsed(`assess-${t}`, false);
+    params.delete("track");
+    setParams(params, { replace: true });
+    window.setTimeout(() => document.querySelector(`[data-testid="assess-track-${t}"]`)?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params]);
+  const pctAll = (t: Track) => { const list = content.assessments.filter((a) => a.trackId === t.id); if (!list.length) return 0; return Math.round(list.reduce((acc, a) => acc + (a.criteria.length ? ((progress[a.id]?.criteriaDone?.length ?? 0) / a.criteria.length) * 100 : 0), 0) / list.length); };
   const rubricOf = (t: Track) => content.assessments.find((a) => a.trackId === t.id && a.type === "rubric");
   const pctOf = (a?: Assessment) => (a && a.criteria.length ? Math.round(((progress[a.id]?.criteriaDone?.length ?? 0) / a.criteria.length) * 100) : 0);
   const readyCount = tracks.filter((t) => { const r = rubricOf(t); return r && progress[r.id]?.status === "done"; }).length;
@@ -87,20 +100,19 @@ export default function AssessmentsPage() {
       <PageHeader title="✅ Ready-when" sub={`Per-track readiness rubrics, self-tests and public proof. ${readyCount} of ${tracks.length} tracks ready.`} />
       <div className="grid-auto" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))", marginBottom: 18 }}>
         {tracks.map((t) => { const r = rubricOf(t); const ready = r && progress[r.id]?.status === "done"; return (
-          <div key={t.id} className="stat" style={{ padding: 12, borderTop: `3px solid ${t.color}` }} data-testid={`assess-summary-${t.id}`}>
-            <div className="row" style={{ justifyContent: "space-between" }}><b>{t.icon} {t.code}</b>{ready ? <span className="bdg ok">Ready</span> : <span className="mono xs muted">{pctOf(r)}%</span>}</div>
+          <button key={t.id} type="button" className="stat" style={{ padding: 12, borderTop: `3px solid ${t.color}`, textAlign: "left", cursor: "pointer", font: "inherit", color: "inherit" }} onClick={() => { setCollapsed(`assess-${t.id}`, false); document.querySelector(`[data-testid="assess-track-${t.id}"]`)?.scrollIntoView({ behavior: "smooth", block: "start" }); }} data-testid={`assess-summary-${t.id}`} aria-label={`${t.code} readiness`}>
+            <div className="row" style={{ justifyContent: "space-between" }}><b>{t.icon} {t.code}</b>{ready ? <span className="bdg ok">Ready</span> : <span className="mono xs muted">{pctOf(r)}% rubric</span>}</div>
             <div style={{ marginTop: 8 }}><Bar pct={pctOf(r)} color={t.color} height={6} /></div>
             <div className="xs faint" style={{ marginTop: 6, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{t.name}</div>
-          </div>
+          </button>
         ); })}
       </div>
       {tracks.map((t, i) => {
         const list = content.assessments.filter((a) => a.trackId === t.id).sort((a, b) => TYPE_ORDER[a.type] - TYPE_ORDER[b.type]);
         const key = `assess-${t.id}`;
         const open = collapsed[key] === undefined ? i === 0 : !collapsed[key];
-        const r = rubricOf(t);
         return (
-          <Accordion key={t.id} title={`${t.icon} ${t.code} · ${t.name}`} meta={`${list.length} checks`} color={t.color} open={open} onToggle={() => setCollapsed(key, open)} pct={pctOf(r)} testId={`assess-track-${t.id}`}>
+          <Accordion key={t.id} title={`${t.icon} ${t.code} · ${t.name}`} meta={`${list.length} checks`} color={t.color} open={open} onToggle={() => setCollapsed(key, open)} pct={pctAll(t)} testId={`assess-track-${t.id}`}>
             {list.map((a) => <AssessmentBlock key={a.id} a={a} track={t} />)}
           </Accordion>
         );

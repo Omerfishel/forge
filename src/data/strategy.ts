@@ -8,9 +8,9 @@ export const strategy: Strategy = {
   // TL;DR (the 3 bullets)
   // ---------------------------------------------------------------------------
   tldr: [
-    "Target the AI×cyber intersection where his 8200 + solutions-architect background is an unfair advantage — specifically agent/non-human identity security, AI-native SOC / AI-for-cyber, and cyber-for-physical-AI — and join a top-tier-VC-backed Israeli seed startup in one of these lanes by end of 2026.",
-    "Aim for a Forward-Deployed Engineer / founding Solutions Engineer role first (not PM) — a16z (Joe Schmidt, June 2025) called it \"the hottest job in startups,\" postings grew more than 800% between January and September 2025 (Indeed/Financial Times analysis), it fits his post-sales background, and it is the best bridge to a product-oriented CTO/CPO seat in 2029–30.",
-    "His comp targets are realistic; his equity target is at the high end — 35–50k ILS/month is in-band for a senior core-team hire, but 0.25%+ is achievable mainly at true employee #1–5 seed startups, not the $60–75M mega-seeds that now launch with 30–80 staff.",
+    "Target the AI×cyber intersection where your 8200 + solutions-architect background is an unfair advantage — specifically agent/non-human identity security, AI-native SOC / AI-for-cyber, and cyber-for-physical-AI — and join a top-tier-VC-backed Israeli seed startup in one of these lanes by end of 2026.",
+    "Aim for a Forward-Deployed Engineer / founding Solutions Engineer role first (not PM) — a16z (Joe Schmidt, June 2025) called it \"the hottest job in startups,\" postings grew more than 800% between January and September 2025 (Indeed/Financial Times analysis), it fits your post-sales background, and it is the best bridge to a product-oriented CTO/CPO seat in 2029–30.",
+    "Your comp targets are realistic; your equity target is at the high end — 35–50k ILS/month is in-band for a senior core-team hire, but 0.25%+ is achievable mainly at true employee #1–5 seed startups, not the $60–75M mega-seeds that now launch with 30–80 staff.",
   ],
 
   // ---------------------------------------------------------------------------
@@ -24,8 +24,8 @@ export const strategy: Strategy = {
     },
     {
       id: "kf-domain-verdicts",
-      title: "His three canvas domains — verdicts",
-      body: "- Cyber for AI / AI security (STRONGEST FIT). Securing AI agents is \"the defining cybersecurity challenge of 2026\" (Bessemer). Sub-lanes: agent/non-human identity (NHI), AI-SPM, prompt-injection/guardrails/runtime, MCP/tool-use security, AI supply chain. Huge Israeli density and top-tier VC backing. This is his best home base.\n- AI for cyber (STRONG FIT). AI-native SOC, autonomous pentesting/red-teaming, AI security analysts. \"Corma\" (his canvas example) is real: a San Francisco + 8200 defensive-cyber foundation-model lab that raised a $60M seed led by Sequoia (with Khosla and Coatue, Aug 2026). Very fundable, but the deep-ML versions need a research co-founder.\n- AI infra (WEAKEST FIT for him). Compute/GPU/inference is capital-heavy and late-stage-dominated; software layers (evals, observability, RL environments) are viable for small teams but crowded and SF/YC-dominated — and require hands-on ML he lacks. Not his unfair advantage.\n- Physical AI (SELECTIVE FIT via cyber + defense). World models/robotics foundation models are hot but ML-research-heavy. His wedge is cyber-for-physical-AI / OT security for robots and Israeli defense tech, which is booming.",
+      title: "Your three canvas domains — verdicts",
+      body: "- Cyber for AI / AI security (STRONGEST FIT). Securing AI agents is \"the defining cybersecurity challenge of 2026\" (Bessemer). Sub-lanes: agent/non-human identity (NHI), AI-SPM, prompt-injection/guardrails/runtime, MCP/tool-use security, AI supply chain. Huge Israeli density and top-tier VC backing. This is your best home base.\n- AI for cyber (STRONG FIT). AI-native SOC, autonomous pentesting/red-teaming, AI security analysts. \"Corma\" (your canvas example) is real: a San Francisco + 8200 defensive-cyber foundation-model lab that raised a $60M seed led by Sequoia (with Khosla and Coatue, Aug 2026). Very fundable, but the deep-ML versions need a research co-founder.\n- AI infra (WEAKEST FIT for you). Compute/GPU/inference is capital-heavy and late-stage-dominated; software layers (evals, observability, RL environments) are viable for small teams but crowded and SF/YC-dominated — and require hands-on ML you lack. Not your unfair advantage.\n- Physical AI (SELECTIVE FIT via cyber + defense). World models/robotics foundation models are hot but ML-research-heavy. Your wedge is cyber-for-physical-AI / OT security for robots and Israeli defense tech, which is booming.",
     },
     {
       id: "kf-defense-tech",
@@ -34,18 +34,18 @@ export const strategy: Strategy = {
     },
     {
       id: "kf-role-strategy",
-      title: "Role strategy: FDE > PM > Developer for him now",
-      body: "- PM at seed is often NOT a core-team seat. Most seed founders are their own PMs and hire the first PM around Series A. Founding-PM roles exist but are scarce and usually go to domain experts — which he can leverage (8200 + security expertise), but it's a harder door than FDE.\n- FDE / founding solutions engineer is the best bridge. The role exploded (>800% more postings Jan–Sept 2025; a16z called it \"the hottest job in startups\"), pays a premium ($300–550k+ total comp in the US, per multiple 2026 hiring reports), and — per Palantir's own job description — \"responsibilities look similar to those of a hands-on AI startup CTO.\" It maps directly onto his solutions-architect/post-sales background while giving him customer discovery, product feedback ownership, and technical shipping — exactly the muscles a product-oriented CTO/CPO needs.\n- Developer employee #1 is common but not credible for him given no professional dev experience; security research is available but he explicitly won't/can't do it.",
+      title: "Role strategy: FDE > PM > Developer for you now",
+      body: "- PM at seed is often NOT a core-team seat. Most seed founders are their own PMs and hire the first PM around Series A. Founding-PM roles exist but are scarce and usually go to domain experts — which you can leverage (8200 + security expertise), but it's a harder door than FDE.\n- FDE / founding solutions engineer is the best bridge. The role exploded (>800% more postings Jan–Sept 2025; a16z called it \"the hottest job in startups\"), pays a premium ($300–550k+ total comp in the US, per multiple 2026 hiring reports), and — per Palantir's own job description — \"responsibilities look similar to those of a hands-on AI startup CTO.\" It maps directly onto your solutions-architect/post-sales background while giving you customer discovery, product feedback ownership, and technical shipping — exactly the muscles a product-oriented CTO/CPO needs.\n- Developer employee #1 is common but not credible for you given no professional dev experience; security research is available but you explicitly won't/can't do it.",
     },
     {
       id: "kf-founder-role",
       title: "Founder role in 2029–30: CPO most realistic, product-oriented CTO possible with proof",
-      body: "His ~70% lean toward an outbound/product CTO is achievable only if he demonstrably closes the technical-credibility gap (ships real product surfaces, can architect, shows AI fluency). Absent that, investors expect a CTO to be the technical anchor. The more realistic 2029–30 outcome is CPO in a CEO/CTO/CPO trio or product-oriented CTO in a 2-founder team where he pairs with a strong technical co-founder. The CEO/CTO/CPO trio is common enough in Israeli seed startups (e.g., Oasis Security: CEO Danny Brickman + CPO Amit Zimerman, both Unit 81 veterans), though VCs prefer lean 2-person founding teams and scrutinize a third non-technical co-founder.",
+      body: "Your ~70% lean toward an outbound/product CTO is achievable only if you demonstrably closes the technical-credibility gap (ships real product surfaces, can architect, shows AI fluency). Absent that, investors expect a CTO to be the technical anchor. The more realistic 2029–30 outcome is CPO in a CEO/CTO/CPO trio or product-oriented CTO in a 2-founder team where you pair with a strong technical co-founder. The CEO/CTO/CPO trio is common enough in Israeli seed startups (e.g., Oasis Security: CEO Danny Brickman + CPO Amit Zimerman, both Unit 81 veterans), though VCs prefer lean 2-person founding teams and scrutinize a third non-technical co-founder.",
     },
     {
       id: "kf-comp-reality",
       title: "Compensation reality check",
-      body: "Per GotFriends (Jerusalem Post, July 2026), \"the average tech salary climbed to NIS 39,810, a 7.4% increase over the previous year, which stood at NIS 37,071,\" and LLM/RAG/NLP specialists earn \"an average of NIS 43,212, about nine percent more than other technological roles.\" His 35–50k ILS target is realistic for a senior core-team hire; 45–50k is top-quartile, and the AI premium helps. On equity, per a TLV Partners survey (Aug 2025), at Israeli seed startups senior engineers typically get over 0.5% and mid-level 0.15–0.25%; the first five hires get the most generous packages. So 0.25%+ is attainable at a true early seed startup, but the $60–75M mega-seeds that launch with dozens of staff will offer less.",
+      body: "Per GotFriends (Jerusalem Post, July 2026), \"the average tech salary climbed to NIS 39,810, a 7.4% increase over the previous year, which stood at NIS 37,071,\" and LLM/RAG/NLP specialists earn \"an average of NIS 43,212, about nine percent more than other technological roles.\" Your 35–50k ILS target is realistic for a senior core-team hire; 45–50k is top-quartile, and the AI premium helps. On equity, per a TLV Partners survey (Aug 2025), at Israeli seed startups senior engineers typically get over 0.5% and mid-level 0.15–0.25%; the first five hires get the most generous packages. So 0.25%+ is attainable at a true early seed startup, but the $60–75M mega-seeds that launch with dozens of staff will offer less.",
     },
     {
       id: "kf-strategic-recommendation",
@@ -63,9 +63,9 @@ export const strategy: Strategy = {
       name: "Cyber for AI / AI security",
       fit: "strongest",
       verdict:
-        "STRONGEST FIT. Securing AI agents is \"the defining cybersecurity challenge of 2026\" (Bessemer). Gartner projects 40% of enterprise apps will embed task-specific AI agents by 2026 (up from <5% in 2025). The attack surface (prompt injection, MCP vulnerabilities, data exfiltration via assistants, memory poisoning, tool misuse) is expanding faster than defenses; OWASP published the first Top 10 for Agentic Applications in Dec 2025 (top risks: prompt injection, memory poisoning, tool/plugin misuse). Sub-lanes: agent/non-human identity (NHI), AI-SPM, prompt-injection/guardrails/runtime, MCP/tool-use security, AI supply chain. Huge Israeli density and top-tier VC backing. 2028–29 bet: identity + runtime governance for autonomous agents becomes a default layer of the security stack; consolidation into platforms continues; open problems remain in agent authorization, MCP/tool-use security, and cross-agent (bot-to-bot) injection. This is his best home base.",
+        "STRONGEST FIT. Securing AI agents is \"the defining cybersecurity challenge of 2026\" (Bessemer). Gartner projects 40% of enterprise apps will embed task-specific AI agents by 2026 (up from <5% in 2025). The attack surface (prompt injection, MCP vulnerabilities, data exfiltration via assistants, memory poisoning, tool misuse) is expanding faster than defenses; OWASP published the first Top 10 for Agentic Applications in Dec 2025 (top risks: prompt injection, memory poisoning, tool/plugin misuse). Sub-lanes: agent/non-human identity (NHI), AI-SPM, prompt-injection/guardrails/runtime, MCP/tool-use security, AI supply chain. Huge Israeli density and top-tier VC backing. 2028–29 bet: identity + runtime governance for autonomous agents becomes a default layer of the security stack; consolidation into platforms continues; open problems remain in agent authorization, MCP/tool-use security, and cross-agent (bot-to-bot) injection. This is your best home base.",
       fitRationale:
-        "Fit: excellent. Product-and-customer-facing, threat-model-driven, not ML-research-heavy — his 8200 + solutions-architect background compounds here.",
+        "Fit: excellent. Product-and-customer-facing, threat-model-driven, not ML-research-heavy — your 8200 + solutions-architect background compounds here.",
       subLanes: [
         {
           id: "sl-agent-nhi",
@@ -101,9 +101,9 @@ export const strategy: Strategy = {
       name: "AI for cyber",
       fit: "strong",
       verdict:
-        "STRONG FIT. AI-native SOC (Exaforce $125M Series B at $725M valuation; Dropzone; Prophet; Mate Security $35M Series A, Wiz/Microsoft alumni), autonomous pentesting (XBOW $120M Series C at $1B+; Horizon3 $117M; Tenzai $75M seed; A Security $37M), and defensive foundation models (Corma $60M seed, Sequoia). \"Corma\" (his canvas example) is real: a San Francisco + 8200 defensive-cyber foundation-model lab that raised a $60M seed led by Sequoia (with Khosla and Coatue, Aug 2026). 2028–29 bet: autonomous SOC and continuous autonomous pentesting become mainstream; domain-specific security models beat generalist LLMs. Very fundable, but the deep-ML versions need a research co-founder.",
+        "STRONG FIT. AI-native SOC (Exaforce $125M Series B at $725M valuation; Dropzone; Prophet; Mate Security $35M Series A, Wiz/Microsoft alumni), autonomous pentesting (XBOW $120M Series C at $1B+; Horizon3 $117M; Tenzai $75M seed; A Security $37M), and defensive foundation models (Corma $60M seed, Sequoia). \"Corma\" (your canvas example) is real: a San Francisco + 8200 defensive-cyber foundation-model lab that raised a $60M seed led by Sequoia (with Khosla and Coatue, Aug 2026). 2028–29 bet: autonomous SOC and continuous autonomous pentesting become mainstream; domain-specific security models beat generalist LLMs. Very fundable, but the deep-ML versions need a research co-founder.",
       fitRationale:
-        "Fit: strong, especially the delivery/FDE side. Deep-ML plays need a research co-founder; workflow/deployment plays (SOC, pentest delivery) fit him well.",
+        "Fit: strong, especially the delivery/FDE side. Deep-ML plays need a research co-founder; workflow/deployment plays (SOC, pentest delivery) fit you well.",
       subLanes: [
         {
           id: "sl-ai-native-soc",
@@ -133,9 +133,9 @@ export const strategy: Strategy = {
       name: "AI infra",
       fit: "weak",
       verdict:
-        "WEAKEST FIT for him. Private AI companies raised ~$225.8B in 2025 (CB Insights); infra spending ~$318B (IDC). Compute/chips/neoclouds are late-stage and capital-heavy (top 10 infra startups captured ~55% of funding). Software layers — inference optimization, evals/observability (Arize, Braintrust, LangSmith), agent orchestration, RL environments — are the realistic small-team wedges but are crowded and SF/YC-dominated; RL environments in particular are already consolidating (40+ tracked startups; a Mercor acquisition of an a16z-backed player in mid-2026). Requires hands-on ML he lacks. Not his unfair advantage.",
+        "WEAKEST FIT for you. Private AI companies raised ~$225.8B in 2025 (CB Insights); infra spending ~$318B (IDC). Compute/chips/neoclouds are late-stage and capital-heavy (top 10 infra startups captured ~55% of funding). Software layers — inference optimization, evals/observability (Arize, Braintrust, LangSmith), agent orchestration, RL environments — are the realistic small-team wedges but are crowded and SF/YC-dominated; RL environments in particular are already consolidating (40+ tracked startups; a Mercor acquisition of an a16z-backed player in mid-2026). Requires hands-on ML you lack. Not your unfair advantage.",
       fitRationale:
-        "Fit: weak for him (requires hands-on ML; not his edge). Useful only as knowledge, or as the \"thing his startup secures.\"",
+        "Fit: weak for you (requires hands-on ML; not your edge). Useful only as knowledge, or as the \"thing your startup secures.\"",
       subLanes: [
         {
           id: "sl-compute-neoclouds",
@@ -160,21 +160,21 @@ export const strategy: Strategy = {
       verdict:
         "SELECTIVE FIT via cyber + defense. World models & robotics foundation models are booming (Physical Intelligence $600M Series B; Yann LeCun's lab ~$1B seed; NVIDIA Cosmos; Israel's Enigma $71M seed, 8200 founders Jonathan Jacobi + Gal Niv, Index/Ribbit/Conviction). Physical-AI startups raised ~$47.4B in H1 2026 (+80% YoY), concentrated in defense/industrial. Cyber-for-physical-AI (securing robots as cyber-physical/OT endpoints) is a nascent but real niche (e.g., Alias Robotics in Europe). 2028–29 bet: \"ChatGPT moment for physical AI\" (Jensen Huang, CES 2026); robots become networked OT endpoints that must be secured; defense autonomy scales.",
       fitRationale:
-        "Fit: selective — his wedge is cyber/OT-security for physical AI and defense autonomy (Israeli defense tech is booming), not the ML-research-heavy core.",
+        "Fit: selective — your wedge is cyber/OT-security for physical AI and defense autonomy (Israeli defense tech is booming), not the ML-research-heavy core.",
       subLanes: [
         {
           id: "sl-robotics-world-models",
           name: "Robotics / world foundation models",
           examples: ["Enigma", "Physical Intelligence", "NVIDIA Cosmos"],
           bet: "\"ChatGPT moment\" for physical AI",
-          note: "Physical Intelligence $600M Series B; Yann LeCun's lab ~$1B seed; Enigma $71M seed (8200 founders Jonathan Jacobi + Gal Niv; Index/Ribbit/Conviction). ML-research-heavy — not his core.",
+          note: "Physical Intelligence $600M Series B; Yann LeCun's lab ~$1B seed; Enigma $71M seed (8200 founders Jonathan Jacobi + Gal Niv; Index/Ribbit/Conviction). ML-research-heavy — not your core.",
         },
         {
           id: "sl-cyber-for-physical-ai",
           name: "Cyber for physical AI / OT",
           examples: ["Alias Robotics (nascent)"],
           bet: "Robots = OT endpoints to secure",
-          note: "Nascent but real niche; uses his threat-model thinking.",
+          note: "Nascent but real niche; uses your threat-model thinking.",
         },
         {
           id: "sl-defense-autonomy",
@@ -209,7 +209,7 @@ export const strategy: Strategy = {
       id: "adj-cyber-physical-ai",
       rank: 3,
       name: "Cyber for physical AI / OT & robotics security",
-      rationale: "Nascent, defensible, uses his threat-model thinking.",
+      rationale: "Nascent, defensible, uses your threat-model thinking.",
       examples: ["Alias Robotics"],
     },
     {
@@ -229,7 +229,7 @@ export const strategy: Strategy = {
       id: "adj-pqc-ot-ics",
       rank: 6,
       name: "Post-quantum crypto & OT/ICS/critical-infrastructure security",
-      rationale: "Real but slower-burn; PQC federal deadlines (~2029) create a migration market (e.g., QIZ Security $17M seed, Bessemer/Merlin). Lower fit unless paired with his cyber base.",
+      rationale: "Real but slower-burn; PQC federal deadlines (~2029) create a migration market (e.g., QIZ Security $17M seed, Bessemer/Merlin). Lower fit unless paired with your cyber base.",
       examples: ["QIZ Security"],
     },
   ],
@@ -242,7 +242,7 @@ export const strategy: Strategy = {
       id: "rl-now",
       horizon: "Now",
       title: "FDE / founding Solutions Engineer",
-      detail: "The clear recommendation: FDE/founding Solutions Engineer (1st choice) > founding/SME PM (2nd) > developer (avoid). The role is \"a hands-on AI startup CTO\" analog (per Palantir's own posting) — customer-facing, technical, product-feedback-owning — and maps directly onto his solutions-architect/post-sales background. Best bridge to product-oriented CTO/CPO.",
+      detail: "The clear recommendation: FDE/founding Solutions Engineer (1st choice) > founding/SME PM (2nd) > developer (avoid). The role is \"a hands-on AI startup CTO\" analog (per Palantir's own posting) — customer-facing, technical, product-feedback-owning — and maps directly onto your solutions-architect/post-sales background. Best bridge to product-oriented CTO/CPO.",
       fallback: "SME/founding PM — the proven path is \"subject-matter-expert PM\" (security/8200 expertise) at a startup where domain knowledge outweighs PM tenure, or an internal transfer after joining in another role. Ask for Senior PM / Head of Product framing only at true seed.",
     },
     {
@@ -261,7 +261,7 @@ export const strategy: Strategy = {
       id: "rl-2029-30",
       horizon: "2029–30",
       title: "CPO or product-oriented CTO (with technical co-founder)",
-      detail: "Product-oriented CTO in a 2-founder team paired with a strong technical co-founder — achievable only if he demonstrably closes the technical-credibility gap (ships real product surfaces, can architect, shows AI fluency). Investors expect a CTO to be the technical anchor. Prove it by shipping product surfaces, demonstrating AI fluency, and building a public reputation.",
+      detail: "Product-oriented CTO in a 2-founder team paired with a strong technical co-founder — achievable only if you demonstrably closes the technical-credibility gap (ships real product surfaces, can architect, shows AI fluency). Investors expect a CTO to be the technical anchor. Prove it by shipping product surfaces, demonstrating AI fluency, and building a public reputation.",
       fallback: "CPO in a CEO/CTO/CPO trio (the more realistic outcome; e.g., Oasis Security: CEO Danny Brickman + CPO Amit Zimerman). VCs scrutinize a non-technical third founder, so the CPO must own something hard (product + GTM motion or deep domain).",
     },
   ],
@@ -273,7 +273,7 @@ export const strategy: Strategy = {
     {
       id: "rs-founding-pm",
       title: "Founding / first PM",
-      body: "Hard to get without a PM title, but the proven path for him is \"subject-matter-expert PM\" (security/8200 expertise) at a startup where domain knowledge outweighs PM tenure, or an internal transfer after joining in another role. Ask for Senior PM / Head of Product framing only at true seed.",
+      body: "Hard to get without a PM title, but the proven path for you is \"subject-matter-expert PM\" (security/8200 expertise) at a startup where domain knowledge outweighs PM tenure, or an internal transfer after joining in another role. Ask for Senior PM / Head of Product framing only at true seed.",
     },
     {
       id: "rs-fde-founding-se",
@@ -378,7 +378,7 @@ export const strategy: Strategy = {
       skills: [
         "hands-on AI fluency: run/fine-tune models, build agents, understand RL/inference/MCP basics (enough to be credible and to demo) — via structured courses (e.g., DeepLearning.AI, Hugging Face, fast.ai) + shipping a real demo/POC",
         "backend & system-design fundamentals (to be a credible product-CTO)",
-        "PM craft: discovery, PRDs, roadmapping, metrics ownership (Lenny's Newsletter/Reforge-type resources; do it live inside the startup he joins)",
+        "PM craft: discovery, PRDs, roadmapping, metrics ownership (Lenny's Newsletter/Reforge-type resources; do it live inside the startup you join)",
         "founder-led sales (enough to sell without being CEO)",
         "technical storytelling + fundraising narrative (including how to tell the failed-founding story as a strength)",
         "people management basics",
@@ -388,7 +388,7 @@ export const strategy: Strategy = {
       id: "sp-cofounder",
       title: "Skills to find in a co-founder",
       kind: "cofounder",
-      skills: ["deep ML/research", "deep backend/infra eng", "CEO-style GTM + fundraising (the gap that sank his last attempt)"],
+      skills: ["deep ML/research", "deep backend/infra eng", "CEO-style GTM + fundraising (the gap that sank your last attempt)"],
     },
   ],
 
@@ -415,7 +415,7 @@ export const strategy: Strategy = {
       investors: "Sequoia (lead), Khosla, Coatue (Aug 2026)",
       signals: ["8200", "SF-headquartered"],
       stage: "seed",
-      fitNote: "Defensive-cyber foundation-model lab; 8200-linked team. Deep-ML play — the workflow/deployment side is where he fits.",
+      fitNote: "Defensive-cyber foundation-model lab; 8200-linked team. Deep-ML play — the workflow/deployment side is where you fit.",
       caveat: "Corma is SF-headquartered (with an 8200-linked team) and said in 2026 it was \"not in a hurry to recruit\" — a fit/timing caveat.",
     },
     {
@@ -436,7 +436,7 @@ export const strategy: Strategy = {
       investors: "Ibex, Skywell",
       signals: ["8200 CTO Philip Shteyn", "true early-stage"],
       stage: "true_early",
-      fitNote: "AI identity team in his sharpest wedge (NHI); true early-stage — employee #1–5 equity plausible.",
+      fitNote: "AI identity team in your sharpest wedge (NHI); true early-stage — employee #1–5 equity plausible.",
     },
     {
       id: "ts-newcore",
@@ -456,7 +456,7 @@ export const strategy: Strategy = {
       investors: "Cyberstarts → Conviction → Bessemer",
       signals: ["8200 CEO Maxim Bar Kogan", "hiring"],
       stage: "series_a_plus",
-      fitNote: "Agent control plane; 8200 CEO; hiring. Later-stage — lower equity, but strong logo/network in his core domain.",
+      fitNote: "Agent control plane; 8200 CEO; hiring. Later-stage — lower equity, but strong logo/network in your core domain.",
     },
     {
       id: "ts-oak",
@@ -498,7 +498,7 @@ export const strategy: Strategy = {
       investors: "Team8, Insight, M12",
       signals: ["Wiz/Microsoft alumni"],
       stage: "series_a_plus",
-      fitNote: "AI-native SOC — the delivery/FDE side of AI-for-cyber fits him well.",
+      fitNote: "AI-native SOC — the delivery/FDE side of AI-for-cyber fits you well.",
     },
     {
       id: "ts-enigma",
@@ -508,7 +508,7 @@ export const strategy: Strategy = {
       investors: "Index, Ribbit, Conviction",
       signals: ["8200 founders Jonathan Jacobi + Gal Niv"],
       stage: "seed",
-      fitNote: "Physical AI; 8200 founders. Selective fit — the ML core is research-heavy; his wedge would be cyber-for-physical-AI.",
+      fitNote: "Physical AI; 8200 founders. Selective fit — the ML core is research-heavy; your wedge would be cyber-for-physical-AI.",
     },
     {
       id: "ts-tenet",
@@ -549,10 +549,10 @@ export const strategy: Strategy = {
   // Co-founder strategy — section 4
   // ---------------------------------------------------------------------------
   cofounderStrategy: [
-    "His failure mode (couldn't find CEO+CTO) is best solved by joining an 8200-heavy, top-tier-VC startup where organic co-founders and first hires cluster.",
+    "Your failure mode (couldn't find CEO+CTO) is best solved by joining an 8200-heavy, top-tier-VC startup where organic co-founders and first hires cluster.",
     "Israeli founders overwhelmingly meet co-founders via unit (8200/81), prior company, and VC programs.",
     "Per an Ibex Investors study, nearly 50% of $100M+ Israeli cyber exits had 8200-trained founders, and startups founded by 8200 alumni averaged $317M acquisition prices.",
-    "Fill CPO/product + some technical yourself; recruit a CEO-type (or, if he becomes CTO/CPO, a strong technical or GTM complement).",
+    "Fill CPO/product + some technical yourself; recruit a CEO-type (or, if you become CTO/CPO, a strong technical or GTM complement).",
     "Foundry/EIR routes: Team8 foundry (co-found with them — explicit sign-up program), Cyberstarts inception model. Foundry/venture-creation models and inception investing are the fastest routes to core-team seats.",
     "Build visible reputation (\"FOMO\") before founding.",
     "Run co-founder trial projects; found only when you have (a) a co-founder who fills your gaps, (b) a domain/idea with design-partner pull, (c) VC FOMO.",

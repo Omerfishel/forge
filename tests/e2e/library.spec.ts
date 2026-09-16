@@ -58,6 +58,19 @@ test.describe("Library", () => {
     await expect(page.getByTestId("lib-row-t7-gandalf")).toHaveCount(0);
   });
 
+  test("a deep-link search is cleared when Library is opened from the nav, a typed one is kept", async ({ page }) => {
+    await page.goto("/#/library?q=Gandalf");
+    await expect(page.getByTestId("lib-count")).toContainText(/^1 of/);
+    await page.getByTestId("nav-today").click();
+    await page.getByTestId("nav-library").click();
+    await expect(page.getByTestId("lib-search")).toHaveValue("");
+    await expect(page.getByTestId("lib-count")).toContainText(/^154 of/);
+    await page.getByTestId("lib-search").fill("owasp");
+    await page.getByTestId("nav-today").click();
+    await page.getByTestId("nav-library").click();
+    await expect(page.getByTestId("lib-search")).toHaveValue("owasp");
+  });
+
   test("slash focuses the search box", async ({ page }) => {
     await go(page, "/library", "page-library");
     await page.getByTestId("lib-count").click();

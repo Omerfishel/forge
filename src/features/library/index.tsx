@@ -52,16 +52,19 @@ export default function LibraryPage() {
   const [layout, setLayout] = useState<Layout>("grouped");
   const searchRef = useRef<HTMLInputElement>(null);
 
-  // ?q= presets the search once, then is removed from the URL.
+  // ?q= (a deep link from another view) presets the search and clears chip filters so the
+  // target is visible. The preset is flagged so opening Library from the nav clears it again.
+  const setUi = useForge((s) => s.setUi);
   useEffect(() => {
     const q = params.get("q");
     if (q !== null) {
-      setFilters({ q });
+      setFilters({ q, tracks: [], types: [], cost: [], difficulty: [], priority: [], time: [], hideDone: false, onlyArtifacts: false });
+      setUi({ libQFromLink: true });
       params.delete("q");
       setParams(params, { replace: true });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [params]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -86,7 +89,7 @@ export default function LibraryPage() {
         <div className="frow">
           <div className="search">
             <span aria-hidden="true">🔍</span>
-            <input ref={searchRef} value={filters.q} onChange={(e) => setFilters({ q: e.target.value })} placeholder="Search title, creator, tags…" aria-label="Search resources" data-testid="lib-search" />
+            <input ref={searchRef} value={filters.q} onChange={(e) => { setFilters({ q: e.target.value }); setUi({ libQFromLink: false }); }} placeholder="Search title, creator, tags…" aria-label="Search resources" data-testid="lib-search" />
             <span className="k">/</span>
           </div>
           <Seg<Sort> value={sort} onChange={setSort} testId="lib-sort" options={[{ value: "priority", label: "Priority" }, { value: "hours", label: "Hours" }, { value: "title", label: "A–Z" }]} />

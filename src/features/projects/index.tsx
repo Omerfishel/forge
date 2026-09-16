@@ -1,4 +1,4 @@
-import { useCallback, useState, type DragEvent } from "react";
+import { useCallback, useEffect, useState, type DragEvent } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { content } from "@/data";
 import { useForge } from "@/store";
@@ -22,7 +22,7 @@ function KCard({ p, onOpen, dragging, setDragging }: { p: Project; onOpen: (id: 
   const toast = useToast();
   const col = colOf(entry?.status);
   const stepsDone = entry?.criteriaDone?.length ?? 0;
-  const bl = blockers(content, progress, p.id);
+  const bl = col === "done" ? [] : blockers(content, progress, p.id);
   const idx = COLS.findIndex((c) => c.key === col);
   const move = (to: Col) => { setStatus(p.id, "project", to); toast(<><b>{p.title}</b> → {COLS.find((c) => c.key === to)?.label}</>, "ok"); };
   return (
@@ -83,7 +83,7 @@ function ProjectModal({ p, onClose }: { p: Project; onClose: () => void }) {
           <div className="col" style={{ gap: 6 }}>
             {p.steps.map((s, i) => (
               <label key={i} className="row" style={{ gap: 10, alignItems: "flex-start", flexWrap: "nowrap", cursor: "pointer" }}>
-                <input type="checkbox" className="cbx" checked={done.has(i)} onChange={() => toggleCriterion(p.id, i, p.steps.length, "project")} data-testid={`proj-step-${i}`} />
+                <input type="checkbox" className="cbx" checked={done.has(i)} aria-label={s} onChange={() => toggleCriterion(p.id, i, p.steps.length, "project")} data-testid={`proj-step-${i}`} />
                 <span className={`small ${done.has(i) ? "faint" : ""}`} style={done.has(i) ? { textDecoration: "line-through" } : undefined}>{s}</span>
               </label>
             ))}
@@ -106,7 +106,7 @@ function ProjectModal({ p, onClose }: { p: Project; onClose: () => void }) {
           )}
           <div style={{ marginBottom: 10 }}>
             <span className="lbl">Hours · {fmtHours(entry?.hoursLogged ?? 0)} logged</span>
-            <div className="row"><input className="sel" type="number" min={0} step={0.5} value={hours} onChange={(e) => setHours(e.target.value)} style={{ width: 70 }} aria-label="Hours" data-testid="proj-hours" /><button className="sbtn sm" onClick={() => { const h = Number(hours); if (h > 0) { logHours(p.id, "project", h); toast(<>Logged <b>{h}h</b></>, "ok"); } }} data-testid="proj-hours-add">Log</button></div>
+            <div className="row"><input className="sel" type="number" min={0} max={100} step={0.5} value={hours} onChange={(e) => setHours(e.target.value)} style={{ width: 70 }} aria-label="Hours" data-testid="proj-hours" /><button className="sbtn sm" onClick={() => { const h = Number(hours); if (!(h > 0) || h > 100) { toast("Enter between 0.5 and 100 hours.", "bad"); return; } const wasTodo = !entry || entry.status === "todo"; logHours(p.id, "project", h); toast(<>Logged <b>{h}h</b>{wasTodo ? " · moved to In progress" : ""}</>, "ok"); }} data-testid="proj-hours-add">Log</button></div>
           </div>
           <div>
             <span className="lbl">Publish links</span>
@@ -136,6 +136,8 @@ export default function ProjectsPage() {
   const toast = useToast();
   const openId = params.get("open");
   const openProject = openId ? content.projects.find((p) => p.id === openId) : undefined;
+  useEffect(() => { if (openId && !openProject) { params.delete("open"); setParams(params, { replace: true }); } // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [openId, openProject]);
   const open = useCallback((id: string) => { params.set("open", id); setParams(params); }, [params, setParams]);
   const close = useCallback(() => { params.delete("open"); setParams(params); }, [params, setParams]);
 

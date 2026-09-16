@@ -93,9 +93,9 @@ export default function PathsPage() {
               <div className="body">
                 <div className="row" style={{ justifyContent: "space-between" }}>
                   <b style={{ fontSize: 14 }}>{p.name}</b>
-                  {isActive ? <span className="bdg high">Active</span> : <button className="sbtn sm" onClick={() => { update({ activePathId: p.id }); toast(<>Active path: <b>{p.name}</b></>, "ok"); }} data-testid={`path-activate-${p.id}`}>Activate</button>}
+                  {isActive ? <span className="bdg high">Active</span> : <button className="sbtn sm" onClick={() => { update({ activePathId: p.id, hoursPerWeek: p.hoursPerWeek }); toast(<>Active path: <b>{p.name}</b> · budget set to {p.hoursPerWeek}h/wk</>, "ok"); }} data-testid={`path-activate-${p.id}`}>Activate</button>}
                 </div>
-                <div className="fmeta" style={{ marginTop: 6 }}>{p.durationMonths} mo · {p.hoursPerWeek}h/wk · {p.items.length} items{p.variantOf ? " · variant" : ""}</div>
+                <div className="fmeta" style={{ marginTop: 6 }}>{p.durationMonths} mo · {p.hoursPerWeek}h/wk · {prog.total} items + {prog.drills} drills{p.variantOf ? " · variant" : ""}</div>
                 <p className="muted small" style={{ margin: "8px 0" }}>{p.description}</p>
                 <div className="deliver" style={{ marginBottom: 8 }}><span className="lbl">Output</span>{p.output}</div>
                 <div className="row" style={{ justifyContent: "space-between" }}><span className="fmeta">{prog.done}/{prog.total} done</span><span className="fmeta">{prog.pct}%</span></div>
@@ -108,7 +108,7 @@ export default function PathsPage() {
 
       <div className="stat-grid" data-testid="path-stats">
         <div className="stat"><div className="big">{phase}</div><div className="lb">Current phase</div><div className="sm">{active.phases.find((p) => p.phase === phase)?.title}</div></div>
-        <div className="stat"><div className="big">{week + 1}</div><div className="lb">Week</div><div className="sm">of ~{Math.round(active.durationMonths * 4.345)}</div></div>
+        <div className="stat"><div className="big">{Math.min(week + 1, Math.round(active.durationMonths * 4.345))}</div><div className="lb">Week</div><div className="sm">of ~{Math.round(active.durationMonths * 4.345)}{week + 1 > Math.round(active.durationMonths * 4.345) ? " · past the end" : ""}</div></div>
         <div className="stat"><div className="big">{pp.pct}%</div><div className="lb">Path progress</div><div className="sm">{pp.done}/{pp.total} items · {pp.drillsActive}/{pp.drills} drills active</div></div>
         <div className="stat"><div className="big">{msDone}<span className="muted" style={{ fontSize: 16 }}>/{ms.length}</span></div><div className="lb">Milestones</div></div>
       </div>

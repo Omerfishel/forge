@@ -58,9 +58,9 @@ export default function DashboardPage() {
       <div className="hero">
         <div className="hero-icon" aria-hidden="true">🎯</div>
         <div>
-          <div className="hero-name">Today</div>
+          <div className="hero-name">Today{settings.name ? ` · ${settings.name}` : ""}</div>
           <div className="hero-line">{fmtLong(parseKey(today))}</div>
-          <div className="fmeta" style={{ marginTop: 4 }}>Program start {settings.startDate} · week {plan.week + 1} of {pace.totalWeeks} · Phase {plan.phase}: {plan.phaseTitle}</div>
+          <div className="fmeta" style={{ marginTop: 4 }}>Program start {settings.startDate} · week {Math.min(plan.week + 1, pace.totalWeeks)} of {pace.totalWeeks} · Phase {plan.phase}: {plan.phaseTitle}</div>
         </div>
       </div>
 
@@ -115,8 +115,9 @@ export default function DashboardPage() {
             </div>
           )}
           <div style={{ marginTop: 12 }} data-testid="week-hours">
-            <div className="row" style={{ justifyContent: "space-between" }}><span className="fmeta">{plan.plannedHours}h planned of {plan.budgetHours}h this week</span><span className="fmeta">{Math.min(100, Math.round((plan.plannedHours / Math.max(1, plan.budgetHours)) * 100))}%</span></div>
-            <div style={{ marginTop: 6 }}><Bar pct={(plan.plannedHours / Math.max(1, plan.budgetHours)) * 100} color={plan.plannedHours > plan.budgetHours ? "var(--warn)" : "var(--ok)"} height={7} /></div>
+            <div className="row" style={{ justifyContent: "space-between" }}><span className="fmeta">Next {plan.next.length} unblocked ≈ {plan.plannedHours}h · budget {plan.budgetHours}h/wk</span><span className="fmeta">≈ {Math.max(1, Math.ceil(plan.plannedHours / Math.max(1, plan.budgetHours)))} week{Math.ceil(plan.plannedHours / Math.max(1, plan.budgetHours)) > 1 ? "s" : ""} of work</span></div>
+            <div style={{ marginTop: 6 }}><Bar pct={Math.min(100, (plan.budgetHours / Math.max(1, plan.plannedHours)) * 100)} color="var(--ok)" height={7} /></div>
+            <div className="xs faint" style={{ marginTop: 4 }}>The bar is this week's budget as a share of the queued work. Start with the first item; the list refills as you finish.</div>
           </div>
         </Card>
 
@@ -145,7 +146,7 @@ export default function DashboardPage() {
               <span className="lbl">Continue</span>
               {inProgress.length === 0 ? <div className="rubric">Nothing in progress. Start something from the week list.</div> : (
                 <div className="col" style={{ gap: 4 }} data-testid="continue-list">
-                  {inProgress.map((p) => <Link key={p.itemId} to={routeForItem(content, p.itemId)} className="small">{iconForType(p.itemType)} {findItem(content, p.itemId)?.item.title}{p.percentComplete ? <span className="faint xs"> · {p.percentComplete}%</span> : null}</Link>)}
+                  {inProgress.map((p) => <Link key={p.itemId} to={routeForItem(content, p.itemId)} className="small">{iconForType(p.itemType)} {findItem(content, p.itemId)?.item.title}{p.percentComplete && p.percentComplete < 100 ? <span className="faint xs"> · {p.percentComplete}%</span> : null}</Link>)}
                 </div>
               )}
             </div>

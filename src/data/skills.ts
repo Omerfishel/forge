@@ -132,7 +132,7 @@ export const skills: Skill[] = [
     trackId: "T1_AI_ML",
     name: "Agentic coding tools",
     description:
-      "Claude Code and Cursor mastery: spec-driven development (CLAUDE.md/AGENTS.md, plan mode, hooks). A force multiplier because he will build everything with AI assistance.",
+      "Claude Code and Cursor mastery: spec-driven development (CLAUDE.md/AGENTS.md, plan mode, hooks). A force multiplier because you will build everything with AI assistance.",
   },
 
   // ------------------------------------------------------- T2 Backend/Systems
@@ -192,7 +192,7 @@ export const skills: Skill[] = [
     trackId: "T2_BACKEND_SYSTEMS",
     name: "DevOps, CI/CD & observability",
     description:
-      "GitHub Actions pipelines, deployment automation and service observability — the minimum to run what he ships.",
+      "GitHub Actions pipelines, deployment automation and service observability — the minimum to run what you ship.",
   },
 
   // --------------------------------------------------------------- T3 Product
@@ -338,7 +338,7 @@ export const skills: Skill[] = [
     trackId: "T5_SALES_GTM",
     name: "Selling to CISOs",
     description:
-      "Enterprise security buying: budget cycles, procurement, champions and POCs. No canonical book — curated from CISO newsletters, practitioner blogs and his own network.",
+      "Enterprise security buying: budget cycles, procurement, champions and POCs. No canonical book — curated from CISO newsletters, practitioner blogs and your own network.",
     parentSkillId: "founder-led-sales",
   },
   {
@@ -379,7 +379,7 @@ export const skills: Skill[] = [
     trackId: "T6_FOUNDER",
     name: "Co-founder selection & agreements",
     description:
-      "The must-do fix for his documented failure mode: YC co-founder matching, a trial project before committing, equal-ish splits with 4-year vesting / 1-year cliff, a written founder prenup.",
+      "The must-do fix for your documented failure mode: YC co-founder matching, a trial project before committing, equal-ish splits with 4-year vesting / 1-year cliff, a written founder prenup.",
   },
   {
     id: "hiring",
@@ -430,7 +430,7 @@ export const skills: Skill[] = [
     trackId: "T7_DOMAIN",
     name: "Non-human identity (NHI)",
     description:
-      "Identity, secrets and permissions for machines and agents — his sharpest wedge; the NHI vendor landscape via nhimg.org, Aembit and HashiCorp Vault.",
+      "Identity, secrets and permissions for machines and agents — your sharpest wedge; the NHI vendor landscape via nhimg.org, Aembit and HashiCorp Vault.",
   },
   {
     id: "workload-identity",
@@ -526,7 +526,7 @@ export const skills: Skill[] = [
     trackId: "T8_META",
     name: "Personal knowledge management",
     description:
-      "Writing to think in Obsidian or Notion: notes linked to resources and projects, captured as he learns.",
+      "Writing to think in Obsidian or Notion: notes linked to resources and projects, captured as you learn.",
   },
   {
     id: "learning-in-public",

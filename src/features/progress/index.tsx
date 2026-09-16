@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { content } from "@/data";
 import { useForge } from "@/store";
 import { useOverall, usePace, useStreak, useToday } from "@/lib/hooks";
@@ -7,7 +7,8 @@ import { trackStats, itemTitle } from "@/lib/plan";
 import { heatmap } from "@/lib/streaks";
 import { fmtDate, relTime } from "@/lib/dates";
 import { fmtHours, ROLE_LABEL, STATUS_LABEL } from "@/lib/labels";
-import { Bar, Card, PageHeader, useToast } from "@/components/ui";
+import { Bar, Card, PageHeader } from "@/components/ui";
+import { findItem } from "@/lib/plan";
 import { heatPadding } from "@/features/drills/lib";
 
 export default function ProgressPage() {
@@ -23,23 +24,16 @@ export default function ProgressPage() {
   const reviewed = useForge((s) => s.srsReviewedToday);
   const settings = useForge((s) => s.settings);
   const update = useForge((s) => s.updateSettings);
-  const celebrated = useForge((s) => s.celebrated);
-  const markCelebrated = useForge((s) => s.markCelebrated);
-  const toast = useToast();
 
-  const reviewedTotal = Object.values(reviewed).reduce((a, b) => a + b, 0);
+  const reviewedTotal = Object.values(reviewed).reduce((a, b) => a + (Number(b) || 0), 0);
   const drillsTotal = Object.values(drillLog).reduce((a, l) => a + l.length, 0);
   const doneToday = completions[today] ?? 0;
-  const list = useMemo(() => achievements({ bundle: content, progress, completions, drillLog, pomoCount, notesCount: notes.length, srsReviewed: reviewedTotal, paceAhead: pace.cls === "ahead" }), [progress, completions, drillLog, pomoCount, notes.length, reviewedTotal, pace.cls]);
+  const list = useMemo(() => achievements({ bundle: content, progress, completions, drillLog, pomoCount, notesCount: notes.length, srsReviewed: reviewedTotal, paceAhead: pace.cls === "ahead" && pace.delta >= 3 }), [progress, completions, drillLog, pomoCount, notes.length, reviewedTotal, pace.cls, pace.delta]);
   const got = list.filter((a) => a.done).length;
-
-  useEffect(() => {
-    for (const a of list) if (a.done && !celebrated[a.id]) { markCelebrated(a.id); toast(<>🏆 <b>Achievement unlocked:</b> {a.name}</>, "ok"); }
-  }, [list, celebrated, markCelebrated, toast]);
 
   const cells = heatmap(completions, 91, today);
   const pad = heatPadding(cells[0].key);
-  const recent = Object.values(progress).filter((p) => p.updatedAt).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)).slice(0, 12);
+  const recent = Object.values(progress).filter((p) => p.updatedAt && findItem(content, p.itemId)).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)).slice(0, 12);
   const tracks = [...content.tracks].sort((a, b) => a.priorityRank - b.priorityRank);
 
   return (
@@ -56,7 +50,7 @@ export default function ProgressPage() {
 
       <div className="grid-2 mb16" style={{ alignItems: "start" }}>
         <div className={`card`} style={{ borderColor: pace.cls === "ahead" ? "color-mix(in srgb, var(--ok) 45%, var(--line-solid))" : pace.cls === "behind" ? "color-mix(in srgb, var(--warn) 45%, var(--line-solid))" : undefined }} data-testid="pace-card">
-          <div className="card-h">Pace · week {pace.week + 1} of {pace.totalWeeks}</div>
+          <div className="card-h">Pace · week {Math.min(pace.week + 1, pace.totalWeeks)} of {pace.totalWeeks}</div>
           <div className="body">
             <div style={{ fontWeight: 750, fontSize: 18, color: pace.cls === "ahead" ? "var(--ok)" : pace.cls === "behind" ? "var(--warn)" : "var(--acc)" }}>{pace.status}</div>
             <p className="small muted" style={{ margin: "8px 0 12px" }}>{pace.msg}</p>
@@ -68,7 +62,7 @@ export default function ProgressPage() {
         </div>
         <Card title="Daily goal">
           <div className="row" style={{ gap: 12 }}>
-            <span className="mono" style={{ font: "750 20px/1 var(--mono)", color: "var(--acc)", minWidth: 56 }} data-testid="goal-value">{doneToday} / {settings.dailyGoal}</span>
+            <span className="mono acc" style={{ font: "750 20px/1 var(--mono)", minWidth: 56 }} data-testid="goal-value">{doneToday} / {settings.dailyGoal}</span>
             <div style={{ flex: 1 }}><Bar pct={(doneToday / Math.max(1, settings.dailyGoal)) * 100} color="var(--acc)" height={12} /></div>
             <div className="row" style={{ gap: 6 }}>
               <button className="sbtn sm" onClick={() => update({ dailyGoal: Math.max(1, settings.dailyGoal - 1) })} disabled={settings.dailyGoal <= 1} aria-label="Decrease daily goal" data-testid="goal-dec">−</button>

@@ -28,7 +28,7 @@ export const t5Resources: Resource[] = [
     buildsSkill:
       "Run founder-led sales end-to-end: build a target list, do outbound, run discovery and pitch calls, handle objections, close, and manage an early pipeline — before there is a sales team.",
     whyForHim:
-      "He already has technical pre/post-sales and solutions-architecture experience, but CEO-style outbound/GTM is the gap that sank his last founding attempt, and 'founder-led sales (enough to sell without being CEO)' is on his skills-to-close list in the five-year plan. Founding Sales is the Phase 1 read (days 30–90), the closer of Variant A and the opener of Variant C, and it is the playbook behind the daily d-cold-outreach-day drill.",
+      "You already has technical pre/post-sales and solutions-architecture experience, but CEO-style outbound/GTM is the gap that sank your last founding attempt, and 'founder-led sales (enough to sell without being CEO)' is on your skills-to-close list in the five-year plan. Founding Sales is the Phase 1 read (days 30–90), the closer of Variant A and the opener of Variant C, and it is the playbook behind the daily d-cold-outreach-day drill.",
     priority: "must_do",
     producesArtifact: false,
     trackIds: ["T5_SALES_GTM", "T6_FOUNDER", "T4_FDE_SE"],
@@ -68,7 +68,7 @@ export const t5Resources: Resource[] = [
     buildsSkill:
       "Grasp founder-led sales as a go-to-market design pattern (iterate the sales motion the way Lean Startup iterates the product) in deck form, then hear it applied by founders who did it, episode by episode.",
     whyForHim:
-      "The 60-minute version of Founding Sales: the deck gives him the mental model before the book, and the podcast is commute-sized reinforcement while he is doing daily cold outreach in Phase 1. It is also the vocabulary he needs when a seed-stage founder asks an FDE/founding SE to 'help with sales' — the five-year plan wants him able to sell without being the CEO.",
+      "The 60-minute version of Founding Sales: the deck gives you the mental model before the book, and the podcast is commute-sized reinforcement while you are doing daily cold outreach in Phase 1. It is also the vocabulary you need when a seed-stage founder asks an FDE/founding SE to 'help with sales' — the five-year plan wants you able to sell without being the CEO.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T5_SALES_GTM", "T6_FOUNDER"],
@@ -77,9 +77,9 @@ export const t5Resources: Resource[] = [
     tags: ["founder_led_sales", "gtm", "deck", "podcast", "phase1", "variant_a"],
     freshness: "current",
     qualitySignal:
-      "Companion material the research doc pairs with the must-do Founding Sales book ('his First Round Review podcast + \"founder led selling\" deck'). Kazanjy formalized the pattern at TalentBin (2011–14) and is a frequent First Round Review contributor; the deck post is linked from foundingsales.com as its sister presentation.",
+      "Companion material the research doc pairs with the must-do Founding Sales book ('your First Round Review podcast + \"founder led selling\" deck'). Kazanjy formalized the pattern at TalentBin (2011–14) and is a frequent First Round Review contributor; the deck post is linked from foundingsales.com as its sister presentation.",
     notes:
-      "Split out of the research doc's t5-founding-sales bullet. CAVEAT: the doc says 'his First Round Review podcast'; what foundingsales.com actually links (2026-09-16) is Kazanjy's own 'Founder-Led Sales Stories' podcast (Spotify) + Substack newsletter — no First Round Review podcast link was found on the site, so the attribution may be a conflation; re-verify. The blog post embeds a Google Slides deck (link below). The SlideShare 'Zero to 100 — Part 3: Founder-led Selling' deck was located by web search and not opened. Podcast is ongoing; the 3h estimate covers the deck plus a few episodes.",
+      "Split out of the research doc's t5-founding-sales bullet. CAVEAT: the doc says 'your First Round Review podcast'; what foundingsales.com actually links (2026-09-16) is Kazanjy's own 'Founder-Led Sales Stories' podcast (Spotify) + Substack newsletter — no First Round Review podcast link was found on the site, so the attribution may be a conflation; re-verify. The blog post embeds a Google Slides deck (link below). The SlideShare 'Zero to 100 — Part 3: Founder-led Selling' deck was located by web search and not opened. Podcast is ongoing; the 3h estimate covers the deck plus a few episodes.",
     links: [
       {
         label: "Founder-Led Sales deck (Google Slides, embedded in the post)",
@@ -113,7 +113,7 @@ export const t5Resources: Resource[] = [
     buildsSkill:
       "Position a B2B tech product with the Dunford method: competitive alternatives → unique attributes → value → best-fit customers → market category ('find your product's secret sauce').",
     whyForHim:
-      "The five-year plan's very first action is a one-line positioning statement (including reframing the failed founding attempt as 'learned the co-founder-fit lesson the hard way'), and the T5 ready-when literally requires 'position a product (Dunford canvas)'. His wedge is an intersection — agent/NHI security + AI-for-SOC — that only lands if it is positioned sharply against what a CISO already buys. Phase 3 of the primary path and step 2 of Variant C.",
+      "The five-year plan's very first action is a one-line positioning statement (including reframing the failed founding attempt as 'learned the co-founder-fit lesson the hard way'), and the T5 ready-when literally requires 'position a product (Dunford canvas)'. Your wedge is an intersection — agent/NHI security + AI-for-SOC — that only lands if it is positioned sharply against what a CISO already buys. Phase 3 of the primary path and step 2 of Variant C.",
     priority: "must_do",
     producesArtifact: false,
     trackIds: ["T5_SALES_GTM", "T3_PRODUCT", "T6_FOUNDER"],
@@ -180,7 +180,7 @@ export const t5Resources: Resource[] = [
     buildsSkill:
       "Produce a filled-in positioning canvas and a storyboarded sales pitch for one specific product and buyer.",
     whyForHim:
-      "The cheapest way to turn the two Dunford books into a portfolio artifact: fill the canvas for his own wedge (agent/NHI security or AI-SOC) now, and again for the startup he joins. A completed canvas + storyboard is exactly the evidence the T5 ready-when asks for ('position a product (Dunford canvas)') and it seeds the Phase 3 'positioning + pitch deck' milestone.",
+      "The cheapest way to turn the two Dunford books into a portfolio artifact: fill the canvas for your own wedge (agent/NHI security or AI-SOC) now, and again for the startup you join. A completed canvas + storyboard is exactly the evidence the T5 ready-when asks for ('position a product (Dunford canvas)') and it seeds the Phase 3 'positioning + pitch deck' milestone.",
     priority: "high",
     producesArtifact: true,
     trackIds: ["T5_SALES_GTM", "T6_FOUNDER"],
@@ -213,7 +213,7 @@ export const t5Resources: Resource[] = [
     buildsSkill:
       "Qualify and run enterprise deals with MEDDPICC — Metrics, Economic Buyer, Decision Criteria, Decision Process, Paper Process, Implicate the Pain, Champion, Competition — and know when a deal is not real.",
     whyForHim:
-      "Enterprise security deals are long and multi-stakeholder (CISO, security review, procurement, legal); the research doc singles out MEDDPICC as the sales framework most relevant to them. As an FDE/founding SE he will be asked to find the champion, quantify the pain and shape the decision/paper process during POCs, and this is the vocabulary the AEs he works alongside will use with him.",
+      "Enterprise security deals are long and multi-stakeholder (CISO, security review, procurement, legal); the research doc singles out MEDDPICC as the sales framework most relevant to them. As an FDE/founding SE you will be asked to find the champion, quantify the pain and shape the decision/paper process during POCs, and this is the vocabulary the AEs you work alongside will use with you.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T5_SALES_GTM", "T4_FDE_SE"],
@@ -243,7 +243,7 @@ export const t5Resources: Resource[] = [
     buildsSkill:
       "Consultative discovery with Situation → Problem → Implication → Need-payoff questioning, so buyers articulate the cost of the problem before any feature pitch.",
     whyForHim:
-      "AI FDEs spend 30–40% of the week in conversational customer discovery (T4 FDE explainers); SPIN is the commercial questioning discipline that pairs with The Mom Test's honesty rules and his existing solutions-architect instincts. Selective reading — skim for the questioning model if time is short; useful script material for the 'skeptical CISO buyer' discovery workout.",
+      "AI FDEs spend 30–40% of the week in conversational customer discovery (T4 FDE explainers); SPIN is the commercial questioning discipline that pairs with The Mom Test's honesty rules and your existing solutions-architect instincts. Selective reading — skim for the questioning model if time is short; useful script material for the 'skeptical CISO buyer' discovery workout.",
     priority: "optional",
     producesArtifact: false,
     trackIds: ["T5_SALES_GTM", "T4_FDE_SE"],
@@ -303,7 +303,7 @@ export const t5Resources: Resource[] = [
     buildsSkill:
       "Tactical empathy in negotiation: mirroring, labeling, calibrated questions, the accusation audit and getting to 'that's right' — for offers, contracts and stakeholder conflicts.",
     whyForHim:
-      "He negotiates twice in this plan: his own FDE/founding-SE offer (the five-year plan targets 35k+ ILS/month and ≥0.15–0.25% equity, with a defined threshold for mega-seed vs true early-seed offers) and, pre-founding, co-founder equity/vesting and design-partner terms — the co-founder conversation being his documented failure mode. It is also the script source for the biweekly d-negotiation-roleplay drill and the last item of Variant C.",
+      "You negotiate twice in this plan: your own FDE/founding-SE offer (the five-year plan targets 35k+ ILS/month and ≥0.15–0.25% equity, with a defined threshold for mega-seed vs true early-seed offers) and, pre-founding, co-founder equity/vesting and design-partner terms — the co-founder conversation being your documented failure mode. It is also the script source for the biweekly d-negotiation-roleplay drill and the last item of Variant C.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T5_SALES_GTM", "T6_FOUNDER"],
@@ -333,7 +333,7 @@ export const t5Resources: Resource[] = [
     buildsSkill:
       "Principled negotiation: separate the people from the problem, focus on interests not positions, invent options for mutual gain, insist on objective criteria, and know your BATNA.",
     whyForHim:
-      "Interests-vs-positions and BATNA are exactly the frame a co-founder equity/vesting talk needs (the T6 must-do workstream that fixes his past failure mode), and the objective-criteria habit is what keeps POC-scope and procurement negotiations from becoming haggling. Read after Voss if time is short.",
+      "Interests-vs-positions and BATNA are exactly the frame a co-founder equity/vesting talk needs (the T6 must-do workstream that fixes your past failure mode), and the objective-criteria habit is what keeps POC-scope and procurement negotiations from becoming haggling. Read after Voss if time is short.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T5_SALES_GTM", "T6_FOUNDER"],
@@ -349,20 +349,20 @@ export const t5Resources: Resource[] = [
   {
     id: "t5-ciso-buying",
     title: "Selling to CISOs: enterprise security buying (curation gap)",
-    creator: "Curated — CISO-focused newsletters, practitioner blogs, his own network",
+    creator: "Curated — CISO-focused newsletters, practitioner blogs, your own network",
     url: "https://ventureinsecurity.net",
     urlVerified: true,
     urlVerifiedDate: "2026-09-16",
     resourceType: "newsletter",
     format: "reading",
-    cost: { model: "freemium", note: "Practitioner newsletters are mostly free with optional paid tiers; his own network is free." },
+    cost: { model: "freemium", note: "Practitioner newsletters are mostly free with optional paid tiers; your own network is free." },
     timeBucket: "ongoing",
     difficulty: "intermediate",
     prerequisites: ["t5-founding-sales", "t5-meddic"],
     buildsSkill:
-      "Understand how enterprise security is bought — budget cycles, procurement and security review, champions vs economic buyers, POC/pilot design, what makes a CISO say yes — and apply it to his own outreach, demos and POC scoping.",
+      "Understand how enterprise security is bought — budget cycles, procurement and security review, champions vs economic buyers, POC/pilot design, what makes a CISO say yes — and apply it to your own outreach, demos and POC scoping.",
     whyForHim:
-      "CISOs are his native audience — 8200 + solutions-architect background means he already speaks security — but he lacks the buyer-side view (budgets, procurement, champion-building) needed to sell agent/NHI security or AI-SOC into an enterprise. This feeds the 'skeptical CISO buyer' discovery workout and the enterprise-security procurement objection-handling roleplay, and later the design-partner conversations the five-year plan requires before founding.",
+      "CISOs are your native audience — 8200 + solutions-architect background means you already speaks security — but you lack the buyer-side view (budgets, procurement, champion-building) needed to sell agent/NHI security or AI-SOC into an enterprise. This feeds the 'skeptical CISO buyer' discovery workout and the enterprise-security procurement objection-handling roleplay, and later the design-partner conversations the five-year plan requires before founding.",
     priority: "high",
     producesArtifact: true,
     trackIds: ["T5_SALES_GTM", "T4_FDE_SE", "T7_DOMAIN"],
@@ -373,6 +373,6 @@ export const t5Resources: Resource[] = [
     qualitySignal:
       "Research doc: 'no single canonical book — gap to fill via practitioner blogs'. Placeholder pointer: Venture in Security (Ross Haleliuk; 22,000+ subscribers, free Substack as of 2026-09-16) analyses the business of cybersecurity for practitioners, founders, investors and executives.",
     notes:
-      "NEEDS-CURATION — gap flagged in the research doc ('Curate via CISO-focused newsletters + his own network; no single canonical book'). The URL is a suggested starting point added from memory, NOT from the research doc (fetched OK 2026-09-16); replace/extend with whatever CISO newsletters and practitioner blogs prove useful. Artifact: his own curated reading list + a one-page 'how a CISO buys' map (budget cycle, procurement/security review, champion vs economic buyer, POC design).",
+      "NEEDS-CURATION — gap flagged in the research doc ('Curate via CISO-focused newsletters + your own network; no single canonical book'). The URL is a suggested starting point added from memory, NOT from the research doc (fetched OK 2026-09-16); replace/extend with whatever CISO newsletters and practitioner blogs prove useful. Artifact: your own curated reading list + a one-page 'how a CISO buys' map (budget cycle, procurement/security review, champion vs economic buyer, POC design).",
   },
 ];

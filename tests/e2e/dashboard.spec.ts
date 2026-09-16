@@ -20,7 +20,8 @@ test.describe("Today dashboard", () => {
   test("completing a week item updates the header, streak and glance; it persists across reload", async ({ page }) => {
     await go(page, "/today", "page-dashboard");
     await page.getByTestId("week-done-t1-karpathy-zth").check();
-    await expect(page.getByTestId("toast").last()).toContainText("Done");
+    await expect(page.getByTestId("toast").filter({ hasText: "Done." })).toBeVisible();
+    await expect(page.getByTestId("toast").filter({ hasText: "Achievement unlocked" })).toBeVisible();
     await expect(page.getByTestId("ov-meta")).toContainText(/^1\//);
     await expect(page.getByTestId("glance-today")).toHaveText("1");
     await expect(page.getByTestId("glance-streak")).toContainText("1");

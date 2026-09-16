@@ -118,3 +118,71 @@ describe("store: settings, export/import, reset, persistence", () => {
     expect(JSON.parse(raw!).state.progress.z.status).toBe("done");
   });
 });
+
+describe("store: status/percent semantics", () => {
+  it("leaving done drops the 100%; in-progress keeps only a real partial value", () => {
+    const s = useForge.getState();
+    s.setStatus("r", "resource", "done");
+    s.setStatus("r", "resource", "in_progress");
+    expect(useForge.getState().progress.r.percentComplete).toBeUndefined();
+    s.setPercent("r", "resource", 40);
+    s.setStatus("r", "resource", "in_progress");
+    expect(useForge.getState().progress.r.percentComplete).toBe(40);
+    s.setStatus("r", "resource", "todo");
+    expect(useForge.getState().progress.r.percentComplete).toBe(0);
+  });
+  it("a done project stays done while its checklist is edited; rubrics derive strictly", () => {
+    const s = useForge.getState();
+    s.setStatus("p", "project", "done");
+    s.toggleCriterion("p", 0, 5, "project");
+    expect(useForge.getState().progress.p.status).toBe("done");
+    s.toggleCriterion("a", 0, 2);
+    s.toggleCriterion("a", 1, 2);
+    expect(useForge.getState().progress.a.status).toBe("done");
+    s.toggleCriterion("a", 1, 2);
+    expect(useForge.getState().progress.a.status).toBe("in_progress");
+  });
+  it("planned purchases toggle independently of progress", () => {
+    useForge.getState().togglePlanned("x");
+    expect(useForge.getState().planned.x).toBe(true);
+    expect(useForge.getState().progress.x).toBeUndefined();
+    useForge.getState().togglePlanned("x");
+    expect(useForge.getState().planned.x).toBeUndefined();
+  });
+});
+
+describe("store: import sanitising", () => {
+  it("repairs malformed backups instead of corrupting state", () => {
+    const ok = useForge.getState().importState({
+      progress: { a: { status: "bogus", percentComplete: 900, hoursLogged: "4" }, b: 5 },
+      notes: [{ id: "n1", title: "t", body: "b" }, "junk", { title: 3 }],
+      drillLog: { d: ["2026-09-10", "nope", "2026-09-10"] },
+      completions: { "2026-09-10": "2", bad: 1 },
+      srs: { c: { due: "2026-09-20", reps: "3", ease: 0.1 }, broken: { reps: 1 } },
+      srsReviewedToday: { "2026-09-10": "40" },
+      settings: { hoursPerWeek: null, startDate: "garbage", dailyGoal: 2.5, theme: "pink", pomo: { focus: 999 } },
+      pomoCount: "7",
+    });
+    expect(ok).toBe(true);
+    const st = useForge.getState();
+    expect(st.progress.a).toMatchObject({ status: "todo", percentComplete: 0, hoursLogged: 4 });
+    expect(st.progress.b).toBeUndefined();
+    expect(st.notes).toHaveLength(2);
+    expect(st.notes[0].tags).toEqual([]);
+    expect(st.drillLog.d).toEqual(["2026-09-10"]);
+    expect(st.completions).toEqual({ "2026-09-10": 2 });
+    expect(st.srs.c).toMatchObject({ reps: 3, ease: 2.5, due: "2026-09-20" });
+    expect(st.srs.broken).toBeUndefined();
+    expect(st.srsReviewedToday["2026-09-10"]).toBe(40);
+    expect(st.settings.hoursPerWeek).toBe(12);
+    expect(st.settings.startDate).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect(st.settings.dailyGoal).toBe(3);
+    expect(st.settings.theme).toBe("dark");
+    expect(st.settings.pomo.focus).toBe(25);
+    expect(st.pomoCount).toBe(7);
+  });
+  it("rejects objects that carry no Forge data", () => {
+    expect(useForge.getState().importState({ hello: "world" })).toBe(false);
+    expect(useForge.getState().importState([])).toBe(false);
+  });
+});

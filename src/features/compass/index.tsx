@@ -1,8 +1,8 @@
 import { useMemo, useState } from "react";
 import { content } from "@/data";
 import { useForge } from "@/store";
-import { Card, Chip, PageHeader } from "@/components/ui";
-import { FIT_COLOR, FIT_KIND, FIT_LABEL, FIT_ORDER, is8200, isCompassTab, STAGE_FILTERS, STAGE_KIND, STAGE_LABEL, TABS, type CompassTab, type StageFilter } from "./shared";
+import { Card, Chip, Md, PageHeader } from "@/components/ui";
+import { FIT_COLOR, FIT_KIND, FIT_LABEL, FIT_ORDER, is8200, isCompassTab, STAGE_FILTERS, STAGE_KIND, STAGE_LABEL, stripThresholdPrefix, TABS, type CompassTab, type StageFilter } from "./shared";
 
 const S = content.strategy;
 
@@ -12,7 +12,7 @@ function Overview() {
       <Card title="TL;DR" className="accent mb16" testId="compass-tldr">
         <ul style={{ margin: 0, paddingLeft: 18 }} className="small">{S.tldr.map((t, i) => <li key={i} style={{ marginBottom: 6 }}>{t}</li>)}</ul>
       </Card>
-      <div className="grid-2">{S.keyFindings.map((k) => <Card key={k.id} title={k.title} testId={`finding-${k.id}`}><p className="small muted" style={{ margin: 0 }}>{k.body}</p></Card>)}</div>
+      <div className="grid-2">{S.keyFindings.map((k) => <Card key={k.id} title={k.title} testId={`finding-${k.id}`}><div className="small muted"><Md text={k.body} /></div></Card>)}</div>
     </>
   );
 }
@@ -38,7 +38,7 @@ function Domains() {
       <Card title="Adjacent domains worth adding" className="mt16">
         {[...S.adjacentDomains].sort((a, b) => a.rank - b.rank).map((a) => (
           <div key={a.id} className="item" style={{ ["--tc" as string]: "var(--acc)" }} data-testid={`adjacent-${a.id}`}>
-            <span className="mono" style={{ color: "var(--acc)", fontWeight: 700 }}>{a.rank}</span>
+            <span className="mono acc" style={{ fontWeight: 700 }}>{a.rank}</span>
             <div className="i-main"><div className="i-titlerow" style={{ cursor: "default" }}><span className="i-title">{a.name}</span></div><div className="small muted" style={{ marginTop: 4 }}>{a.rationale}</div>{a.examples && a.examples.length > 0 && <div className="chips" style={{ marginTop: 6 }}>{a.examples.map((e) => <span key={e} className="chip sm">{e}</span>)}</div>}</div>
           </div>
         ))}
@@ -59,7 +59,7 @@ function Roles() {
                 {i < S.roleLadder.length - 1 && <span style={{ flex: 1, width: 2, background: "var(--line-solid)", minHeight: 24 }} />}
               </div>
               <div style={{ paddingBottom: 18, minWidth: 0 }}>
-                <div className="lbl" style={{ color: "var(--acc)" }}>{r.horizon}</div>
+                <div className="lbl acc">{r.horizon}</div>
                 <b>{r.title}</b>
                 <div className="small muted" style={{ marginTop: 4 }}>{r.detail}</div>
                 {r.fallback && <div className="xs faint" style={{ marginTop: 4 }}>Fallback: {r.fallback}</div>}
@@ -68,7 +68,7 @@ function Roles() {
           ))}
         </div>
       </Card>
-      <div className="grid-2">{S.roleStrategy.map((k) => <Card key={k.id} title={k.title}><p className="small muted" style={{ margin: 0 }}>{k.body}</p></Card>)}</div>
+      <div className="grid-2">{S.roleStrategy.map((k) => <Card key={k.id} title={k.title}><div className="small muted"><Md text={k.body} /></div></Card>)}</div>
     </>
   );
 }
@@ -128,7 +128,7 @@ function Playbook() {
   return <div>{S.recommendations.map((r) => (
     <div key={r.id} className="item" style={{ ["--tc" as string]: "var(--acc)" }} data-testid={`rec-${r.id}`}>
       <span className="i-type" style={{ marginTop: 2 }}>▶</span>
-      <div className="i-main"><div className="lbl" style={{ color: "var(--acc)" }}>{r.stage}</div><div className="small">{r.action}</div><div className="deliver" style={{ marginTop: 8, marginBottom: 0 }}><span className="lbl">Threshold to change</span>{r.threshold}</div></div>
+      <div className="i-main"><div className="lbl acc">{r.stage}</div><div className="small">{r.action}</div><div className="deliver" style={{ marginTop: 8, marginBottom: 0 }}><span className="lbl">Threshold to change</span>{stripThresholdPrefix(r.threshold)}</div></div>
     </div>
   ))}</div>;
 }

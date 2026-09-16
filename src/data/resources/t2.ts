@@ -27,11 +27,11 @@ export const t2Resources: Resource[] = [
     estHours: 30,
     timeBucket: "30_100h",
     difficulty: "intermediate",
-    prerequisites: ["Basic web/backend fundamentals (HTTP, databases, one language) — he has basic coding"],
+    prerequisites: ["Basic web/backend fundamentals (HTTP, databases, one language) — you have basic coding"],
     buildsSkill:
       "Scalable-system building blocks — load balancers, caching, CDNs, queues, replication, sharding, consistency/availability tradeoffs — plus interview-style problem walk-throughs and Anki decks to make them stick.",
     whyForHim:
-      "The free primary for the T2 ready-when ('design and deploy a multi-tenant AI SaaS with sensible cost/latency tradeoffs and explain the data model'). Backend and system-design fundamentals are the skill the 5-year plan says he must close himself to be a credible product-CTO; this is the cheapest, most consensus-backed way to do it, and its Anki decks seed the spaced-repetition deck (T8). Feeds d-sysdesign-week and is the spec's prerequisite for p-fullstack-ai.",
+      "The free primary for the T2 ready-when ('design and deploy a multi-tenant AI SaaS with sensible cost/latency tradeoffs and explain the data model'). Backend and system-design fundamentals are the skill the 5-year plan says you must close yourself to be a credible product-CTO; this is the cheapest, most consensus-backed way to do it, and its Anki decks seed the spaced-repetition deck (T8). Feeds d-sysdesign-week and is the spec's prerequisite for p-fullstack-ai.",
     priority: "must_do",
     producesArtifact: false,
     trackIds: ["T2_BACKEND_SYSTEMS", "T8_META"],
@@ -66,7 +66,7 @@ export const t2Resources: Resource[] = [
     buildsSkill:
       "Deep understanding of distributed data systems: storage engines, encoding, replication, partitioning, transactions, consistency and consensus, batch and stream processing — the reasoning behind every 'why that database?' answer.",
     whyForHim:
-      "The deep reference that turns Primer vocabulary into CTO-grade judgment. The 5-year plan says investors expect a CTO to be the technical anchor and that he must show he 'can architect'; DDIA is the book a technical co-founder or investor will expect a product-CTO to have internalized. It also underpins the 'explain the data model' half of the T2 ready-when and the data layer of p-ai-soc-triage and p-fullstack-ai.",
+      "The deep reference that turns Primer vocabulary into CTO-grade judgment. The 5-year plan says investors expect a CTO to be the technical anchor and that you must show you 'can architect'; DDIA is the book a technical co-founder or investor will expect a product-CTO to have internalized. It also underpins the 'explain the data model' half of the T2 ready-when and the data layer of p-ai-soc-triage and p-fullstack-ai.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T2_BACKEND_SYSTEMS"],
@@ -99,7 +99,7 @@ export const t2Resources: Resource[] = [
     buildsSkill:
       "Visual, interview-oriented system design: the classic scale-out problems plus ML/GenAI system design (serving, feature/vector stores, LLM app architectures).",
     whyForHim:
-      "The paid, visual alternative to the Primer, worth it mainly because it now covers ML/GenAI system design — exactly the shape of the multi-tenant AI SaaS in his T2 ready-when — and because d-sysdesign-week needs a steady supply of worked problems. If he pays for anything in Track 2 this is it; otherwise the Primer covers the same ground for free.",
+      "The paid, visual alternative to the Primer, worth it mainly because it now covers ML/GenAI system design — exactly the shape of the multi-tenant AI SaaS in your T2 ready-when — and because d-sysdesign-week needs a steady supply of worked problems. If you pay for anything in Track 2 this is it; otherwise the Primer covers the same ground for free.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T2_BACKEND_SYSTEMS"],
@@ -133,7 +133,7 @@ export const t2Resources: Resource[] = [
     buildsSkill:
       "Step-by-step walkthroughs of canonical design problems (rate limiter, key-value store, news feed, chat, notification system, ...) in a repeatable interview framework.",
     whyForHim:
-      "The offline, book form of the ByteByteGo material. Best used as a source of end-to-end problems for d-sysdesign-week and the T2 self-test (5 canonical questions); the repeatable framework doubles as the way he will whiteboard architecture in FDE/founding-SE interviews and design-partner calls.",
+      "The offline, book form of the ByteByteGo material. Best used as a source of end-to-end problems for d-sysdesign-week and the T2 self-test (5 canonical questions); the repeatable framework doubles as the way you will whiteboard architecture in FDE/founding-SE interviews and design-partner calls.",
     priority: "optional",
     producesArtifact: false,
     trackIds: ["T2_BACKEND_SYSTEMS"],
@@ -162,11 +162,11 @@ export const t2Resources: Resource[] = [
     cost: { model: "free" },
     timeBucket: "ongoing",
     difficulty: "foundational",
-    prerequisites: ["Basic coding (he already has it per the 5-year plan skills inventory)"],
+    prerequisites: ["Basic coding (you already has it per the 5-year plan skills inventory)"],
     buildsSkill:
       "Working fluency in the two languages every portfolio project uses: Python first (the AI ecosystem — HF, agents, evals, FastAPI backends), TypeScript second (Node/Next.js for full-stack demos and POCs).",
     whyForHim:
-      "The spec's language decision for him: Python-first because the AI toolchain (Hugging Face, smolagents, DeepEval, Langfuse, MCP SDKs) is Python, and TypeScript for the demo surfaces an FDE ships in front of customers. He is 'basic coding + some frontend' today; these two paths are what turn that into 'can develop' — the gate between him and a product-CTO seat in the 5-year plan.",
+      "The spec's language decision for you: Python-first because the AI toolchain (Hugging Face, smolagents, DeepEval, Langfuse, MCP SDKs) is Python, and TypeScript for the demo surfaces an FDE ships in front of customers. You are 'basic coding + some frontend' today; these two paths are what turn that into 'can develop' — the gate between you and a product-CTO seat in the 5-year plan.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T2_BACKEND_SYSTEMS"],
@@ -195,7 +195,7 @@ export const t2Resources: Resource[] = [
     difficulty: "foundational",
     prerequisites: ["Python basics (see t2-ts-python)"],
     buildsSkill:
-      "Building typed, async Python APIs with FastAPI: path/query/body params, Pydantic models, dependency injection, auth, background tasks, testing and auto-generated OpenAPI docs — the backend shape for every AI app he ships.",
+      "Building typed, async Python APIs with FastAPI: path/query/body params, Pydantic models, dependency injection, auth, background tasks, testing and auto-generated OpenAPI docs — the backend shape for every AI app you ship.",
     whyForHim:
       "FastAPI is the backend named in p-fullstack-ai and the natural host for the agent, eval-harness and AI-SOC projects (Python-first for the AI ecosystem). Its typed request/response models and built-in OpenAPI docs are also how an FDE hands a customer a usable API in a POC. Learning it first keeps everything in one language until the Next.js front end is needed.",
     priority: "high",
@@ -223,11 +223,11 @@ export const t2Resources: Resource[] = [
     estHours: 12,
     timeBucket: "10_30h",
     difficulty: "foundational",
-    prerequisites: ["Basic React/JavaScript (he has some frontend); Node.js 20.9+"],
+    prerequisites: ["Basic React/JavaScript (you have some frontend); Node.js 20.9+"],
     buildsSkill:
       "Building a full-stack Next.js app end to end — App Router, styling, routing, data fetching, search and pagination, mutations, error handling, auth and metadata — by shipping a dashboard app.",
     whyForHim:
-      "The TypeScript half of the spec's language path and the front end of p-fullstack-ai. A dashboard app is exactly the demo surface an FDE puts in front of a customer, and the course ends with something deployable on Vercel — his first end-to-end shipped artifact. It is also the tool for building his own prototypes instead of describing them (T3 prototyping).",
+      "The TypeScript half of the spec's language path and the front end of p-fullstack-ai. A dashboard app is exactly the demo surface an FDE puts in front of a customer, and the course ends with something deployable on Vercel — your first end-to-end shipped artifact. It is also the tool for building your own prototypes instead of describing them (T3 prototyping).",
     priority: "high",
     producesArtifact: true,
     trackIds: ["T2_BACKEND_SYSTEMS"],
@@ -302,7 +302,7 @@ export const t2Resources: Resource[] = [
     buildsSkill:
       "Git-push deployments of Next.js apps with preview URLs per branch, environment variables and serverless/edge functions.",
     whyForHim:
-      "The zero-friction path from the Next.js course to a live URL he can put in a job application or a customer email. Preview deployments per branch are also the cheapest way to demo iterations to a design partner. Default deploy target for p-fullstack-ai's front end.",
+      "The zero-friction path from the Next.js course to a live URL you can put in a job application or a customer email. Preview deployments per branch are also the cheapest way to demo iterations to a design partner. Default deploy target for p-fullstack-ai's front end.",
     priority: "high",
     producesArtifact: true,
     trackIds: ["T2_BACKEND_SYSTEMS"],
@@ -333,7 +333,7 @@ export const t2Resources: Resource[] = [
     buildsSkill:
       "Deploying a Dockerized backend (FastAPI, a model server) as micro-VMs in chosen regions, with volumes, secrets and a managed Postgres.",
     whyForHim:
-      "Where the backend and model layer of p-fullstack-ai go when Vercel's serverless model does not fit (long-running FastAPI, Ollama/vLLM, WebSockets). Running a real container in a region of his choice is the closest a solo builder gets to production shape — the kind of deployment story a CTO must be able to tell.",
+      "Where the backend and model layer of p-fullstack-ai go when Vercel's serverless model does not fit (long-running FastAPI, Ollama/vLLM, WebSockets). Running a real container in a region of your choice is the closest a solo builder gets to production shape — the kind of deployment story a CTO must be able to tell.",
     priority: "optional",
     producesArtifact: true,
     trackIds: ["T2_BACKEND_SYSTEMS"],
@@ -398,9 +398,9 @@ export const t2Resources: Resource[] = [
     difficulty: "foundational",
     prerequisites: ["Comfort with a terminal and git"],
     buildsSkill:
-      "Just enough cloud to deploy and secure what he ships: AWS/GCP core services (compute, storage, IAM, networking), containers, Kubernetes basics, infrastructure as code, CI/CD and service observability.",
+      "Just enough cloud to deploy and secure what you ship: AWS/GCP core services (compute, storage, IAM, networking), containers, Kubernetes basics, infrastructure as code, CI/CD and service observability.",
     whyForHim:
-      "The spec's instruction is explicit: learn just enough to deploy and secure; depth optional — deep backend/infra engineering is a co-founder skill in the 5-year plan, not his. But IAM, networking and secrets are also where his security instincts meet the platform, and Kubernetes is the substrate for the SPIFFE/SPIRE work in p-nhi-prototype. This umbrella is the checklist; the pieces are split into their own records.",
+      "The spec's instruction is explicit: learn just enough to deploy and secure; depth optional — deep backend/infra engineering is a co-founder skill in the 5-year plan, not your. But IAM, networking and secrets are also where your security instincts meet the platform, and Kubernetes is the substrate for the SPIFFE/SPIRE work in p-nhi-prototype. This umbrella is the checklist; the pieces are split into their own records.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T2_BACKEND_SYSTEMS"],
@@ -431,7 +431,7 @@ export const t2Resources: Resource[] = [
     buildsSkill:
       "Containerising a service: images, Dockerfiles, volumes, networking, multi-container apps with Compose, and publishing images — the packaging unit for every deploy target.",
     whyForHim:
-      "Every deploy target beyond Vercel (Fly.io, Railway, Kubernetes) and every Track 7 lab (SPIRE, OPA, vulnerable targets for p-autonomous-pentest) assumes he can build and run a container. It is the single most reused skill in the whole cloud/devops bundle, so it comes first.",
+      "Every deploy target beyond Vercel (Fly.io, Railway, Kubernetes) and every Track 7 lab (SPIRE, OPA, vulnerable targets for p-autonomous-pentest) assumes you can build and run a container. It is the single most reused skill in the whole cloud/devops bundle, so it comes first.",
     priority: "high",
     producesArtifact: true,
     trackIds: ["T2_BACKEND_SYSTEMS"],
@@ -460,7 +460,7 @@ export const t2Resources: Resource[] = [
     buildsSkill:
       "Working Kubernetes vocabulary and hands-on basics in six modules: create a cluster, deploy an app, explore it, expose it, scale it, update it.",
     whyForHim:
-      "Kubernetes is where his wedge becomes concrete: SPIFFE/SPIRE (t7-spiffe) issues workload identities to pods, and p-nhi-prototype (SPIFFE/SPIRE, OPA, mTLS) needs a cluster to run on. He needs the basics to build and demo that, not to operate production clusters — the spec says depth is optional.",
+      "Kubernetes is where your wedge becomes concrete: SPIFFE/SPIRE (t7-spiffe) issues workload identities to pods, and p-nhi-prototype (SPIFFE/SPIRE, OPA, mTLS) needs a cluster to run on. You need the basics to build and demo that, not to operate production clusters — the spec says depth is optional.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T2_BACKEND_SYSTEMS", "T7_DOMAIN"],
@@ -549,7 +549,7 @@ export const t2Resources: Resource[] = [
     buildsSkill:
       "Traces, metrics and logs as one vendor-neutral model: instrumenting a service, propagating context across calls and exporting to a backend.",
     whyForHim:
-      "The 'observability' item in the spec's cloud/devops bundle, chosen as OpenTelemetry because the LLM tracing tools in Track 1 speak it (Arize Phoenix is OpenTelemetry-native). Knowing the substrate lets him put agent traces and service traces in one view — the operational half of running an AI-SOC or agent product.",
+      "The 'observability' item in the spec's cloud/devops bundle, chosen as OpenTelemetry because the LLM tracing tools in Track 1 speak it (Arize Phoenix is OpenTelemetry-native). Knowing the substrate lets you put agent traces and service traces in one view — the operational half of running an AI-SOC or agent product.",
     priority: "optional",
     producesArtifact: false,
     trackIds: ["T2_BACKEND_SYSTEMS", "T1_AI_ML"],
@@ -586,7 +586,7 @@ export const t2Resources: Resource[] = [
     buildsSkill:
       "A structured sweep of one cloud provider's core services (compute, storage, networking, IAM, security) with an exam credential at the end.",
     whyForHim:
-      "The spec's honest assessment: cloud certs are optional, only if a role demands one — his ROI is in shipped artifacts, not exams (the same verdict that skips CISSP/OSCP). Keep this in the backlog and pull it forward only if a specific target employer lists it; the syllabus can still serve as a checklist for t2-cloud-devops without sitting the exam.",
+      "The spec's honest assessment: cloud certs are optional, only if a role demands one — your ROI is in shipped artifacts, not exams (the same verdict that skips CISSP/OSCP). Keep this in the backlog and pull it forward only if a specific target employer lists it; the syllabus can still serve as a checklist for t2-cloud-devops without sitting the exam.",
     priority: "skip_unless_relevant",
     producesArtifact: false,
     trackIds: ["T2_BACKEND_SYSTEMS"],

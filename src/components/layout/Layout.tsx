@@ -1,4 +1,5 @@
 import { Suspense, useEffect } from "react";
+import { AchievementWatcher } from "./AchievementWatcher";
 import { Outlet, useLocation } from "react-router-dom";
 import { Header } from "./Header";
 import { SideNav } from "./SideNav";
@@ -15,13 +16,15 @@ function ScrollToTop() {
 export function Layout() {
   const theme = useForge((s) => s.settings.theme);
   const railOpen = useForge((s) => s.settings.railOpen);
+  const navPinned = useForge((s) => s.settings.navPinned);
   useEffect(() => { document.documentElement.setAttribute("data-theme", theme); }, [theme]);
 
   return (
     <>
       <ScrollToTop />
       <Header />
-      <div className={`wrap ${railOpen ? "" : "norail"}`} id="wrap">
+      <AchievementWatcher />
+      <div className={`wrap ${railOpen ? "" : "norail"} ${navPinned ? "navpinned" : ""}`} id="wrap">
         <SideNav />
         <main id="main" data-testid="main">
           <Suspense fallback={<div className="empty" data-testid="loading">Loading…</div>}>

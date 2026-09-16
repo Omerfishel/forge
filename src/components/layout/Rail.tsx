@@ -4,6 +4,8 @@ import { useForge } from "@/store";
 import { useOverall, usePace, usePlan, useStreak, useToday } from "@/lib/hooks";
 import { fmtHours } from "@/lib/labels";
 import { useToast } from "@/components/ui";
+import { content } from "@/data";
+import { findItem } from "@/lib/plan";
 
 // ---------------------------------------------------------------------------
 // Coach line (the "mascot" equivalent — a terse, state-aware nudge)
@@ -39,7 +41,7 @@ function CoachCard() {
       <div className="body" style={{ display: "flex", gap: 12, alignItems: "center" }}>
         <div style={{ fontSize: 34, lineHeight: 1, animation: "bob 3.2s ease-in-out infinite" }} aria-hidden="true">{c.icon}</div>
         <div>
-          <div className="hero-name" style={{ font: "800 10px/1 var(--mono)", letterSpacing: ".6px", color: "var(--acc)", textTransform: "uppercase", marginBottom: 5 }}>Coach</div>
+          <div className="hero-name">Coach</div>
           <div style={{ fontSize: 12.5, lineHeight: 1.42 }} data-testid="coach-line">{c.line}</div>
         </div>
       </div>
@@ -67,6 +69,7 @@ export function Pomodoro() {
   const cfg = useForge((s) => s.settings.pomo);
   const setPomo = useForge((s) => s.setPomodoro);
   const inc = useForge((s) => s.incPomoCount);
+  const logHours = useForge((s) => s.logHours);
   const toast = useToast();
   const [, tick] = useState(0);
   const completedRef = useRef(false);
@@ -92,12 +95,16 @@ export function Pomodoro() {
       const nextRound = pomo.round + 1;
       const long = pomo.round % cfg.rounds === 0;
       setPomo({ running: false, endTime: null, mode: long ? "long" : "short", remaining: (long ? cfg.long : cfg.short) * 60, round: nextRound });
-      toast(<><b>Focus block done.</b> Take a {long ? "long" : "short"} break.</>, "ok");
+      const task = pomo.taskId ? findItem(content, pomo.taskId) : undefined;
+      if (task && (task.kind === "resource" || task.kind === "project")) {
+        logHours(task.item.id, task.kind, Math.round((cfg.focus / 60) * 100) / 100);
+        toast(<><b>Focus block done.</b> {cfg.focus} min logged on {task.item.title}. Take a {long ? "long" : "short"} break.</>, "ok");
+      } else toast(<><b>Focus block done.</b> Take a {long ? "long" : "short"} break.</>, "ok");
     } else {
       setPomo({ running: false, endTime: null, mode: "focus", remaining: cfg.focus * 60 });
       toast("Break over — back to it.", "info");
     }
-  }, [remaining, pomo.running, pomo.mode, pomo.round, cfg, inc, setPomo, toast]);
+  }, [remaining, pomo.running, pomo.mode, pomo.round, pomo.taskId, cfg, inc, setPomo, logHours, toast]);
 
   const start = () => setPomo({ running: true, endTime: Date.now() + remaining * 1000 });
   const pause = () => setPomo({ running: false, endTime: null, remaining });

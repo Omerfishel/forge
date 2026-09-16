@@ -30,7 +30,7 @@ export const t1Resources: Resource[] = [
     buildsSkill:
       "Backprop, tokenization and building GPT from scratch (micrograd → makemore → nanoGPT): the intuition to explain attention, tokenizers and training loops without hand-waving.",
     whyForHim:
-      "The single best intuition-builder. It lets him speak credibly about transformers to founders, customers and a future technical co-founder without becoming a researcher — exactly the technical-credibility gap a product-oriented CTO from a cyber background has to close. His own GPT + tokenizer repos are also the first public artifacts for the learn-in-public stream and the first node of the spec's DAG (Karpathy → HF LLM/smol → p-finetune-security).",
+      "The single best intuition-builder. It lets you speak credibly about transformers to founders, customers and a future technical co-founder without becoming a researcher — exactly the technical-credibility gap a product-oriented CTO from a cyber background has to close. Your own GPT + tokenizer repos are also the first public artifacts for the learn-in-public stream and the first node of the spec's DAG (Karpathy → HF LLM/smol → p-finetune-security).",
     priority: "must_do",
     producesArtifact: true,
     trackIds: ["T1_AI_ML"],
@@ -41,7 +41,7 @@ export const t1Resources: Resource[] = [
     qualitySignal:
       "Doc consensus: near-universally recommended; the canonical free entry point. Part of the free canon that covers ~70% of Tracks 1–2.",
     notes:
-      "Doc: ~25–30h, foundational→intermediate across the series; code at github.com/karpathy/nn-zero-to-hero. Artifact: his own GPT + tokenizer repos. Variant A only needs the skim up to the GPT lecture; the 'next 30 days' recommendation starts it alongside HF Agents. Self-test items it covers: explain attention and tokenization to a peer.",
+      "Doc: ~25–30h, foundational→intermediate across the series; code at github.com/karpathy/nn-zero-to-hero. Artifact: your own GPT + tokenizer repos. Variant A only needs the skim up to the GPT lecture; the 'next 30 days' recommendation starts it alongside HF Agents. Self-test items it covers: explain attention and tokenization to a peer.",
     links: [
       { label: "Code: nn-zero-to-hero (GitHub)", url: "https://github.com/karpathy/nn-zero-to-hero" },
       { label: "micrograd", url: "https://github.com/karpathy/micrograd" },
@@ -66,7 +66,7 @@ export const t1Resources: Resource[] = [
     buildsSkill:
       "Transformers and tokenizers in practice, fine-tuning with Trainer/TRL, LoRA, SFT and GRPO (the DeepSeek R1 recipe), and shipping Gradio demos.",
     whyForHim:
-      "Maintained by the people who ship the libraries, so what he learns is the real production API, not a toy. It is the bridge from Karpathy's intuition to p-finetune-security (fine-tuning a small model on security text) — the proof that he can go beyond API calls, which is what separates a product-CTO from a prompt engineer. Also the T1 ready-when's 'fine-tune an open model with LoRA' in one course.",
+      "Maintained by the people who ship the libraries, so what you learn is the real production API, not a toy. It is the bridge from Karpathy's intuition to p-finetune-security (fine-tuning a small model on security text) — the proof that you can go beyond API calls, which is what separates a product-CTO from a prompt engineer. Also the T1 ready-when's 'fine-tune an open model with LoRA' in one course.",
     priority: "must_do",
     producesArtifact: true,
     trackIds: ["T1_AI_ML"],
@@ -95,7 +95,7 @@ export const t1Resources: Resource[] = [
     buildsSkill:
       "Building agents with smolagents, LangGraph and LlamaIndex; function-calling fine-tuning; agent observability; agentic RAG. Ends with a certificate.",
     whyForHim:
-      "The direct on-ramp to p-secure-mcp-agent, the wedge project (build an agent, then secure it). Knowing exactly how agents plan and call tools is the prerequisite for reasoning about agent authorization and non-human identity — his moat, where 8200 + solutions-architect experience compounds. It is also the fastest credibility for FDE interviews in Variant A.",
+      "The direct on-ramp to p-secure-mcp-agent, the wedge project (build an agent, then secure it). Knowing exactly how agents plan and call tools is the prerequisite for reasoning about agent authorization and non-human identity — your moat, where 8200 + solutions-architect experience compounds. It is also the fastest credibility for FDE interviews in Variant A.",
     priority: "must_do",
     producesArtifact: true,
     trackIds: ["T1_AI_ML"],
@@ -124,7 +124,7 @@ export const t1Resources: Resource[] = [
     buildsSkill:
       "Fast-paced fine-tuning practice: SFT, preference alignment (DPO), evaluation and VLMs with TRL/Transformers on small models.",
     whyForHim:
-      "A compact way to get real DPO/alignment reps on hardware he actually has. Pairs with the LLM course so he can answer 'DPO vs RLHF' in the T1 self-test and fine-tune a small model for p-finetune-security without a GPU budget.",
+      "A compact way to get real DPO/alignment reps on hardware you actually has. Pairs with the LLM course so you can answer 'DPO vs RLHF' in the T1 self-test and fine-tune a small model for p-finetune-security without a GPU budget.",
     priority: "must_do",
     producesArtifact: true,
     trackIds: ["T1_AI_ML"],
@@ -159,7 +159,7 @@ export const t1Resources: Resource[] = [
     buildsSkill:
       "A rolling menu of 1–3h notebook-based courses on RAG, agentic RAG, agent memory, agent evals and AI-coding workflows — quick fluency on one topic at a time.",
     whyForHim:
-      "The cheapest way to fill specific gaps fast (RAG for p-ai-soc-triage, agent memory, coding-agent workflows) between the big courses, in the 10–15h/week he has next to a day job. The doc says free canon covers ~70% of Tracks 1–2; these are the plug-ins.",
+      "The cheapest way to fill specific gaps fast (RAG for p-ai-soc-triage, agent memory, coding-agent workflows) between the big courses, in the 10–15h/week you have next to a day job. The doc says free canon covers ~70% of Tracks 1–2; these are the plug-ins.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T1_AI_ML"],
@@ -195,7 +195,7 @@ export const t1Resources: Resource[] = [
     prerequisites: ["Basic Python"],
     buildsSkill: "The RAG pipeline end-to-end: chunking, embeddings, retrieval, grounding — and where RAG fails.",
     whyForHim:
-      "RAG over detection docs is the core of p-ai-soc-triage, and 'why did the model answer that?' is the first question an FDE gets from a customer. A couple of hours here gives him the vocabulary and a working notebook before the bigger build.",
+      "RAG over detection docs is the core of p-ai-soc-triage, and 'why did the model answer that?' is the first question an FDE gets from a customer. A couple of hours here gives you the vocabulary and a working notebook before the bigger build.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T1_AI_ML"],
@@ -250,7 +250,7 @@ export const t1Resources: Resource[] = [
     prerequisites: ["Basic Python; an agent you have built or can run"],
     buildsSkill: "Tracing and evaluating agent runs — router, skill and trajectory evals — with Phoenix-style tooling.",
     whyForHim:
-      "The free companion to Aman Khan's paid AI-PM cohort (t3-aipm-khan) — the doc notes he led this one. Agent evals are the two-track twofer skill (AI engineering + product) and the quality bar for p-ai-soc-triage and p-secure-mcp-agent; two hours here is the cheapest AI-PM credibility he can buy.",
+      "The free companion to Aman Khan's paid AI-PM cohort (t3-aipm-khan) — the doc notes you led this one. Agent evals are the two-track twofer skill (AI engineering + product) and the quality bar for p-ai-soc-triage and p-secure-mcp-agent; two hours here is the cheapest AI-PM credibility you can buy.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T1_AI_ML", "T3_PRODUCT"],
@@ -278,7 +278,7 @@ export const t1Resources: Resource[] = [
     prerequisites: ["t1-hf-agents"],
     buildsSkill: "How agents manage memory (core/archival memory, self-editing context) — the MemGPT/Letta model of an LLM as an OS managing its own context window.",
     whyForHim:
-      "The doc asks for an 'agent-memory' short course and this is the seed-time pick. Agent memory is where secrets and customer data end up persisting — exactly the surface his NHI/agent-security wedge (p-secure-mcp-agent, p-nhi-prototype) has to reason about, so he should know how it is built before he argues how to secure it.",
+      "The doc asks for an 'agent-memory' short course and this is the seed-time pick. Agent memory is where secrets and customer data end up persisting — exactly the surface your NHI/agent-security wedge (p-secure-mcp-agent, p-nhi-prototype) has to reason about, so you should know how it is built before you argue how to secure it.",
     priority: "optional",
     producesArtifact: false,
     trackIds: ["T1_AI_ML"],
@@ -306,7 +306,7 @@ export const t1Resources: Resource[] = [
     prerequisites: ["Comfortable in a terminal and with git"],
     buildsSkill: "A structured on-ramp to agentic coding with Claude Code: exploring a codebase, CLAUDE.md, planning, MCP and hooks in a guided workflow.",
     whyForHim:
-      "The doc asks for an 'AI-coding-workflow' short course and this is the seed-time pick, matching the tool the doc says he must master (t1-claude-code). Since he will build all nine portfolio projects with AI assistance, a two-hour guided pass on spec-driven workflows pays back on the first project.",
+      "The doc asks for an 'AI-coding-workflow' short course and this is the seed-time pick, matching the tool the doc says you must master (t1-claude-code). Since you will build all nine portfolio projects with AI assistance, a two-hour guided pass on spec-driven workflows pays back on the first project.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T1_AI_ML"],
@@ -412,7 +412,7 @@ export const t1Resources: Resource[] = [
     prerequisites: ["A Python or TypeScript app that calls an LLM"],
     buildsSkill: "LLM tracing, prompt management and evals in one OSS stack — see every step of an agent run and score it.",
     whyForHim:
-      "The doc's recommended standard for his stack (Langfuse + Promptfoo + DeepEval). Self-hostable matters when he sells to security buyers who will not ship traces to a SaaS. Backbone of p-eval-harness and the audit trail of tool calls in p-secure-mcp-agent.",
+      "The doc's recommended standard for your stack (Langfuse + Promptfoo + DeepEval). Self-hostable matters when you sell to security buyers who will not ship traces to a SaaS. Backbone of p-eval-harness and the audit trail of tool calls in p-secure-mcp-agent.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T1_AI_ML"],
@@ -440,7 +440,7 @@ export const t1Resources: Resource[] = [
     buildsSkill:
       "Declarative eval suites, model/prompt comparison and LLM red-teaming with 500+ attack vectors — regression tests and security tests from one CLI.",
     whyForHim:
-      "The strongest OSS option for security testing, which is his wedge: the same tool runs the regression suite for p-eval-harness and the red-team pass for p-redteam-writeup and d-ctf-week. A Promptfoo red-team report is a credible artifact in a CISO conversation and the bridge between his T1 and T7 stories.",
+      "The strongest OSS option for security testing, which is your wedge: the same tool runs the regression suite for p-eval-harness and the red-team pass for p-redteam-writeup and d-ctf-week. A Promptfoo red-team report is a credible artifact in a CISO conversation and the bridge between your T1 and T7 stories.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T1_AI_ML", "T7_DOMAIN"],
@@ -469,7 +469,7 @@ export const t1Resources: Resource[] = [
     buildsSkill:
       "pytest-style LLM unit tests and agent metrics (task completion, tool correctness, hallucination, RAG faithfulness) that run in CI.",
     whyForHim:
-      "Makes evals look like normal tests, which is how he gets a CI gate into p-eval-harness and how an engineering team he later leads will actually adopt it. The T1 ready-when literally says 'an eval harness that gates a change'. Sister project DeepTeam covers red-teaming (see t7-deepteam).",
+      "Makes evals look like normal tests, which is how you get a CI gate into p-eval-harness and how an engineering team you later leads will actually adopt it. The T1 ready-when literally says 'an eval harness that gates a change'. Sister project DeepTeam covers red-teaming (see t7-deepteam).",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T1_AI_ML"],
@@ -525,7 +525,7 @@ export const t1Resources: Resource[] = [
     prerequisites: ["An LLM app and a small eval dataset"],
     buildsSkill: "Hosted experiment tracking and observability: compare prompt/model versions on datasets with scores, and inspect traces.",
     whyForHim:
-      "Know it as the SaaS benchmark that competitors and customers name-drop (the five-year plan lists Braintrust in the crowded evals/observability layer he may compete with or integrate against). Try the free tier for vocabulary; standardize on the OSS stack.",
+      "Know it as the SaaS benchmark that competitors and customers name-drop (the five-year plan lists Braintrust in the crowded evals/observability layer you may compete with or integrate against). Try the free tier for vocabulary; standardize on the OSS stack.",
     priority: "optional",
     producesArtifact: false,
     trackIds: ["T1_AI_ML"],
@@ -552,7 +552,7 @@ export const t1Resources: Resource[] = [
     prerequisites: ["A LangChain or LangGraph app"],
     buildsSkill: "Tracing, datasets and evals for LangChain/LangGraph apps.",
     whyForHim:
-      "Only relevant if he ends up on LangGraph (which the HF Agents course teaches). The doc's caveat is that it locks you into LangChain, so it should not be his default — but as an FDE he should be able to read a LangSmith trace when a customer's team uses one.",
+      "Only relevant if you end up on LangGraph (which the HF Agents course teaches). The doc's caveat is that it locks you into LangChain, so it should not be your default — but as an FDE you should be able to read a LangSmith trace when a customer's team uses one.",
     priority: "skip_unless_relevant",
     producesArtifact: false,
     trackIds: ["T1_AI_ML"],
@@ -583,7 +583,7 @@ export const t1Resources: Resource[] = [
     prerequisites: ["A laptop with ~8GB+ RAM/VRAM; basic CLI"],
     buildsSkill: "Run open models locally in one command; feel quantization (GGUF Q4/Q8), context length and memory limits by doing.",
     whyForHim:
-      "Lets him demo without sending customer data to an API — the first question a security buyer asks, and a habit that will matter when he sells into defense or regulated accounts. Default local backend for p-fullstack-ai and for private experiments in p-ai-soc-triage.",
+      "Lets you demo without sending customer data to an API — the first question a security buyer asks, and a habit that will matter when you sell into defense or regulated accounts. Default local backend for p-fullstack-ai and for private experiments in p-ai-soc-triage.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T1_AI_ML"],
@@ -611,7 +611,7 @@ export const t1Resources: Resource[] = [
     buildsSkill:
       "Production serving of open models: PagedAttention / KV-cache management, continuous batching, quantized weights, OpenAI-compatible endpoints.",
     whyForHim:
-      "The serving layer he will actually deploy for a customer who cannot use a hosted API (defense, regulated). Gives him the KV-cache and batching vocabulary for the T1 self-test and the cost/latency tradeoffs the T2 ready-when demands of a product-CTO.",
+      "The serving layer you will actually deploy for a customer who cannot use a hosted API (defense, regulated). Gives you the KV-cache and batching vocabulary for the T1 self-test and the cost/latency tradeoffs the T2 ready-when demands of a product-CTO.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T1_AI_ML", "T2_BACKEND_SYSTEMS"],
@@ -643,9 +643,9 @@ export const t1Resources: Resource[] = [
     difficulty: "intermediate",
     prerequisites: ["Comfortable in a terminal and with git"],
     buildsSkill:
-      "Agentic coding mastery: spec-driven development with CLAUDE.md / AGENTS.md, plan mode, hooks, MCP servers and subagents — directing an AI to build what he specifies.",
+      "Agentic coding mastery: spec-driven development with CLAUDE.md / AGENTS.md, plan mode, hooks, MCP servers and subagents — directing an AI to build what you specify.",
     whyForHim:
-      "Doc: 'Since he'll build with AI assistance, mastery here is a force multiplier.' He will build all nine portfolio projects with it, and it is how a 'can develop but isn't a developer' product-CTO ships real product surfaces solo (p-fullstack-ai). This platform itself is built with it.",
+      "Doc: 'Since you'll build with AI assistance, mastery here is a force multiplier.' You will build all nine portfolio projects with it, and it is how a 'can develop but isn't a developer' product-CTO ships real product surfaces solo (p-fullstack-ai). This platform itself is built with it.",
     priority: "must_do",
     producesArtifact: false,
     trackIds: ["T1_AI_ML", "T2_BACKEND_SYSTEMS"],
@@ -705,7 +705,7 @@ export const t1Resources: Resource[] = [
     prerequisites: ["One agentic coding tool installed (Claude Code or Cursor)"],
     buildsSkill: "Spec-driven development workflow: constitution → spec → plan → tasks → implement, with templates for AI coding agents.",
     whyForHim:
-      "The doc's reference implementation of the workflow it wants him to learn (CLAUDE.md/AGENTS.md, plan mode). As a product-oriented CTO, writing the spec IS his job; this shows how specs drive agents end to end.",
+      "The doc's reference implementation of the workflow it wants you to learn (CLAUDE.md/AGENTS.md, plan mode). As a product-oriented CTO, writing the spec IS your job; this shows how specs drive agents end to end.",
     priority: "optional",
     producesArtifact: false,
     trackIds: ["T1_AI_ML"],
@@ -737,7 +737,7 @@ export const t1Resources: Resource[] = [
     prerequisites: ["t1-hf-llm-course"],
     buildsSkill: "Fast, memory-efficient LoRA/QLoRA fine-tuning of small open models on a single consumer or Colab GPU.",
     whyForHim:
-      "Named in the p-finetune-security stack (HF + LoRA/QLoRA/Unsloth). It is what makes fine-tuning a security-text classifier feasible on a free Colab in an evening, so the Phase 3 project actually ships instead of stalling on compute he does not own.",
+      "Named in the p-finetune-security stack (HF + LoRA/QLoRA/Unsloth). It is what makes fine-tuning a security-text classifier feasible on a free Colab in an evening, so the Phase 3 project actually ships instead of stalling on compute you do not own.",
     priority: "optional",
     producesArtifact: false,
     trackIds: ["T1_AI_ML"],

@@ -51,7 +51,7 @@ export default function FreshnessPage() {
                 <span className="i-type" style={{ marginTop: 2 }}>{TYPE_ICON[r.resourceType]}</span>
                 <div className="i-main">
                   <div className="i-titlerow" style={{ cursor: "default" }}><a className="i-title" href={r.url} target="_blank" rel="noreferrer" style={{ color: "var(--ink)" }}>{r.title}</a><span className="faint xs">{r.creator}</span><FreshBdg freshness={r.freshness} />{!r.urlVerified && <span className="bdg high">url unverified</span>}</div>
-                  <div className="i-badges">{tr && <TrackBdg trackId={tr.id} code={tr.code} />}<span className="pill">verified {r.urlVerifiedDate}</span>{r.notes && <span className="faint xs" style={{ maxWidth: 520, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} title={r.notes}>{r.notes}</span>}</div>
+                  <div className="i-badges">{tr && <TrackBdg trackId={tr.id} code={tr.code} />}<span className="pill">{r.urlVerified ? "verified" : "added"} {r.urlVerifiedDate}</span>{r.notes && <span className="faint xs" style={{ maxWidth: 520, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} title={r.notes}>{r.notes}</span>}</div>
                 </div>
                 <div className="i-right"><a className="focusbtn" href={r.url} target="_blank" rel="noreferrer" data-testid={`fresh-open-${g.key}-${r.id}`}>Open ↗</a></div>
               </div>

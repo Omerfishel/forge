@@ -1,6 +1,6 @@
 import type { Resource } from "@/types";
 
-// Track 7 — Domain Expertise: AI Security & His Wedge (priorityRank 2, tied).
+// Track 7 — Domain Expertise: AI Security & Your Wedge (priorityRank 2, tied).
 // Seeded from docs/curriculum-spec.md ("TRACK 7", Hands-On Work, practice
 // environments, Staying current, Certifications) with person-specific context
 // from docs/five-year-plan.md. URL verification legend:
@@ -29,9 +29,9 @@ export const t7Resources: Resource[] = [
     difficulty: "foundational",
     prerequisites: [],
     buildsSkill:
-      "Shared vocabulary for LLM-app risk — LLM01 prompt injection through LLM10 unbounded consumption — with mitigations he can cite in threat models, PRDs and customer conversations.",
+      "Shared vocabulary for LLM-app risk — LLM01 prompt injection through LLM10 unbounded consumption — with mitigations you can cite in threat models, PRDs and customer conversations.",
     whyForHim:
-      "The lingua franca every AI-security buyer, CISO and startup he targets already uses. As a cyber generalist he can absorb it in an afternoon and immediately sound native in agent-security discovery calls; it is also the mapping layer for p-redteam-writeup.",
+      "The lingua franca every AI-security buyer, CISO and startup you target already uses. As a cyber generalist you can absorb it in an afternoon and immediately sound native in agent-security discovery calls; it is also the mapping layer for p-redteam-writeup.",
     priority: "must_do",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN"],
@@ -61,7 +61,7 @@ export const t7Resources: Resource[] = [
     buildsSkill:
       "Threat-model agentic systems (tool misuse, memory poisoning, privilege compromise, cascading failures) and map controls to a peer-reviewed taxonomy.",
     whyForHim:
-      "This is literally his wedge. The T7 ready-when statement is 'threat-model an agentic app against OWASP Agentic Top 10 + MITRE ATLAS', and p-secure-mcp-agent's write-up must map its controls to this list. Reading it in week one lets him talk to Zenity/Onyx/NewCore-type teams as a peer.",
+      "This is literally your wedge. The T7 ready-when statement is 'threat-model an agentic app against OWASP Agentic Top 10 + MITRE ATLAS', and p-secure-mcp-agent's write-up must map its controls to this list. Reading it in week one lets you talk to Zenity/Onyx/NewCore-type teams as a peer.",
     priority: "must_do",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN"],
@@ -70,7 +70,7 @@ export const t7Resources: Resource[] = [
     tags: ["framework", "owasp", "agentic", "reverify-quarterly", "phase-1", "wedge"],
     freshness: "current",
     qualitySignal:
-      "Announced at Black Hat Europe 2025; developed with 100+ experts, researchers and practitioners; globally peer-reviewed (spec: must-do, 'directly his wedge').",
+      "Announced at Black Hat Europe 2025; developed with 100+ experts, researchers and practitioners; globally peer-reviewed (spec: must-do, 'directly your wedge').",
     notes: "Companion hands-on lab: OWASP FinBot CTF (t7-finbot-ctf). Re-verify version quarterly.",
     links: [
       {
@@ -96,7 +96,7 @@ export const t7Resources: Resource[] = [
     buildsSkill:
       "Navigate the ATT&CK-style matrix of AI-specific tactics, techniques and case studies, and use it to structure red-team reports and detection thinking.",
     whyForHim:
-      "He already thinks in ATT&CK from 8200/SOC work; ATLAS is the same mental model extended to AI, so it is the cheapest way to make his existing threat-intel instincts legible in AI security. p-redteam-writeup is scored on ATLAS mapping, and AI-SOC detection content (p-ai-soc-triage) needs its technique IDs.",
+      "You already thinks in ATT&CK from 8200/SOC work; ATLAS is the same mental model extended to AI, so it is the cheapest way to make your existing threat-intel instincts legible in AI security. p-redteam-writeup is scored on ATLAS mapping, and AI-SOC detection content (p-ai-soc-triage) needs its technique IDs.",
     priority: "must_do",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN"],
@@ -130,7 +130,7 @@ export const t7Resources: Resource[] = [
     buildsSkill:
       "Speak the Govern/Map/Measure/Manage language enterprises and procurement teams use to buy and audit AI systems; map product controls to the GenAI profile.",
     whyForHim:
-      "As an FDE/SE selling AI security into enterprises he will meet NIST language in RFPs, security questionnaires and CISO reviews. Knowing the four functions lets him translate hands-on controls into governance terms buyers can sign off on — the CISO fluency most AI engineers lack.",
+      "As an FDE/SE selling AI security into enterprises you will meet NIST language in RFPs, security questionnaires and CISO reviews. Knowing the four functions lets you translate hands-on controls into governance terms buyers can sign off on — the CISO fluency most AI engineers lack.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN"],
@@ -163,7 +163,7 @@ export const t7Resources: Resource[] = [
     buildsSkill:
       "A structured red-team methodology across four areas — model evaluation, implementation testing, infrastructure assessment and runtime behavior analysis — usable as the skeleton of a professional report.",
     whyForHim:
-      "Gives his CTF play (Gandalf → HackAPrompt → a real OSS app) a professional structure so p-redteam-writeup reads like a consultant's deliverable rather than a hobby log. Also the methodology he will scope POCs against when a customer asks 'can you red-team our agent?'",
+      "Gives your CTF play (Gandalf → HackAPrompt → a real OSS app) a professional structure so p-redteam-writeup reads like a consultant's deliverable rather than a hobby log. Also the methodology you will scope POCs against when a customer asks 'can you red-team our agent?'",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN"],
@@ -193,7 +193,7 @@ export const t7Resources: Resource[] = [
     buildsSkill:
       "Hands-on intuition for prompt injection and defense bypass across 8 escalating levels (input/output filters, instruction hierarchy, exfiltration tricks).",
     whyForHim:
-      "The fastest possible start on his wedge: one evening, zero setup, and he has concrete stories for interviews and posts. It is the first rung of p-redteam-writeup and the seed of the weekly d-ctf-week habit.",
+      "The fastest possible start on your wedge: one evening, zero setup, and you have concrete stories for interviews and posts. It is the first rung of p-redteam-writeup and the seed of the weekly d-ctf-week habit.",
     priority: "must_do",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN"],
@@ -220,7 +220,7 @@ export const t7Resources: Resource[] = [
     buildsSkill:
       "Broad, competitive prompt-injection and jailbreak technique coverage across difficulty tracks, plus familiarity with the HackAPrompt research dataset used in academic work.",
     whyForHim:
-      "Step two after Gandalf and the second rung of p-redteam-writeup. Its public leaderboard gives him a visible, citable proof point; the research dataset is reusable for his own eval/red-team harness (T1) and for p-finetune-security.",
+      "Step two after Gandalf and the second rung of p-redteam-writeup. Its public leaderboard gives you a visible, citable proof point; the research dataset is reusable for your own eval/red-team harness (T1) and for p-finetune-security.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN"],
@@ -255,7 +255,7 @@ export const t7Resources: Resource[] = [
     buildsSkill:
       "A structured offensive-AI skill set — prompt injection, model/data attacks, AI infrastructure and application attacks — aligned to Google's SAIF, with lab-graded proof.",
     whyForHim:
-      "The one paid, structured path in his wedge. Built with Google's red team so it carries weight with technical hiring managers; the 12 modules give him repeatable lab evidence rather than blog-only credibility, and it feeds p-autonomous-pentest and the HTB Certified AI Red Teamer exam. Pay only after the free CTFs prove he enjoys the work.",
+      "The one paid, structured path in your wedge. Built with Google's red team so it carries weight with technical hiring managers; the 12 modules give you repeatable lab evidence rather than blog-only credibility, and it feeds p-autonomous-pentest and the HTB Certified AI Red Teamer exam. Pay only after the free CTFs prove you enjoy the work.",
     priority: "high",
     producesArtifact: true,
     trackIds: ["T7_DOMAIN"],
@@ -284,9 +284,9 @@ export const t7Resources: Resource[] = [
     difficulty: "intermediate",
     prerequisites: ["t1-promptfoo", "t7-owasp-llm"],
     buildsSkill:
-      "Automate red-team runs against his own agents/apps with hundreds of attack vectors and turn findings into CI regression tests.",
+      "Automate red-team runs against your own agents/apps with hundreds of attack vectors and turn findings into CI regression tests.",
     whyForHim:
-      "Bridges T1 (evals) and T7 (security): the tool he standardizes on for evals doubles as his red-team harness, so p-eval-harness and p-secure-mcp-agent share infrastructure. The spec's pick as 'strongest for security testing'.",
+      "Bridges T1 (evals) and T7 (security): the tool you standardiz on for evals doubles as your red-team harness, so p-eval-harness and p-secure-mcp-agent share infrastructure. The spec's pick as 'strongest for security testing'.",
     priority: "high",
     producesArtifact: true,
     trackIds: ["T7_DOMAIN", "T1_AI_ML"],
@@ -314,7 +314,7 @@ export const t7Resources: Resource[] = [
     buildsSkill:
       "Run vulnerability scans on LLM apps whose results map to OWASP LLM Top 10, MITRE ATLAS and NIST — framework-aligned findings out of the box.",
     whyForHim:
-      "Its framework mappings match exactly how his write-ups are graded (OWASP/ATLAS). Pairs with DeepEval from T1, so one pytest-style workflow covers quality evals and security tests — a neat demo for FDE interviews.",
+      "Its framework mappings match exactly how your write-ups are graded (OWASP/ATLAS). Pairs with DeepEval from T1, so one pytest-style workflow covers quality evals and security tests — a neat demo for FDE interviews.",
     priority: "high",
     producesArtifact: true,
     trackIds: ["T7_DOMAIN", "T1_AI_ML"],
@@ -342,7 +342,7 @@ export const t7Resources: Resource[] = [
     buildsSkill:
       "Exploit, then reason about, agentic-specific weaknesses — tool poisoning, MCP-server abuse, policy bypass, data exfiltration — in a deliberately vulnerable financial-services agent.",
     whyForHim:
-      "The hands-on companion to the Agentic Top 10, i.e. the closest thing to a lab for his exact wedge. Every challenge maps to the taxonomies he must cite, so a FinBot walkthrough is a ready-made technical post and a warm-up for securing his own MCP agent.",
+      "The hands-on companion to the Agentic Top 10, i.e. the closest thing to a lab for your exact wedge. Every challenge maps to the taxonomies you must cite, so a FinBot walkthrough is a ready-made technical post and a warm-up for securing your own MCP agent.",
     priority: "high",
     producesArtifact: true,
     trackIds: ["T7_DOMAIN"],
@@ -353,7 +353,7 @@ export const t7Resources: Resource[] = [
     qualitySignal:
       "OWASP resource page (fetched Sept 2026): 'the Juice Shop for Agentic AI', created by Helen Oakley and Allie Howe under the OWASP GenAI Agentic Security Initiative; the spec names it the Agentic Top 10's companion CTF. Free.",
     notes:
-      "Current scope (per the page) is goal-manipulation attacks in a financial-services context — expect it to grow with the Agentic Top 10. Self-hostable from the OWASP-ASI GitHub repo; map each solved challenge back to an Agentic Top 10 entry in his write-up.",
+      "Current scope (per the page) is goal-manipulation attacks in a financial-services context — expect it to grow with the Agentic Top 10. Self-hostable from the OWASP-ASI GitHub repo; map each solved challenge back to an Agentic Top 10 entry in your write-up.",
     links: [
       { label: "Hosted CTF", url: "http://owasp-finbot-ctf.org/" },
       { label: "GitHub (OWASP-ASI/finbot-ctf-demo)", url: "https://github.com/OWASP-ASI/finbot-ctf-demo" },
@@ -374,7 +374,7 @@ export const t7Resources: Resource[] = [
     prerequisites: ["t7-gandalf"],
     buildsSkill: "A standing rotation of free ranges that keeps the d-ctf-week drill fed for a year without repeating.",
     whyForHim:
-      "He needs a queue, not a single game: the weekly CTF drill only works if there is always a next level. Rotate Prompt Airlines → Tensor Trust → PromptTrace → PortSwigger labs, and log each in Notes as raw material for posts.",
+      "You need a queue, not a single game: the weekly CTF drill only works if there is always a next level. Rotate Prompt Airlines → Tensor Trust → PromptTrace → PortSwigger labs, and log each in Notes as raw material for posts.",
     priority: "optional",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN"],
@@ -409,7 +409,7 @@ export const t7Resources: Resource[] = [
     buildsSkill:
       "Manipulate a customer-service chatbot into issuing a free ticket — a realistic business-logic prompt-injection scenario with a leaderboard.",
     whyForHim:
-      "Short, product-shaped and from an Israeli cloud-security company he may well pitch or sell against; a good 'what a real agent exploit looks like' story for customer demos.",
+      "Short, product-shaped and from an Israeli cloud-security company you may well pitch or sell against; a good 'what a real agent exploit looks like' story for customer demos.",
     priority: "optional",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN"],
@@ -436,7 +436,7 @@ export const t7Resources: Resource[] = [
     buildsSkill:
       "Practice both sides: write defense prompts for your own 'account' and attack others' — the defender's view most CTFs skip.",
     whyForHim:
-      "Teaches the defender mindset he needs for p-secure-mcp-agent, not just the attacker's. The crowdsourced dataset is also a citable research artifact if he needs a data source for evals.",
+      "Teaches the defender mindset you need for p-secure-mcp-agent, not just the attacker's. The crowdsourced dataset is also a citable research artifact if you need a data source for evals.",
     priority: "optional",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN"],
@@ -464,7 +464,7 @@ export const t7Resources: Resource[] = [
     buildsSkill:
       "See the assembled prompt layers (system instructions, retrieved context, tool calls, guards) and learn why a defense failed, not just that it did — across bare-LLM, RAG, tools, defenses and agentic modules.",
     whyForHim:
-      "The only range in the list that explains failure mechanics, which is what he needs to design controls rather than collect flags. Directly informs the permission model in p-secure-mcp-agent.",
+      "The only range in the list that explains failure mechanics, which is what you need to design controls rather than collect flags. Directly informs the permission model in p-secure-mcp-agent.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN"],
@@ -494,7 +494,7 @@ export const t7Resources: Resource[] = [
     buildsSkill:
       "Modern web-app vulnerability classes (injection, auth, SSRF, access control) with hands-on labs — including its LLM-attack labs.",
     whyForHim:
-      "A refresher, not a course, for a senior generalist: dip in for the LLM-attack labs and the vuln classes his autonomous-pentest agent must find. Don't grind the whole academy.",
+      "A refresher, not a course, for a senior generalist: dip in for the LLM-attack labs and the vuln classes your autonomous-pentest agent must find. Don't grind the whole academy.",
     priority: "optional",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN"],
@@ -518,9 +518,9 @@ export const t7Resources: Resource[] = [
     timeBucket: "2_10h",
     difficulty: "foundational",
     prerequisites: [],
-    buildsSkill: "A local, intentionally vulnerable target he fully controls — the safe first target for an autonomous pentest agent.",
+    buildsSkill: "A local, intentionally vulnerable target you fully controls — the safe first target for an autonomous pentest agent.",
     whyForHim:
-      "Ethical scope matters for p-autonomous-pentest: DVWA runs in Docker on his laptop, so he can benchmark agent loops without touching anything he isn't authorized to test.",
+      "Ethical scope matters for p-autonomous-pentest: DVWA runs in Docker on your laptop, so you can benchmark agent loops without touching anything you aren't authorized to test.",
     priority: "optional",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN"],
@@ -546,7 +546,7 @@ export const t7Resources: Resource[] = [
     prerequisites: [],
     buildsSkill: "Guided rooms for keeping general hands-on security skills sharp.",
     whyForHim:
-      "Low priority: he is already a cyber generalist. Use only to plug a specific gap (e.g. a privesc room before p-autonomous-pentest) or as extra authorized agent targets alongside Hack The Box.",
+      "Low priority: you are already a cyber generalist. Use only to plug a specific gap (e.g. a privesc room before p-autonomous-pentest) or as extra authorized agent targets alongside Hack The Box.",
     priority: "skip_unless_relevant",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN"],
@@ -603,7 +603,7 @@ export const t7Resources: Resource[] = [
     buildsSkill:
       "Issue and verify SVIDs (X.509/JWT), understand attestation, short-lived certs and mTLS, and run a SPIRE server/agent that gives an AI agent a cryptographic identity.",
     whyForHim:
-      "The single most important technical primitive in his sharpest wedge (agent/NHI). Every target startup — NewCore, Oak, Offroad, Act — builds on or around this model. A working SPIRE deployment issuing identities to his MCP agent is the core of p-secure-mcp-agent and p-nhi-prototype, and the demo that makes 'I understand non-human identity' undeniable.",
+      "The single most important technical primitive in your sharpest wedge (agent/NHI). Every target startup — NewCore, Oak, Offroad, Act — builds on or around this model. A working SPIRE deployment issuing identities to your MCP agent is the core of p-secure-mcp-agent and p-nhi-prototype, and the demo that makes 'I understand non-human identity' undeniable.",
     priority: "must_do",
     producesArtifact: true,
     trackIds: ["T7_DOMAIN"],
@@ -635,7 +635,7 @@ export const t7Resources: Resource[] = [
     buildsSkill:
       "PKCE everywhere, no implicit grant, short-lived and audience-bound tokens — the modern OAuth rules that MCP authorization and agent delegation assume.",
     whyForHim:
-      "MCP's authorization spec is literally an 'OAuth 2.1 resource-server model'; he cannot design agent permissions without it. He has touched OAuth as a solutions architect — this is the upgrade to the 2.1 consolidated rules.",
+      "MCP's authorization spec is literally an 'OAuth 2.1 resource-server model'; you cannot design agent permissions without it. You have touched OAuth as a solutions architect — this is the upgrade to the 2.1 consolidated rules.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN"],
@@ -717,7 +717,7 @@ export const t7Resources: Resource[] = [
     buildsSkill:
       "How MCP servers act as OAuth 2.1 resource servers: protected-resource metadata (RFC 9728), resource indicators (RFC 8707), PKCE, client-ID metadata documents, audience validation and the forbidden token-passthrough pattern.",
     whyForHim:
-      "This is the auth model his secured MCP agent must implement — and the spec's security section (confused deputy, token passthrough, audience binding) is a ready-made threat model for p-secure-mcp-agent. Knowing it cold is a differentiator in any MCP-security interview.",
+      "This is the auth model your secured MCP agent must implement — and the spec's security section (confused deputy, token passthrough, audience binding) is a ready-made threat model for p-secure-mcp-agent. Knowing it cold is a differentiator in any MCP-security interview.",
     priority: "must_do",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN", "T1_AI_ML"],
@@ -751,7 +751,7 @@ export const t7Resources: Resource[] = [
     buildsSkill:
       "Agent cards, task lifecycle and the authentication schemes agents declare to each other — the cross-agent trust layer that complements MCP's tool layer.",
     whyForHim:
-      "Multi-agent systems are where NHI gets hard (agent-to-agent delegation chains). Reading A2A's auth model lets him extend p-nhi-prototype from 'agent → tool' to 'agent → agent' identity — the harder problem NewCore/Onyx-type companies are chasing.",
+      "Multi-agent systems are where NHI gets hard (agent-to-agent delegation chains). Reading A2A's auth model lets you extend p-nhi-prototype from 'agent → tool' to 'agent → agent' identity — the harder problem NewCore/Onyx-type companies are chasing.",
     priority: "optional",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN"],
@@ -810,7 +810,7 @@ export const t7Resources: Resource[] = [
     buildsSkill:
       "A map of the non-human-identity category: problem framing, vendor positioning, and where SPIFFE/OAuth primitives show up in products.",
     whyForHim:
-      "He is going to interview with, sell against or found in this category. The five-year plan calls NHI 'the hottest Israeli sub-lane' (Cyera/Oasis, Cisco/Astrix, SailPoint/Entro; NewCore, Oak, Offroad). Reading the landscape weekly gives him positioning language (T5) and product gaps (T3) at once.",
+      "You are going to interview with, sell against or found in this category. The five-year plan calls NHI 'the hottest Israeli sub-lane' (Cyera/Oasis, Cisco/Astrix, SailPoint/Entro; NewCore, Oak, Offroad). Reading the landscape weekly gives you positioning language (T5) and product gaps (T3) at once.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN", "T5_SALES_GTM"],
@@ -843,7 +843,7 @@ export const t7Resources: Resource[] = [
     buildsSkill:
       "How an autonomous offensive system is productized — benchmark design, human validation loop, bug-bounty distribution — and how to read its claims critically.",
     whyForHim:
-      "XBOW is the archetype of the AI-for-cyber companies on his target list (Tenzai — 'hiring FDE, best match' — and A Security). Its academy and blog give him the category narrative for interviews, and its benchmark is the target for p-autonomous-pentest.",
+      "XBOW is the archetype of the AI-for-cyber companies on your target list (Tenzai — 'hiring FDE, best match' — and A Security). Its academy and blog give you the category narrative for interviews, and its benchmark is the target for p-autonomous-pentest.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN"],
@@ -903,7 +903,7 @@ export const t7Resources: Resource[] = [
     buildsSkill:
       "Research literacy in LLM-driven offense: what agents can and can't exploit, how benchmarks are built, and where the hype is.",
     whyForHim:
-      "Feeds the d-paper-week drill (one paper + a 200-word summary) and p-reproduce-paper. Reading primary sources lets him separate XBOW-style vendor claims from measured capability — a credibility marker with technical founders.",
+      "Feeds the d-paper-week drill (one paper + a 200-word summary) and p-reproduce-paper. Reading primary sources lets you separate XBOW-style vendor claims from measured capability — a credibility marker with technical founders.",
     priority: "high",
     producesArtifact: true,
     trackIds: ["T7_DOMAIN"],
@@ -964,7 +964,7 @@ export const t7Resources: Resource[] = [
     buildsSkill:
       "Hierarchical planning with task-specific subagents for exploitation; how multi-agent structure changes exploit success on unknown vulnerabilities.",
     whyForHim:
-      "The multi-agent architecture is the blueprint for p-autonomous-pentest's agent loop, and its planner/subagent split is the same pattern he will secure in p-secure-mcp-agent — offense and defense in one read.",
+      "The multi-agent architecture is the blueprint for p-autonomous-pentest's agent loop, and its planner/subagent split is the same pattern you will secure in p-secure-mcp-agent — offense and defense in one read.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN"],
@@ -990,7 +990,7 @@ export const t7Resources: Resource[] = [
     prerequisites: ["t7-paper-hptsa"],
     buildsSkill: "How to build a sandboxed, realistic exploitation benchmark from real CVEs, and what current agents actually achieve on it.",
     whyForHim:
-      "Benchmark design is the skill that turns p-autonomous-pentest from a demo into a measured result; it also gives him an independent yardstick against vendor claims like XBOW's.",
+      "Benchmark design is the skill that turns p-autonomous-pentest from a demo into a measured result; it also gives you an independent yardstick against vendor claims like XBOW's.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN"],
@@ -1044,7 +1044,7 @@ export const t7Resources: Resource[] = [
     buildsSkill:
       "Vocabulary and architecture patterns for AI-SOC: alert triage/enrichment agents, human-in-the-loop, detection-as-code, and how vendors evaluate analyst-agent quality.",
     whyForHim:
-      "AI-for-cyber is his second domain and p-ai-soc-triage its proof. His SOC-adjacent 8200 background means he can judge vendor claims AI engineers can't; curating this feed keeps him fluent for conversations with Corma, Mate Security or Exaforce-type teams.",
+      "AI-for-cyber is your second domain and p-ai-soc-triage its proof. Your SOC-adjacent 8200 background means you can judge vendor claims AI engineers can't; curating this feed keeps you fluent for conversations with Corma, Mate Security or Exaforce-type teams.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN"],
@@ -1054,7 +1054,7 @@ export const t7Resources: Resource[] = [
     freshness: "unknown",
     qualitySignal: "No canonical source yet — the spec flags this as needs-curation via vendor engineering blogs + practitioner newsletters.",
     notes:
-      "Placeholder URL (tl;dr sec) until he curates 3–5 sources. Company examples from the five-year plan: Exaforce, Dropzone, Prophet, Mate Security, Corma; vendor blogs are marketing — verify claims.",
+      "Placeholder URL (tl;dr sec) until you curate 3–5 sources. Company examples from the five-year plan: Exaforce, Dropzone, Prophet, Mate Security, Corma; vendor blogs are marketing — verify claims.",
   },
 
   // ───────────────────── Cyber for physical AI / OT & robotics ─────────────────────
@@ -1075,7 +1075,7 @@ export const t7Resources: Resource[] = [
     buildsSkill:
       "How robots and OT endpoints authenticate, encrypt and get attacked (DDS security, ROS 2 access control, ICS tactics) — enough to threat-model a robot as a networked OT endpoint.",
     whyForHim:
-      "His selective third lane (cyber-for-physical-AI / defense autonomy). Foundational reading only unless he chooses this wedge — but a single post threat-modeling a ROS 2 robot against ATT&CK for ICS would be unusual, differentiated public work for Enigma/defense-tech conversations.",
+      "Your selective third lane (cyber-for-physical-AI / defense autonomy). Foundational reading only unless you choose this wedge — but a single post threat-modeling a ROS 2 robot against ATT&CK for ICS would be unusual, differentiated public work for Enigma/defense-tech conversations.",
     priority: "optional",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN"],
@@ -1084,7 +1084,7 @@ export const t7Resources: Resource[] = [
     tags: ["robotics", "ot_ics", "physical_ai", "defense_tech", "optional"],
     freshness: "aging",
     qualitySignal: "Spec: 'foundational reading; optional-high depending on wedge choice'. SROS2 is the official ROS 2 security tooling.",
-    notes: "Priority rises to high if he picks the physical-AI wedge. URLs from memory — verify.",
+    notes: "Priority rises to high if you pick the physical-AI wedge. URLs from memory — verify.",
     links: [
       { label: "MITRE ATT&CK for ICS", url: "https://attack.mitre.org/matrices/ics/" },
       { label: "Alias Robotics", url: "https://aliasrobotics.com" },
@@ -1107,7 +1107,7 @@ export const t7Resources: Resource[] = [
     buildsSkill:
       "Concrete robot vulnerabilities and offensive/defensive tooling for ROS-based systems — the only sustained body of public research in this niche.",
     whyForHim:
-      "The five-year plan names Alias Robotics as the reference player in cyber-for-physical-AI ('nascent but real'). Their open research is how he would learn the sub-domain fast and find a credible angle for the 2028–29 bet.",
+      "The five-year plan names Alias Robotics as the reference player in cyber-for-physical-AI ('nascent but real'). Their open research is how you would learn the sub-domain fast and find a credible angle for the 2028–29 bet.",
     priority: "optional",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN"],
@@ -1122,7 +1122,7 @@ export const t7Resources: Resource[] = [
     ],
   },
 
-  // ───────────────── Defense-tech + Israeli ecosystem (his geography) ─────────────────
+  // ───────────────── Defense-tech + Israeli ecosystem (your geography) ─────────────────
   {
     id: "t7-cyberweek",
     title: "Cyber Week TAU 2026",
@@ -1138,9 +1138,9 @@ export const t7Resources: Resource[] = [
     difficulty: "foundational",
     prerequisites: [],
     buildsSkill:
-      "Network density: meet Israeli founders, VCs (Cyberstarts/Team8/YL/Glilot) and CISOs in one week; calibrate his wedge against what the ecosystem is funding.",
+      "Network density: meet Israeli founders, VCs (Cyberstarts/Team8/YL/Glilot) and CISOs in one week; calibrate your wedge against what the ecosystem is funding.",
     whyForHim:
-      "Local, huge and free-ish — the highest-ROI networking event in his geography. A Phase 2 item in the primary path ('attend Cyber Week TAU'); Variant B's end goal is to present here. Target: 10 conversations, 3 follow-ups, one post.",
+      "Local, huge and free-ish — the highest-ROI networking event in your geography. A Phase 2 item in the primary path ('attend Cyber Week TAU'); Variant B's end goal is to present here. Target: 10 conversations, 3 follow-ups, one post.",
     priority: "must_do",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN", "T6_FOUNDER"],
@@ -1168,7 +1168,7 @@ export const t7Resources: Resource[] = [
     buildsSkill:
       "Exposure to Israel's defense-tech/autonomy ecosystem — the buyers, primes and startups behind the sector's 2025–26 funding surge.",
     whyForHim:
-      "His adjacent bet: 8200 alumni have a natural door into defense autonomy, and the five-year plan ranks it #2 among adjacent domains. Two days to test whether cyber-for-physical-AI/defense is a real wedge for him or a distraction.",
+      "Your adjacent bet: 8200 alumni have a natural door into defense autonomy, and the five-year plan ranks it #2 among adjacent domains. Two days to test whether cyber-for-physical-AI/defense is a real wedge for you or a distraction.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN", "T6_FOUNDER"],
@@ -1195,7 +1195,7 @@ export const t7Resources: Resource[] = [
     prerequisites: [],
     buildsSkill: "Commercial-side view of the cyber market — vendors, CISOs, procurement — the buyer landscape for enterprise-security selling.",
     whyForHim:
-      "More commercial than Cyber Week: ideal for practicing CISO discovery conversations (T5) and scouting which AI-security vendors are actually selling. By Jan 2027 he should be in a seed-stage role — use it to find design partners.",
+      "More commercial than Cyber Week: ideal for practicing CISO discovery conversations (T5) and scouting which AI-security vendors are actually selling. By Jan 2027 you should be in a seed-stage role — use it to find design partners.",
     priority: "high",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN", "T5_SALES_GTM"],
@@ -1219,7 +1219,7 @@ export const t7Resources: Resource[] = [
     timeBucket: "2_10h",
     difficulty: "intermediate",
     prerequisites: [],
-    buildsSkill: "A low-barrier stage to present his red-team write-up or NHI prototype to a technical Israeli audience.",
+    buildsSkill: "A low-barrier stage to present your red-team write-up or NHI prototype to a technical Israeli audience.",
     whyForHim:
       "Variant B's explicit output is 'present at BSides TLV / Cyber Week'. A talk here is the public proof for the T7 assessment and the cheapest way to build the visible reputation the five-year plan says precedes founding. The 2026 edition (Nov 11) sits inside Cyber Week (Nov 9–12), so one week on the TAU campus covers both — submit the red-team write-up to the CFP well before then.",
     priority: "high",
@@ -1230,7 +1230,7 @@ export const t7Resources: Resource[] = [
     tags: ["conference", "tel_aviv", "speaking", "public_proof", "israel"],
     freshness: "current",
     qualitySignal:
-      "Named in the spec as a target venue for presenting his work. Site (fetched Sept 2026): 2026 edition 'Alice in AI Land', Nov 11 2026, Smolarz Auditorium, Tel Aviv University; 10+ years running, 100% non-profit, CFP open; claims 12,000+ participants, an AI-hacking village and a 54-hour CTF (site figures, not independently verified).",
+      "Named in the spec as a target venue for presenting your work. Site (fetched Sept 2026): 2026 edition 'Alice in AI Land', Nov 11 2026, Smolarz Auditorium, Tel Aviv University; 10+ years running, 100% non-profit, CFP open; claims 12,000+ participants, an AI-hacking village and a 54-hour CTF (site figures, not independently verified).",
     notes: "CFP deadline not captured — check the site; the AI-hacking village is the natural home for an agent-security talk.",
   },
   {
@@ -1249,7 +1249,7 @@ export const t7Resources: Resource[] = [
     prerequisites: [],
     buildsSkill: "A sourced picture of the Israeli defense-tech sector: company counts, sub-sectors and who is funding what.",
     whyForHim:
-      "The best-sourced anchor for his defense-tech narrative (160 → 312 companies, a ~95% jump) — use these numbers, not the unverified 'world's #3 hub' claim, in pitches and posts.",
+      "The best-sourced anchor for your defense-tech narrative (160 → 312 companies, a ~95% jump) — use these numbers, not the unverified 'world's #3 hub' claim, in pitches and posts.",
     priority: "optional",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN", "T6_FOUNDER"],
@@ -1280,7 +1280,7 @@ export const t7Resources: Resource[] = [
     buildsSkill:
       "Week-by-week fluency in prompt injection, agent-security incidents and LLM tooling — including the 'lethal trifecta' framing (private data + untrusted content + an exfiltration channel).",
     whyForHim:
-      "The origin of the 'lethal trifecta' — the clearest mental model of agent risk and the one he should use in every threat model and customer explanation. The highest signal-to-noise feed for his exact wedge.",
+      "The origin of the 'lethal trifecta' — the clearest mental model of agent risk and the one you should use in every threat model and customer explanation. The highest signal-to-noise feed for your exact wedge.",
     priority: "must_do",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN", "T1_AI_ML"],
@@ -1333,7 +1333,7 @@ export const t7Resources: Resource[] = [
     prerequisites: [],
     buildsSkill: "AI-engineering zeitgeist: agent frameworks, evals, inference and the people building them.",
     whyForHim:
-      "Keeps the T1 half of his wedge current and gives him the 'AI engineer' cultural fluency most security people lack — useful in FDE interviews at AI-native startups.",
+      "Keeps the T1 half of your wedge current and gives you the 'AI engineer' cultural fluency most security people lack — useful in FDE interviews at AI-native startups.",
     priority: "optional",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN", "T1_AI_ML"],
@@ -1358,7 +1358,7 @@ export const t7Resources: Resource[] = [
     prerequisites: [],
     buildsSkill: "Frontier-model capability and policy trends, including AI-security and misuse research summaries.",
     whyForHim:
-      "The policy/governance lens (NIST, EU, frontier-lab safety) he needs for enterprise and defense conversations, from someone who reads the papers so he doesn't have to.",
+      "The policy/governance lens (NIST, EU, frontier-lab safety) you need for enterprise and defense conversations, from someone who reads the papers so you don't have to.",
     priority: "optional",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN"],
@@ -1390,7 +1390,7 @@ export const t7Resources: Resource[] = [
     timeBucket: "10_30h",
     difficulty: "advanced",
     prerequisites: ["t7-htb-ai"],
-    buildsSkill: "Exam-verified ability to attack AI systems end-to-end; a credential that names his wedge on a CV.",
+    buildsSkill: "Exam-verified ability to attack AI systems end-to-end; a credential that names your wedge on a CV.",
     whyForHim:
       "The only certification the spec rates as worth considering: it matches the agent-security wedge, and unlike CISSP/OSCP it is hands-on and cheap in hours. Still second to shipped artifacts — do it only if a target employer values credentials or after the portfolio is live.",
     priority: "high",
@@ -1401,7 +1401,7 @@ export const t7Resources: Resource[] = [
     tags: ["certification", "htb", "red_teaming", "verdict-high"],
     freshness: "current",
     qualitySignal:
-      "Spec verdict: 'HTB Certified AI Red Teamer: the one credential worth considering — aligns with his wedge.' Net: artifacts > certs. HTB's listing (Sept 2026) no longer shows a cert with that name; the matching credential is 'HTB Certified Offensive AI Expert', with 'AI Red Teamer' as its job-role path.",
+      "Spec verdict: 'HTB Certified AI Red Teamer: the one credential worth considering — aligns with your wedge.' Net: artifacts > certs. HTB's listing (Sept 2026) no longer shows a cert with that name; the matching credential is 'HTB Certified Offensive AI Expert', with 'AI Red Teamer' as its job-role path.",
     notes:
       "URL taken from HTB's certifications listing page (the old /htb-certified-ai-red-teamer slug 404s). Confirm on the cert page that COAE is the renamed AI Red Teamer credential and what the $490 covers.",
   },
@@ -1420,7 +1420,7 @@ export const t7Resources: Resource[] = [
     prerequisites: [],
     buildsSkill: "Broad security-management vocabulary across eight domains — management-track signaling.",
     whyForHim:
-      "Skip. It is a management credential aimed at compliance-track roles; it signals nothing about building agents or NHI controls and would eat 100+ hours he should spend on portfolio projects. Override only if a specific target employer requires it.",
+      "Skip. It is a management credential aimed at compliance-track roles; it signals nothing about building agents or NHI controls and would eat 100+ hours you should spend on portfolio projects. Override only if a specific target employer requires it.",
     priority: "skip_unless_relevant",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN"],
@@ -1428,7 +1428,7 @@ export const t7Resources: Resource[] = [
     roleRelevance: ["CTO"],
     tags: ["certification", "verdict-skip", "management"],
     freshness: "current",
-    qualitySignal: "Spec verdict: 'CISSP: skip (management cert, not his need)'. Net: certifications are LOW value; artifacts > certs.",
+    qualitySignal: "Spec verdict: 'CISSP: skip (management cert, not your need)'. Net: certifications are LOW value; artifacts > certs.",
   },
   {
     id: "t7-cert-oscp",
@@ -1445,7 +1445,7 @@ export const t7Resources: Resource[] = [
     prerequisites: [],
     buildsSkill: "Hands-on manual exploitation and privilege escalation under a 24-hour practical exam.",
     whyForHim:
-      "Skip unless he decides he wants deep manual offensive work. High time cost, low ROI for a product-CTO path — the HTB AI Red Teamer path covers the offensive-AI angle in a fraction of the hours.",
+      "Skip unless you decide you want deep manual offensive work. High time cost, low ROI for a product-CTO path — the HTB AI Red Teamer path covers the offensive-AI angle in a fraction of the hours.",
     priority: "skip_unless_relevant",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN"],
@@ -1453,7 +1453,7 @@ export const t7Resources: Resource[] = [
     roleRelevance: ["Developer"],
     tags: ["certification", "verdict-skip", "offensive"],
     freshness: "current",
-    qualitySignal: "Spec verdict: 'OSCP: skip unless he wants deep offensive hands-on (high time cost, low ROI for his path)'.",
+    qualitySignal: "Spec verdict: 'OSCP: skip unless you want deep offensive hands-on (high time cost, low ROI for your path)'.",
   },
   {
     id: "t7-cert-cloud",
@@ -1470,7 +1470,7 @@ export const t7Resources: Resource[] = [
     prerequisites: ["Cloud/DevOps basics (t2-cloud-devops level)"],
     buildsSkill: "Structured cloud fundamentals (IAM, networking, managed services) that underpin deploying and securing AI systems.",
     whyForHim:
-      "Only if a role demands it. T2's 'learn just enough to deploy and secure' covers his needs; a cert adds signaling for enterprise-facing FDE roles at most.",
+      "Only if a role demands it. T2's 'learn just enough to deploy and secure' covers your needs; a cert adds signaling for enterprise-facing FDE roles at most.",
     priority: "optional",
     producesArtifact: false,
     trackIds: ["T7_DOMAIN", "T2_BACKEND_SYSTEMS"],

@@ -74,6 +74,8 @@ export interface UiState {
   collapsed: Record<string, boolean>;
   reviewDeck: string | "all";
   compassTab: string;
+  /** True while the library search was preset by a deep link (cleared when opened from the nav). */
+  libQFromLink?: boolean;
 }
 
 export interface ForgeState {
@@ -93,6 +95,8 @@ export interface ForgeState {
   ui: UiState;
   /** Achievement ids already celebrated (so we toast once). */
   celebrated: Record<string, boolean>;
+  /** Resource ids the user plans to buy (Budget view) — separate from learning status. */
+  planned: Record<string, boolean>;
 
   // ---- actions ----
   setStatus: (itemId: string, itemType: ProgressItemType, status: ProgressStatus) => void;
@@ -119,6 +123,7 @@ export interface ForgeState {
   /** Explicitly set a collapsible section closed (true) or open (false). */
   setCollapsed: (key: string, collapsed: boolean) => void;
   markCelebrated: (id: string) => void;
+  togglePlanned: (resourceId: string) => void;
   importState: (data: unknown) => boolean;
   exportState: () => string;
   resetAll: () => void;
@@ -177,6 +182,7 @@ export function defaultData() {
     pomoCount: 0,
     ui: defaultUi(),
     celebrated: {} as Record<string, boolean>,
+    planned: {} as Record<string, boolean>,
   };
 }
 
@@ -188,7 +194,7 @@ export function uid(prefix = "n"): string {
 
 const PERSIST_KEYS: (keyof ForgeState)[] = [
   "version", "progress", "drillLog", "completions", "notes", "srs", "srsReviewedToday",
-  "settings", "pomodoro", "pomoCount", "ui", "celebrated",
+  "settings", "pomodoro", "pomoCount", "ui", "celebrated", "planned",
 ];
 
 function bumpCompletion(completions: Record<string, number>, delta: number, key = todayKey()) {
@@ -196,6 +202,76 @@ function bumpCompletion(completions: Record<string, number>, delta: number, key 
   const v = (next[key] ?? 0) + delta;
   if (v <= 0) delete next[key]; else next[key] = v;
   return next;
+}
+
+// ---------------------------------------------------------------------------
+// Import sanitising: a backup is untrusted JSON. Keep only well-typed values.
+// ---------------------------------------------------------------------------
+const STATUSES: ProgressStatus[] = ["todo", "in_progress", "done", "skipped"];
+const ITEM_TYPES: ProgressItemType[] = ["resource", "project", "drill", "milestone", "assessment"];
+const isObj = (v: unknown): v is Record<string, unknown> => !!v && typeof v === "object" && !Array.isArray(v);
+const isDateKey = (v: unknown): v is string => typeof v === "string" && /^\d{4}-\d{2}-\d{2}$/.test(v);
+const num = (v: unknown, fallback: number, min = -Infinity, max = Infinity) => { const n = typeof v === "number" ? v : Number(v); return Number.isFinite(n) && n >= min && n <= max ? n : fallback; };
+const str = (v: unknown, fallback = "") => (typeof v === "string" ? v : fallback);
+
+export function sanitizeImport(data: unknown): Partial<ForgeState> | null {
+  if (!isObj(data)) return null;
+  const hasAny = ["progress", "notes", "drillLog", "settings", "srs", "completions"].some((k) => k in data);
+  if (!hasAny) return null;
+  const base = defaultData();
+  const progress: Record<string, ProgressEntry> = {};
+  if (isObj(data.progress)) for (const [id, raw] of Object.entries(data.progress)) {
+    if (!isObj(raw)) continue;
+    const status = STATUSES.includes(raw.status as ProgressStatus) ? (raw.status as ProgressStatus) : "todo";
+    const itemType = ITEM_TYPES.includes(raw.itemType as ProgressItemType) ? (raw.itemType as ProgressItemType) : "resource";
+    const e: ProgressEntry = { itemId: id, itemType, status, updatedAt: str(raw.updatedAt, nowIso()) };
+    if (raw.percentComplete !== undefined) e.percentComplete = num(raw.percentComplete, 0, 0, 100);
+    if (raw.hoursLogged !== undefined) e.hoursLogged = num(raw.hoursLogged, 0, 0, 100000);
+    if (Array.isArray(raw.links)) e.links = raw.links.filter(isObj).map((l) => ({ label: str(l.label), url: str(l.url) })).filter((l) => l.label && l.url);
+    if (Array.isArray(raw.criteriaDone)) e.criteriaDone = raw.criteriaDone.map((n) => num(n, -1, 0, 999)).filter((n) => n >= 0);
+    progress[id] = e;
+  }
+  const drillLog: Record<string, string[]> = {};
+  if (isObj(data.drillLog)) for (const [id, list] of Object.entries(data.drillLog)) if (Array.isArray(list)) drillLog[id] = Array.from(new Set(list.filter(isDateKey))).sort();
+  const completions: Record<string, number> = {};
+  if (isObj(data.completions)) for (const [k, v] of Object.entries(data.completions)) if (isDateKey(k)) { const n = num(v, 0, 0, 10000); if (n > 0) completions[k] = Math.round(n); }
+  const notes: Note[] = Array.isArray(data.notes) ? data.notes.filter(isObj).map((n) => ({
+    id: str(n.id) || uid("note"), title: str(n.title), body: str(n.body), createdAt: str(n.createdAt, nowIso()), updatedAt: str(n.updatedAt, nowIso()),
+    tags: Array.isArray(n.tags) ? n.tags.filter((t): t is string => typeof t === "string") : [],
+    resourceId: typeof n.resourceId === "string" ? n.resourceId : undefined, projectId: typeof n.projectId === "string" ? n.projectId : undefined, itemId: typeof n.itemId === "string" ? n.itemId : undefined,
+  })) : [];
+  const srs: Record<string, SrsState> = {};
+  if (isObj(data.srs)) for (const [id, raw] of Object.entries(data.srs)) if (isObj(raw) && isDateKey(raw.due)) srs[id] = { reps: num(raw.reps, 0, 0, 10000), ease: num(raw.ease, 2.5, 1.3, 10), interval: num(raw.interval, 0, 0, 100000), due: raw.due, lapses: num(raw.lapses, 0, 0, 10000), lastGrade: raw.lastGrade === undefined ? undefined : num(raw.lastGrade, 0, 0, 3) };
+  const srsReviewedToday: Record<string, number> = {};
+  if (isObj(data.srsReviewedToday)) for (const [k, v] of Object.entries(data.srsReviewedToday)) if (isDateKey(k)) srsReviewedToday[k] = Math.round(num(v, 0, 0, 100000));
+  const ds = isObj(data.settings) ? data.settings : {};
+  const dp = isObj(ds.pomo) ? ds.pomo : {};
+  const ROLES_ALL = ["all", "PM", "FDE", "SE", "Developer", "CTO", "CEO"];
+  const settings: Settings = {
+    name: str(ds.name, base.settings.name),
+    theme: ds.theme === "light" ? "light" : "dark",
+    startDate: isDateKey(ds.startDate) ? ds.startDate : base.settings.startDate,
+    hoursPerWeek: num(ds.hoursPerWeek, base.settings.hoursPerWeek, 1, 60),
+    activePathId: str(ds.activePathId, base.settings.activePathId),
+    roleFilter: ROLES_ALL.includes(ds.roleFilter as string) ? (ds.roleFilter as Settings["roleFilter"]) : "all",
+    dailyGoal: Math.round(num(ds.dailyGoal, base.settings.dailyGoal, 1, 10)),
+    railOpen: ds.railOpen === undefined ? base.settings.railOpen : !!ds.railOpen,
+    navPinned: !!ds.navPinned,
+    pomo: { focus: num(dp.focus, 25, 1, 120), short: num(dp.short, 5, 1, 60), long: num(dp.long, 15, 1, 90), rounds: Math.round(num(dp.rounds, 4, 1, 12)), sound: dp.sound === undefined ? true : !!dp.sound },
+    freshnessCheckedAt: isDateKey(ds.freshnessCheckedAt) ? ds.freshnessCheckedAt : undefined,
+  };
+  const dpo = isObj(data.pomodoro) ? data.pomodoro : {};
+  const mode = dpo.mode === "short" || dpo.mode === "long" ? dpo.mode : "focus";
+  const pomodoro: PomodoroState = { mode, running: false, endTime: null, remaining: num(dpo.remaining, settings.pomo.focus * 60, 0, 120 * 60), round: Math.round(num(dpo.round, 1, 1, 10000)), taskId: typeof dpo.taskId === "string" ? dpo.taskId : null, taskTitle: typeof dpo.taskTitle === "string" ? dpo.taskTitle : null };
+  const du = isObj(data.ui) ? data.ui : {};
+  const dlf = isObj(du.libraryFilters) ? du.libraryFilters : {};
+  const strList = (v: unknown) => (Array.isArray(v) ? v.filter((x): x is string => typeof x === "string") : []);
+  const boolMap = (v: unknown) => { const out: Record<string, boolean> = {}; if (isObj(v)) for (const [k, b] of Object.entries(v)) out[k] = !!b; return out; };
+  const ui: UiState = {
+    libraryFilters: { q: str(dlf.q), tracks: strList(dlf.tracks), types: strList(dlf.types), cost: strList(dlf.cost), difficulty: strList(dlf.difficulty), priority: strList(dlf.priority), time: strList(dlf.time), hideDone: !!dlf.hideDone, onlyArtifacts: !!dlf.onlyArtifacts },
+    expanded: boolMap(du.expanded), collapsed: boolMap(du.collapsed), reviewDeck: str(du.reviewDeck, "all") || "all", compassTab: str(du.compassTab, "overview") || "overview",
+  };
+  return { progress, drillLog, completions, notes, srs, srsReviewedToday, settings, pomodoro, pomoCount: Math.round(num(data.pomoCount, 0, 0, 1000000)), ui, celebrated: boolMap(data.celebrated), planned: boolMap(data.planned) };
 }
 
 export const useForge = create<ForgeState>()(
@@ -208,10 +284,13 @@ export const useForge = create<ForgeState>()(
           const prev = s.progress[itemId];
           const wasDone = prev?.status === "done";
           const isDone = status === "done";
+          const prevPct = prev?.percentComplete;
+          // Leaving "done" drops the 100%; todo/skipped reset to 0; in-progress keeps a real partial value only.
+          const percentComplete = isDone ? 100 : status === "in_progress" ? (prevPct !== undefined && prevPct > 0 && prevPct < 100 ? prevPct : undefined) : 0;
           const entry: ProgressEntry = {
             ...(prev ?? { itemId, itemType }),
             itemId, itemType, status,
-            percentComplete: isDone ? 100 : prev?.percentComplete ?? (status === "in_progress" ? Math.max(prev?.percentComplete ?? 0, 1) : 0),
+            percentComplete,
             updatedAt: nowIso(),
           };
           let completions = s.completions;
@@ -261,7 +340,9 @@ export const useForge = create<ForgeState>()(
           if (cur.has(index)) cur.delete(index); else cur.add(index);
           const done = [...cur].sort((a, b) => a - b);
           const p = total > 0 ? Math.round((done.length / total) * 100) : 0;
-          const status: ProgressStatus = p >= 100 ? "done" : p > 0 ? "in_progress" : "todo";
+          // A project moved to Done on the board stays done while its checklist is edited; rubrics derive strictly.
+          const keepDone = itemType === "project" && prev?.status === "done";
+          const status: ProgressStatus = keepDone || p >= 100 ? "done" : p > 0 ? "in_progress" : "todo";
           const wasDone = prev?.status === "done";
           let completions = s.completions;
           if (status === "done" && !wasDone) completions = bumpCompletion(completions, +1);
@@ -311,26 +392,12 @@ export const useForge = create<ForgeState>()(
       toggleCollapsed: (key) => set((s) => ({ ui: { ...s.ui, collapsed: { ...s.ui.collapsed, [key]: !s.ui.collapsed[key] } } })),
       setCollapsed: (key, collapsed) => set((s) => ({ ui: { ...s.ui, collapsed: { ...s.ui.collapsed, [key]: collapsed } } })),
       markCelebrated: (id) => set((s) => ({ celebrated: { ...s.celebrated, [id]: true } })),
+      togglePlanned: (id) => set((s) => { const planned = { ...s.planned }; if (planned[id]) delete planned[id]; else planned[id] = true; return { planned }; }),
 
       importState: (data) => {
-        if (!data || typeof data !== "object") return false;
-        const d = data as Partial<ForgeState>;
-        if (!d.progress || typeof d.progress !== "object") return false;
-        const base = defaultData();
-        set({
-          ...base,
-          progress: d.progress ?? {},
-          drillLog: d.drillLog ?? {},
-          completions: d.completions ?? {},
-          notes: Array.isArray(d.notes) ? d.notes : [],
-          srs: d.srs ?? {},
-          srsReviewedToday: d.srsReviewedToday ?? {},
-          settings: { ...base.settings, ...(d.settings ?? {}), pomo: { ...base.settings.pomo, ...(d.settings?.pomo ?? {}) } },
-          pomodoro: { ...base.pomodoro, ...(d.pomodoro ?? {}), running: false, endTime: null },
-          pomoCount: typeof d.pomoCount === "number" ? d.pomoCount : 0,
-          ui: { ...base.ui, ...(d.ui ?? {}), libraryFilters: { ...base.ui.libraryFilters, ...(d.ui?.libraryFilters ?? {}) } },
-          celebrated: d.celebrated ?? {},
-        });
+        const clean = sanitizeImport(data);
+        if (!clean) return false;
+        set({ ...defaultData(), ...clean });
         return true;
       },
 
@@ -366,6 +433,7 @@ export const useForge = create<ForgeState>()(
           srsReviewedToday: p.srsReviewedToday ?? {},
           celebrated: p.celebrated ?? {},
           pomoCount: typeof p.pomoCount === "number" ? p.pomoCount : 0,
+          planned: p.planned ?? {},
         };
       },
       partialize: (s) => {

@@ -17,14 +17,14 @@ function download(name: string, text: string) {
 }
 
 /** Numeric input that tolerates an empty/partial draft while typing and commits only valid values. */
-function NumField({ value, min, max, onCommit, testId, step }: { value: number; min: number; max: number; onCommit: (n: number) => void; testId: string; step?: number }) {
+function NumField({ value, min, max, onCommit, testId, step, integer }: { value: number; min: number; max: number; onCommit: (n: number) => void; testId: string; step?: number; integer?: boolean }) {
   const [draft, setDraft] = useState(String(value));
   const [editing, setEditing] = useState(false);
   const shown = editing ? draft : String(value);
   return (
     <input className="fi" type="number" min={min} max={max} step={step} value={shown} data-testid={testId}
       onFocus={() => { setDraft(String(value)); setEditing(true); }}
-      onChange={(e) => { const v = e.target.value; setDraft(v); const n = Number(v); if (v.trim() !== "" && Number.isFinite(n) && n >= min && n <= max) onCommit(n); }}
+      onChange={(e) => { const v = e.target.value; setDraft(v); const n = Number(v); if (v.trim() !== "" && Number.isFinite(n) && n >= min && n <= max && (!integer || Number.isInteger(n))) onCommit(n); }}
       onBlur={() => setEditing(false)} />
   );
 }
@@ -68,17 +68,17 @@ export default function SettingsPage() {
           <Card title="Profile & plan">
             <div className="frm">
               <label>Name<input className="fi" value={settings.name} onChange={(e) => update({ name: e.target.value })} data-testid="set-name" /></label>
-              <label>Theme<Seg<Theme> value={settings.theme} onChange={(v) => update({ theme: v })} testId="set-theme" options={[{ value: "dark", label: "☾ Dark" }, { value: "light", label: "☀ Light" }]} /></label>
+              <div className="col" style={{ gap: 6 }}><span className="small muted">Theme</span><Seg<Theme> value={settings.theme} onChange={(v) => update({ theme: v })} testId="set-theme" options={[{ value: "dark", label: "☾ Dark" }, { value: "light", label: "☀ Light" }]} /></div>
               <label>Program start date (Monday recommended)
                 <input className="fi" type="date" value={settings.startDate} onChange={(e) => { if (isValidKey(e.target.value)) { update({ startDate: e.target.value }); toast(<>Plan re-based to <b>{e.target.value}</b></>, "ok"); } }} data-testid="set-start" />
                 <span className="xs faint">Phases, week numbers and pace are computed from this date.</span>
               </label>
               <div className="row2">
                 <label>Hours per week<NumField value={settings.hoursPerWeek} min={1} max={60} onCommit={(n) => update({ hoursPerWeek: n })} testId="set-hours" /></label>
-                <label>Daily goal (items)<NumField value={settings.dailyGoal} min={1} max={10} onCommit={(n) => update({ dailyGoal: n })} testId="set-goal" /></label>
+                <label>Daily goal (items)<NumField value={settings.dailyGoal} min={1} max={10} integer onCommit={(n) => update({ dailyGoal: n })} testId="set-goal" /></label>
               </div>
               <label>Active path
-                <select className="fi" value={settings.activePathId} onChange={(e) => { update({ activePathId: e.target.value }); toast(<>Active path: <b>{content.paths.find((p) => p.id === e.target.value)?.name}</b></>, "ok"); }} data-testid="set-path">
+                <select className="fi" value={settings.activePathId} onChange={(e) => { const p = content.paths.find((x) => x.id === e.target.value); update({ activePathId: e.target.value, ...(p ? { hoursPerWeek: p.hoursPerWeek } : {}) }); toast(<>Active path: <b>{p?.name}</b>{p ? ` · budget ${p.hoursPerWeek}h/wk` : ""}</>, "ok"); }} data-testid="set-path">
                   {content.paths.map((p) => <option key={p.id} value={p.id}>{p.name} · {p.durationMonths} mo · {p.hoursPerWeek}h/wk</option>)}
                 </select>
               </label>
@@ -87,8 +87,8 @@ export default function SettingsPage() {
                   <option value="all">All roles</option>{ROLES.map((r) => <option key={r} value={r}>{ROLE_LABEL[r]}</option>)}
                 </select>
               </label>
-              <label className="inline">Keep the left menu expanded<Switch checked={settings.navPinned} onChange={(v) => update({ navPinned: v })} label="Pin navigation" testId="set-nav-pinned" /></label>
-              <label className="inline">Show the side panel (coach, Pomodoro, drills)<Switch checked={settings.railOpen} onChange={(v) => update({ railOpen: v })} label="Side panel" testId="set-rail" /></label>
+              <div className="row" style={{ justifyContent: "space-between" }}><span className="small muted">Keep the left menu expanded</span><Switch checked={settings.navPinned} onChange={(v) => update({ navPinned: v })} label="Keep the left menu expanded" testId="set-nav-pinned" /></div>
+              <div className="row" style={{ justifyContent: "space-between" }}><span className="small muted">Show the side panel (coach, Pomodoro, drills)</span><Switch checked={settings.railOpen} onChange={(v) => update({ railOpen: v })} label="Show the side panel" testId="set-rail" /></div>
             </div>
           </Card>
           <Card title="⏱ Pomodoro">
@@ -99,9 +99,9 @@ export default function SettingsPage() {
               </div>
               <div className="row2">
                 <label>Long break (min)<NumField value={settings.pomo.long} min={1} max={90} onCommit={(n) => setPomo({ long: n })} testId="set-pomo-long" /></label>
-                <label>Rounds before long break<NumField value={settings.pomo.rounds} min={1} max={12} onCommit={(n) => setPomo({ rounds: n })} testId="set-pomo-rounds" /></label>
+                <label>Rounds before long break<NumField value={settings.pomo.rounds} min={1} max={12} integer onCommit={(n) => setPomo({ rounds: n })} testId="set-pomo-rounds" /></label>
               </div>
-              <label className="inline">Sound at the end of a block<Switch checked={settings.pomo.sound} onChange={(v) => update({ pomo: { ...settings.pomo, sound: v } })} label="Pomodoro sound" testId="set-pomo-sound" /></label>
+              <div className="row" style={{ justifyContent: "space-between" }}><span className="small muted">Sound at the end of a block</span><Switch checked={settings.pomo.sound} onChange={(v) => update({ pomo: { ...settings.pomo, sound: v } })} label="Sound at the end of a block" testId="set-pomo-sound" /></div>
             </div>
           </Card>
         </div>
