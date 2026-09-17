@@ -393,6 +393,33 @@ export interface Strategy {
 }
 
 // ---------------------------------------------------------------------------
+// News feed (built by scripts/build-feed.mjs into public/feed.json)
+// ---------------------------------------------------------------------------
+export type FeedCategory = "AI security" | "Cyber" | "AI & ML" | "Startups & VC" | "Israel tech";
+
+export interface FeedItem {
+  id: string;
+  title: string;
+  url: string;
+  source: string;
+  category: FeedCategory;
+  date: string; // ISO
+  summary: string;
+  score: number;
+  top?: boolean;
+}
+
+export interface FeedSource { name: string; site: string; category: FeedCategory; ok: boolean }
+
+export interface FeedPayload {
+  updated: string;
+  count: number;
+  days: number;
+  sources: FeedSource[];
+  items: FeedItem[];
+}
+
+// ---------------------------------------------------------------------------
 // Aggregate content bundle (what src/data/index.ts exports)
 // ---------------------------------------------------------------------------
 export interface ContentBundle {

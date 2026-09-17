@@ -6,6 +6,8 @@ import { fmtHours } from "@/lib/labels";
 import { useToast } from "@/components/ui";
 import { content } from "@/data";
 import { findItem } from "@/lib/plan";
+import { radarPicks, useFeed, FEED_CATEGORY_VAR } from "@/lib/feed";
+import { relTime } from "@/lib/dates";
 
 // ---------------------------------------------------------------------------
 // Coach line (the "mascot" equivalent — a terse, state-aware nudge)
@@ -141,6 +143,41 @@ export function Pomodoro() {
 }
 
 // ---------------------------------------------------------------------------
+// Radar: three unread top stories from the news feed
+// ---------------------------------------------------------------------------
+function RadarCard() {
+  const { payload } = useFeed();
+  const read = useForge((s) => s.feed.read);
+  const markFeedRead = useForge((s) => s.markFeedRead);
+  const picks = useMemo(() => (payload ? radarPicks(payload.items, read, 3) : []), [payload, read]);
+  return (
+    <div className="card" data-testid="radar">
+      <h3>📡 Radar <span className="grow" /><Link to="/feed" className="linkbtn">News ▸</Link></h3>
+      <div className="body">
+        {!payload ? (
+          <div className="rubric">The news feed appears once it has been published.</div>
+        ) : picks.length === 0 ? (
+          <div className="rubric">All caught up — nothing unread in the feed.</div>
+        ) : (
+          <div className="col" style={{ gap: 8 }}>
+            {picks.map((it) => (
+              <div key={it.id} className="radar-item" data-testid={`radar-${it.id}`}>
+                <div>
+                  <a className="radar-name" href={it.url} target="_blank" rel="noreferrer" onClick={() => markFeedRead(it.id)}>{it.title}</a>
+                  <div className="radar-meta"><span style={{ color: `var(${FEED_CATEGORY_VAR[it.category]})` }}>{it.category}</span> · {it.source} · {relTime(it.date)}</div>
+                </div>
+                <button className="radar-check" onClick={() => markFeedRead(it.id)} aria-label={`Mark ${it.title} read`} title="Mark read" data-testid={`radar-read-${it.id}`}>✓</button>
+              </div>
+            ))}
+          </div>
+        )}
+        <div className="rubric" style={{ marginTop: 9 }}>Two or three a day keeps you current. ✓ marks a story read.</div>
+      </div>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
 // Rail
 // ---------------------------------------------------------------------------
 export function Rail() {
@@ -169,6 +206,7 @@ export function Rail() {
           <div className="mini"><span>Cards due</span><b>{plan.srs.due}</b></div>
         </div>
       </div>
+      <RadarCard />
       <div className="card">
         <h3>🔁 Drills due <span className="grow" /><Link to="/drills" className="linkbtn">All ▸</Link></h3>
         <div className="body">

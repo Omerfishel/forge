@@ -3,6 +3,9 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  schedule:
+    # Refresh the news feed twice a day (~08:20 and ~18:20 Israel time; UTC in cron).
+    - cron: "20 5,15 * * *"
   workflow_dispatch:
 
 permissions:
@@ -26,6 +29,8 @@ jobs:
       - run: npm ci
       - run: npm run typecheck
       - run: npm test
+      - name: Build the news feed (public/feed.json)
+        run: node scripts/build-feed.mjs
       - run: npm run build
       - uses: actions/configure-pages@v5
         with:

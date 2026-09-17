@@ -11,6 +11,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
+    "feed": "node scripts/build-feed.mjs",
     "verify": "npm run typecheck && npm run test && npm run build && npm run test:e2e"
   },
   "dependencies": {

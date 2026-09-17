@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { NAV } from "@/features/registry";
 import { useForge } from "@/store";
 import { usePlan } from "@/lib/hooks";
+import { unreadRecent, useFeed } from "@/lib/feed";
 
 export function SideNav() {
   const plan = usePlan();
@@ -10,10 +11,14 @@ export function SideNav() {
   const libQFromLink = useForge((s) => s.ui.libQFromLink);
   const setLibraryFilters = useForge((s) => s.setLibraryFilters);
   const setUi = useForge((s) => s.setUi);
+  const feedRead = useForge((s) => s.feed.read);
+  const { payload } = useFeed();
+  const fresh = payload ? unreadRecent(payload.items, feedRead, 48).length : 0;
   const badges: Record<string, { n: number; hot?: boolean }> = {
     today: { n: plan.next.filter((x) => x.unblocked).length + plan.drillsDue.length },
     drills: { n: plan.drillsDue.length, hot: plan.drillsDue.length > 0 },
     review: { n: plan.srs.due, hot: plan.srs.due > 0 },
+    feed: { n: fresh, hot: fresh > 0 },
   };
   return (
     <nav className="side" id="side" aria-label="Primary">

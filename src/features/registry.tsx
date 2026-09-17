@@ -23,6 +23,7 @@ export const NAV: NavEntry[] = [
   { key: "drills", path: "/drills", label: "Drills", icon: "🔁", component: lazy(() => import("./drills")) },
   { key: "review", path: "/review", label: "Review", icon: "🧠", component: lazy(() => import("./review")) },
   { key: "reading", path: "/reading", label: "Reading", icon: "📄", component: lazy(() => import("./reading")) },
+  { key: "feed", path: "/feed", label: "News", icon: "📰", component: lazy(() => import("./feed")) },
   { key: "notes", path: "/notes", label: "Notes", icon: "📓", component: lazy(() => import("./notes")) },
   { key: "assess", path: "/assess", label: "Ready-when", icon: "✅", sep: true, component: lazy(() => import("./assessments")) },
   { key: "compass", path: "/compass", label: "Compass", icon: "🧭", component: lazy(() => import("./compass")) },

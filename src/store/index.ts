@@ -58,6 +58,13 @@ export interface Settings {
   freshnessCheckedAt?: string;
 }
 
+export interface FeedState {
+  read: Record<string, true>;
+  saved: Record<string, true>;
+  /** ISO time the News view was last opened (drives the "new" badge). */
+  seenAt?: string;
+}
+
 export interface UiState {
   libraryFilters: {
     q: string;
@@ -97,6 +104,8 @@ export interface ForgeState {
   celebrated: Record<string, boolean>;
   /** Resource ids the user plans to buy (Budget view) — separate from learning status. */
   planned: Record<string, boolean>;
+  /** News feed state: read/saved story ids and when the feed was last opened. */
+  feed: FeedState;
 
   // ---- actions ----
   setStatus: (itemId: string, itemType: ProgressItemType, status: ProgressStatus) => void;
@@ -124,6 +133,10 @@ export interface ForgeState {
   setCollapsed: (key: string, collapsed: boolean) => void;
   markCelebrated: (id: string) => void;
   togglePlanned: (resourceId: string) => void;
+  markFeedRead: (id: string, read?: boolean) => void;
+  markFeedReadMany: (ids: string[]) => void;
+  toggleFeedSaved: (id: string) => void;
+  markFeedSeen: () => void;
   importState: (data: unknown) => boolean;
   exportState: () => string;
   resetAll: () => void;
@@ -183,6 +196,7 @@ export function defaultData() {
     ui: defaultUi(),
     celebrated: {} as Record<string, boolean>,
     planned: {} as Record<string, boolean>,
+    feed: { read: {}, saved: {} } as FeedState,
   };
 }
 
@@ -194,7 +208,7 @@ export function uid(prefix = "n"): string {
 
 const PERSIST_KEYS: (keyof ForgeState)[] = [
   "version", "progress", "drillLog", "completions", "notes", "srs", "srsReviewedToday",
-  "settings", "pomodoro", "pomoCount", "ui", "celebrated", "planned",
+  "settings", "pomodoro", "pomoCount", "ui", "celebrated", "planned", "feed",
 ];
 
 function bumpCompletion(completions: Record<string, number>, delta: number, key = todayKey()) {
@@ -272,7 +286,10 @@ export function sanitizeImport(data: unknown): Partial<ForgeState> | null {
     libraryFilters: { q: str(dlf.q), tracks: strList(dlf.tracks), types: strList(dlf.types), cost: strList(dlf.cost), difficulty: strList(dlf.difficulty), priority: strList(dlf.priority), time: strList(dlf.time), hideDone: !!dlf.hideDone, onlyArtifacts: !!dlf.onlyArtifacts },
     expanded: boolMap(du.expanded), collapsed: boolMap(du.collapsed), reviewDeck: str(du.reviewDeck, "all") || "all", compassTab: str(du.compassTab, "overview") || "overview",
   };
-  return { progress, drillLog, completions, notes, srs, srsReviewedToday, settings, pomodoro, pomoCount: Math.round(num(data.pomoCount, 0, 0, 1000000)), ui, celebrated: boolMap(data.celebrated), planned: boolMap(data.planned) };
+  const df = isObj(data.feed) ? data.feed : {};
+  const trueMap = (v: unknown) => { const out: Record<string, true> = {}; if (isObj(v)) for (const [k, b] of Object.entries(v)) if (b) out[k] = true; return out; };
+  const feed: FeedState = { read: trueMap(df.read), saved: trueMap(df.saved), seenAt: typeof df.seenAt === "string" ? df.seenAt : undefined };
+  return { progress, drillLog, completions, notes, srs, srsReviewedToday, settings, pomodoro, pomoCount: Math.round(num(data.pomoCount, 0, 0, 1000000)), ui, celebrated: boolMap(data.celebrated), planned: boolMap(data.planned), feed };
 }
 
 export const useForge = create<ForgeState>()(
@@ -396,6 +413,10 @@ export const useForge = create<ForgeState>()(
       setCollapsed: (key, collapsed) => set((s) => ({ ui: { ...s.ui, collapsed: { ...s.ui.collapsed, [key]: collapsed } } })),
       markCelebrated: (id) => set((s) => ({ celebrated: { ...s.celebrated, [id]: true } })),
       togglePlanned: (id) => set((s) => { const planned = { ...s.planned }; if (planned[id]) delete planned[id]; else planned[id] = true; return { planned }; }),
+      markFeedRead: (id, read = true) => set((s) => { const r = { ...s.feed.read }; if (read) r[id] = true; else delete r[id]; return { feed: { ...s.feed, read: r } }; }),
+      markFeedReadMany: (ids) => set((s) => { const r = { ...s.feed.read }; ids.forEach((id) => { r[id] = true; }); return { feed: { ...s.feed, read: r } }; }),
+      toggleFeedSaved: (id) => set((s) => { const v = { ...s.feed.saved }; if (v[id]) delete v[id]; else v[id] = true; return { feed: { ...s.feed, saved: v } }; }),
+      markFeedSeen: () => set((s) => ({ feed: { ...s.feed, seenAt: nowIso() } })),
 
       importState: (data) => {
         const clean = sanitizeImport(data);
@@ -437,6 +458,7 @@ export const useForge = create<ForgeState>()(
           celebrated: p.celebrated ?? {},
           pomoCount: typeof p.pomoCount === "number" ? p.pomoCount : 0,
           planned: p.planned ?? {},
+          feed: { read: p.feed?.read ?? {}, saved: p.feed?.saved ?? {}, seenAt: p.feed?.seenAt },
         };
       },
       partialize: (s) => {
