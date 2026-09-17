@@ -13,7 +13,7 @@ export function SideNav() {
   const setUi = useForge((s) => s.setUi);
   const feedRead = useForge((s) => s.feed.read);
   const { payload } = useFeed();
-  const fresh = payload ? unreadRecent(payload.items, feedRead, 48).length : 0;
+  const fresh = payload ? unreadRecent(payload.items, feedRead, 24).length : 0; // ≤ 8 by construction
   const badges: Record<string, { n: number; hot?: boolean }> = {
     today: { n: plan.next.filter((x) => x.unblocked).length + plan.drillsDue.length },
     drills: { n: plan.drillsDue.length, hot: plan.drillsDue.length > 0 },

@@ -26,13 +26,13 @@ test.describe("News feed", () => {
     await expect(page.getByTestId("feed-top")).toContainText("Agent identity");
     await expect(page.getByTestId("feed-item-e1")).toBeVisible();
     await expect(page.getByTestId("feed-count")).toContainText("3 shown · 3 unread");
-    // nav badge counts unread stories from the last 48h (e1, e2, e3 → 3)
-    await expect(page.getByTestId("nav-feed").locator(".c")).toHaveText("3");
+    // nav badge counts unread stories from the last 24h (e1, e2 → 2)
+    await expect(page.getByTestId("nav-feed").locator(".c")).toHaveText("2");
     // radar in the rail lists the unread top picks first
     await expect(page.getByTestId("radar")).toContainText("Agent identity");
     await page.getByTestId("feed-read-e1").click();
     await expect(page.getByTestId("feed-item-e1")).toHaveClass(/read/);
-    await expect(page.getByTestId("nav-feed").locator(".c")).toHaveText("2");
+    await expect(page.getByTestId("nav-feed").locator(".c")).toHaveText("1");
     await page.getByTestId("feed-save-e3").click();
     await page.reload();
     await expect(page.getByTestId("feed-item-e1")).toHaveClass(/read/);
